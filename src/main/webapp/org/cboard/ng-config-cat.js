@@ -1,5 +1,5 @@
 /**
- * Created by Peter on 2016/10/22.
+ * Created by Cat on 2020/04/29.
  */
 
 
@@ -19,7 +19,7 @@ angular.module('cBoard').config(['$stateProvider', function ($stateProvider) {
         .state('mine.view', {
             url: '/{id}',
             params: {id: null},
-            templateUrl: 'org/cboard/view/dashboard/view.html',
+            templateUrl: 'org/cboard/view/dashboard/view_cat.html',
             controller: 'dashboardViewCtrl'
         })
         .state('dashboard.category', {
