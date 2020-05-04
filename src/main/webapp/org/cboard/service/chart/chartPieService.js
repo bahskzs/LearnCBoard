@@ -26,6 +26,7 @@ cBoard.service('chartPieService', function ($state, $window) {
         });
         var b = 100 / (casted_values.length * 9 + 1);
         var titles = [];
+
         for (var i = 0; i < aggregate_data.length; i++) {
             var joined_values = casted_values[i].join('-');
             var realType = angular.copy(newValuesConfig[joined_values]).type;
@@ -35,7 +36,7 @@ cBoard.service('chartPieService', function ($state, $window) {
                 realType: realType,
                 center: [5 * b + i * 9 * b + '%', '50%'],
                 data: [],
-                roseType: 'area',
+                //roseType: 'area',
                 itemStyle: {
                     normal: {
                         label: {
@@ -50,14 +51,15 @@ cBoard.service('chartPieService', function ($state, $window) {
                         shadowColor: 'rgba(0, 0, 0, 0.5)'
                     },
                     labelLine: {
-                        show: false
+
+                            show: false
 
                     }
                 },
                 labelLine: {
                     show: false
                 },
-                radius: ['50%', '70%'],
+
             };
             if (realType == 'coxcomb') {
                 s.roseType = 'angle';
@@ -92,7 +94,10 @@ cBoard.service('chartPieService', function ($state, $window) {
                 orient: 'horizontal' ,
                 showTitle: true
             },
-            series: series
+            series: series,
+            //roseType: 'radius',
+            hoverAnimation: true,
+
         };
 
         updateEchartOptions(chartConfig.option, echartOption);

@@ -471,6 +471,30 @@ cBoard.controller('dashboardViewCtrl', function ($timeout, $rootScope, $scope, $
         });
     };
 
+    //2020-05-06 追加工具栏 cat
+    $scope.initToolbox = function () {
+
+            option.toolbox = {
+                feature: {
+                    //saveAsImage: {},
+                    dataView: {
+                        show: true,
+                        readOnly: true
+                    },
+                    magicType: {
+                        type: ['line', 'bar', 'stack', 'tiled']
+                    },
+                    dataZoom: {
+                        show: true
+                    },
+                    restore: {
+                        show: true
+                    }
+                }
+            };
+
+    };
+
     $scope.modalTable = function (widget) {
         $uibModal.open({
             templateUrl: 'org/cboard/view/util/modal/chart.html',

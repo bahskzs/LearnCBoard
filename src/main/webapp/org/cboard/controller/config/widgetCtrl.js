@@ -880,7 +880,17 @@ cBoard.controller('widgetCtrl', function ($scope, $state, $stateParams, $http, $
                         case 'pie':
                             $scope.previewDivWidth = 12;
                             option.toolbox = {
+                                show : true,
+                                showTitle: true,
                                 feature: {
+                                    saveAsImage: {
+                                        type: 'png',
+                                        name : 'pie',
+                                        backgroundColor: 'auto',
+                                        excludeComponents: ['toolbox'],
+                                        show: true,
+                                        title: '保存为图片',
+                                    },
                                     dataView: {
                                         show: true,
                                         readOnly: true

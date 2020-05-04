@@ -18,4 +18,11 @@
 
 ### 4. 修改图表样式
 
-#### 4.1 饼图
+#### 4.1 基础配置文件
+file : \src\main\webapp\org\cboard\controller\dashboard\dashboardViewCtrl.js
+bi.html页面上的chart对应右上角按钮基本在此页面实现
+loadWidget(reload) --> ng-click="reload(widget)"
+$scope.export --> ng-click="export(widget)"
+$scope.render1 --> ng-click="render1()"
+
+#### 4.2 饼图

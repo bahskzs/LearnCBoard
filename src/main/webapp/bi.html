@@ -182,7 +182,7 @@ desired effect
 
 
     <!-- Content Wrapper. Contains page content -->
-    <div class="content" style="background:#eeeeee">
+    <div class="content" style="background:#eeeeee" >
         <ui-view>
 
         </ui-view>
@@ -290,21 +290,16 @@ desired effect
             <div class="box-header" ng-mouseover="x=true" ng-mouseleave="x=false">
                 <!--<i class="fa fa-bar-chart-o"></i>-->
                 <h3 class="box-title">{{widget.name}}</h3>
-                <!--<div class="box-tools pull-right" ng-show="x" ng-init="x=false">
+
+                <div class="box-tools pull-right" ng-show="x" ng-init="x=false">
                     <button name="reload_{{widget.widget.id}}" type="button" class="btn btn-box-tool" ng-click="reload(widget)"><i
                             class="fa fa-refresh"></i>
                     </button>
-                    <button type="button" class="btn btn-box-tool" ng-if="widgetCfg" ng-click="config(widget)"><i
-                            class="fa fa-wrench"></i>
+                    <button name="download_{{widget.widget.id}}" type="button" class="btn btn-box-tool" ng-click="export(widget)"><i
+                            class="fa fa-download"></i>
                     </button>
-                    <button type="button" class="btn btn-box-tool" ng-if="widget.extenal" ng-click="skip(widget)" title="{{'COMMON.SKIP_TO'|translate}}{{widget.extenal.name}}"><i class="fa fa-share"></i>
-                    </button>
-                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                    </button>
-                    <button type="button" class="btn btn-box-tool" ng-click="modalChart(widget)"><i
-                            class="fa fa-square-o"></i>
-                    </button>
-                </div> -->
+                </div>
+
             </div>
             <div class="box-body" ng-style="{height:myheight+'px'}" style="padding: 3px 0px 3px 13px;">
             </div>
@@ -320,21 +315,16 @@ desired effect
             <div class="box-header" ng-mouseover="x=true" ng-mouseleave="x=false" >
                 <!--<i class="fa fa-bar-chart-o"></i>-->
                 <h3 class="box-title">{{widget.name}}</h3>
-                <!--<div class="box-tools pull-right" ng-show="x" ng-init="x=false">
+
+                <div class="box-tools pull-right" ng-show="x" ng-init="x=false">
                     <button name="reload_{{widget.widget.id}}" type="button" class="btn btn-box-tool" ng-click="reload(widget)"><i
                             class="fa fa-refresh"></i>
                     </button>
-                    <button type="button" class="btn btn-box-tool" ng-if="widgetCfg" ng-click="config(widget)"><i
-                            class="fa fa-wrench"></i>
+                    <button name="download_{{widget.widget.id}}" type="button" class="btn btn-box-tool" ng-click="export(widget)"><i
+                            class="fa fa-download"></i>
                     </button>
-                    <button type="button" class="btn btn-box-tool" ng-if="widget.extenal" ng-click="skip(widget)" title="{{'COMMON.SKIP_TO'|translate}}{{widget.extenal.name}}"><i class="fa fa-share"></i>
-                    </button>
-                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                    </button>
-                    <button type="button" class="btn btn-box-tool" ng-click="modalTable(widget)"><i
-                            class="fa fa-square-o"></i>
-                    </button>
-                </div>-->
+
+                </div>
             </div>
             <div class="box-body" ng-style="{height:myheight+'px'}" style="padding: 3px 0px 3px 13px;">
             </div>
