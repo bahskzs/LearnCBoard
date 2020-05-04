@@ -35,11 +35,11 @@ cBoard.service('chartPieService', function ($state, $window) {
                 realType: realType,
                 center: [5 * b + i * 9 * b + '%', '50%'],
                 data: [],
-                //roseType: 'angle'
+                roseType: 'area',
                 itemStyle: {
                     normal: {
                         label: {
-                            show: true,
+                            show: false,
                             //position:'inside',
                             formatter: '{b}: {d}%'
                         }
@@ -49,8 +49,15 @@ cBoard.service('chartPieService', function ($state, $window) {
                         shadowOffsetX: 0,
                         shadowColor: 'rgba(0, 0, 0, 0.5)'
                     },
-                    labelLine: {show: true}
-                }
+                    labelLine: {
+                        show: false
+
+                    }
+                },
+                labelLine: {
+                    show: false
+                },
+                radius: ['50%', '70%'],
             };
             if (realType == 'coxcomb') {
                 s.roseType = 'angle';
@@ -80,7 +87,11 @@ cBoard.service('chartPieService', function ($state, $window) {
                 trigger: 'item',
                 formatter: "{a} <br/>{b} : {c} ({d}%)"
             },
-            toolbox: false,
+            toolbox: {
+                show : true,
+                orient: 'horizontal' ,
+                showTitle: true
+            },
             series: series
         };
 
