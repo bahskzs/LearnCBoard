@@ -34,7 +34,7 @@ public class MenuService {
         menuList.add(new DashboardMenu(11, 1, "SIDEBAR.HOMEPAGE", "config.homepage"));
 
         // 2020-04-28 追加菜单 cat
-        menuList.add(new DashboardMenu(12,-1,"SIDEBAR.EXTEND","config.extend"));
+        menuList.add(new DashboardMenu(12,-1,"SIDEBAR.EXTEND","extend"));
         menuList.add(new DashboardMenu(13,12,"SIDEBAR.EXTEND_FUNCTION","extend.fun"));
 
 

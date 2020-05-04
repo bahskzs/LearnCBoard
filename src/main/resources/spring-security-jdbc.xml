@@ -22,6 +22,11 @@
         <security:logout logout-url="/j_spring_cas_security_logout"/>
         <security:remember-me remember-me-parameter="remember_me"/>
         <security:csrf disabled="true"/>
+        <!--2020-04-29 cat-->
+        <security:headers>
+            <security:frame-options disabled="true"/>
+        </security:headers>
+
     </security:http>
 
     <security:authentication-manager alias="authenticationManager">
