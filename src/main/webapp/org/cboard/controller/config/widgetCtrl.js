@@ -816,7 +816,9 @@ cBoard.controller('widgetCtrl', function ($scope, $state, $stateParams, $http, $
             $('#viewQuery_widget').html("");
             $scope.viewQueryMoal = false;
         };
-
+        /**
+         *
+         */
         $scope.previewQuery = function () {
             $('#viewQuery_widget').html("");
             $timeout(function () {

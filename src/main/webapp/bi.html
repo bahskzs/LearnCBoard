@@ -177,15 +177,13 @@ desired effect
 |---------------------------------------------------------|
 -->
 <body class="hold-transition skin-blue " ng-class="{'sidebar-collapse': liteMode}">
-<div class="wrapper" >
+<div class="wrapper" ng-init="render1()">
 
 
 
-    <!-- Content Wrapper. Contains page content -->
+        <!-- Content Wrapper. Contains page content -->
     <div class="content" style="background:#eeeeee" >
-        <ui-view>
-
-        </ui-view>
+        <ui-view></ui-view>
         <!-- Content Header (Page header) -->
         <!--<section class="content-header">-->
         <!--<h1>-->
@@ -201,6 +199,7 @@ desired effect
         <!-- Main content -->
         <!-- /.content -->
     </div>
+
     <!-- /.content-wrapper -->
 
     <!-- Main Footer -->
@@ -284,8 +283,8 @@ desired effect
 <script src="plugins/FineMap/plugin.js"></script>
 <!--<script src="plugins/FineMap/.js"></script>-->
 
-<script type="text/ng-template" id="echartContent">
-    <div class="col-md-{{widget.width}}">
+<script type="text/ng-template" id="echartContent" >
+    <div class="col-md-{{widget.width}}" >
         <div class="box box-solid" style="z-index: 99;">
             <div class="box-header" ng-mouseover="x=true" ng-mouseleave="x=false">
                 <!--<i class="fa fa-bar-chart-o"></i>-->
@@ -301,7 +300,7 @@ desired effect
                 </div>
 
             </div>
-            <div class="box-body" ng-style="{height:myheight+'px'}" style="padding: 3px 0px 3px 13px;">
+            <div class="box-body" ng-style="{height:myheight+'px'}" style="padding: 3px 0px 3px 13px;" >
             </div>
         </div>
     </div>
@@ -310,7 +309,7 @@ desired effect
     <div class="col-md-{{widget.width}} kpi-body"/>
 </script>
 <script type="text/ng-template" id="chartContent">
-    <div class="col-md-{{widget.width}}" style="z-index: 99;">
+    <div class="col-md-{{widget.width}}" style="z-index: 99;" >
         <div class="box box-solid">
             <div class="box-header" ng-mouseover="x=true" ng-mouseleave="x=false" >
                 <!--<i class="fa fa-bar-chart-o"></i>-->
@@ -326,7 +325,7 @@ desired effect
 
                 </div>
             </div>
-            <div class="box-body" ng-style="{height:myheight+'px'}" style="padding: 3px 0px 3px 13px;">
+            <div class="box-body" ng-style="{height:myheight+'px'}" style="padding: 3px 0px 3px 13px;" >
             </div>
         </div>
     </div>

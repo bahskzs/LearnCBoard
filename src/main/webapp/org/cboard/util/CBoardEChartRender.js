@@ -14,11 +14,30 @@ var echartsBasicOption = {
     tooltip: {
         trigger: 'axis'
     },
+    toolbox: {
+        feature: {
+            //saveAsImage: {},
+            dataView: {
+                show: true,
+                readOnly: true
+            },
+            magicType: {
+                type: ['line', 'bar', 'stack', 'tiled']
+            },
+            dataZoom: {
+                show: true
+            },
+            restore: {
+                show: true
+            }
+        },
+    },
     legend: {
         x: 'left',
         itemWidth: 15,
         itemHeight: 10
-    }
+    },
+    //color : ['#1a85F9', '#00FEFE', '#E1B600', '#FFC702', '#1a85F9', '#3bFE72', '#3bFE72', '#3bFE72', '#3bFE72']
 };
 
 var CBoardEChartRender = function (jqContainer, options, isDeepSpec) {
@@ -41,6 +60,11 @@ CBoardEChartRender.prototype.chart = function (group, persist) {
             width: '100%'
         });
     }
+    //2020-05-15 cat 颜色
+    //options.color = ['#c23531','#2f4554', '#61a0a8', '#d48265', '#91c7ae','#749f83',  '#ca8622', '#bda29a','#6e7074', '#546570', '#c4ccd3'];
+
+
+
 
     if (options.legend.data && options.legend.data.length > 35) {
         options.grid.top = '5%';

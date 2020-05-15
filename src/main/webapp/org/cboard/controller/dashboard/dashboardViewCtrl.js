@@ -117,7 +117,15 @@ cBoard.controller('dashboardViewCtrl', function ($timeout, $rootScope, $scope, $
             }
         }
     );
-
+    
+    /** @NoteTaker: cat
+     * @Description: 导出excel
+     * @Date: 9:36 2020-05-07
+     
+     * @MethodName: export()
+     * @return:
+     * @Version: 1.0
+     */
     $scope.export = function () {
         if ($scope.exportStatus) {
             return;
@@ -169,6 +177,14 @@ cBoard.controller('dashboardViewCtrl', function ($timeout, $rootScope, $scope, $
         return dsReloadStatus;
     };
 
+    /** @NoteTaker: cat
+     * @Description: 加载控件
+     * @Date: 9:36 2020-05-07
+
+     * @MethodName: loadWidget()
+     * @return:
+     * @Version: 1.0
+     */
     var loadWidget = function (reload) {
         paramToFilter();
         var dsReloadStatus = initDsReloadStatus(reload);
@@ -472,9 +488,10 @@ cBoard.controller('dashboardViewCtrl', function ($timeout, $rootScope, $scope, $
     };
 
     //2020-05-06 追加工具栏 cat
-    $scope.initToolbox = function () {
-
-            option.toolbox = {
+    $scope.initToolbox = function (widget) {
+        debugger;
+        var initTool = function(optionFilter){
+            optionFilter.toolbox = {
                 feature: {
                     //saveAsImage: {},
                     dataView: {
@@ -492,7 +509,7 @@ cBoard.controller('dashboardViewCtrl', function ($timeout, $rootScope, $scope, $
                     }
                 }
             };
-
+        };
     };
 
     $scope.modalTable = function (widget) {
@@ -522,6 +539,7 @@ cBoard.controller('dashboardViewCtrl', function ($timeout, $rootScope, $scope, $
     };
 
     $scope.reload = function (widget) {
+        debugger;
         paramToFilter();
         widget.widget.data = injectFilter(widget.widget).data;
         widget.show = false;
@@ -533,9 +551,11 @@ cBoard.controller('dashboardViewCtrl', function ($timeout, $rootScope, $scope, $
                 chartService.render(content, widget.widget.data, optionFilter, scope, true);
                 widget.loading = false;
             } else {
+                debugger;
                 chartService.render(content, widget.widget.data, optionFilter, scope, true, null, widget.relations).then(function (d) {
                     widget.realTimeTicket = d;
                     widget.loading = false;
+
                 });
             }
             widget.realTimeOption = {optionFilter: optionFilter, scope: scope};

@@ -16,9 +16,11 @@ cBoard.service('chartService', function($q, dataService, chartPieService, chartL
           CBoardEChartRender.prototype.theme = "theme-fin1"
       }
     var deferred = $q.defer();
+      debugger;
     var chart = getChartServices(widget.config);
     dataService.getDataSeries(widget.datasource, widget.query, widget.datasetId, widget.config, function(data) {
       try {
+        debugger;
         var option = chart.parseOption(data);
         if (optionFilter) {
           optionFilter(option);

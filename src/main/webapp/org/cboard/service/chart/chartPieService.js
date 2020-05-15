@@ -3,14 +3,15 @@
  */
 'use strict';
 cBoard.service('chartPieService', function ($state, $window) {
-
+    debugger;
     this.render = function (containerDom, option, scope, persist, drill, relations, chartConfig) {
         var render = new CBoardEChartRender(containerDom, option);
         render.addClick(chartConfig, relations, $state, $window);
         return render.chart(null, persist);
     };
-
+    debugger;
     this.parseOption = function (data) {
+        debugger;
         var chartConfig = data.chartConfig;
         var casted_keys = data.keys;
         var casted_values = data.series;
@@ -59,6 +60,7 @@ cBoard.service('chartPieService', function ($state, $window) {
                 labelLine: {
                     show: false
                 },
+                //color : ['#1a85F9', '#00FEFE', '#E1B600', '#FFC702', '#1a85F9', '#3bFE72', '#3bFE72', '#3bFE72', '#3bFE72']
 
             };
             if (realType == 'coxcomb') {
@@ -97,6 +99,8 @@ cBoard.service('chartPieService', function ($state, $window) {
             series: series,
             //roseType: 'radius',
             hoverAnimation: true,
+            //color : ['#1a85F9', '#00FEFE', '#E1B600', '#FFC702', '#1a85F9', '#3bFE72', '#3bFE72', '#3bFE72', '#3bFE72']
+
 
         };
 

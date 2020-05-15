@@ -3,7 +3,15 @@
  */
 
 cBoard.directive('dashboardWidget', function ($compile, $templateCache, dataService, chartService) {
+    /** @Author: cat
+     * @Description:
+     * 渲染首页样式 bi.html/start.html
+     * @Date: 11:56 2020-05-07
 
+     * @MethodName:
+     * @return:
+     * @Version: 1.0
+     */
     var renderEchart = function (scope, element, attrs) {
         var template = $templateCache.get("echartContent");
         scope.myheight = scope.row.height ? (scope.row.height - 44) : 300;

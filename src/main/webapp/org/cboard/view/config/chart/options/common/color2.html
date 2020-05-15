@@ -1,0 +1,26 @@
+<form class="form-horizontal">
+    <div class="row">
+        <div class="form-group col-md-6">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" ng-model="curWidget.config.option.colorShow"
+                           ng-init="curWidget.config.option.colorShow ? null : curWidget.config.option.colorShow=true"> init Color
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-4">
+            <label class="col-md-4 control-label">theme</label>
+            <div class="col-md-8">
+                <select class="form-control" ng-model="curWidget.config.option.colorTheme" ng-disabled="!curWidget.config.option.colorShow">
+                    <!--2020-05-13 catty-->
+                    <option value="#CCCCCC">theme1</option>
+                    <option value="#ffffff">theme2</option>
+
+                </select>
+            </div>
+        </div>
+
+    </div>
+</form>
