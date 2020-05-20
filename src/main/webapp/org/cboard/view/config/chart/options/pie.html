@@ -4,10 +4,10 @@
         <li class="active"><a href="#legend" data-toggle="tab">Legend</a></li>
         <!--2020-05-13 cat-->
         <li><a href="#config" data-toggle="tab">Config</a></li>
+        <!--2020-05-18 cat-->
+        <li><a href="#trend" data-toggle="tab">Trend</a></li>
     </ul>
-    <ul>
 
-    </ul>
 </div>
 <div class="col-xs-9 col-md-10">
     <!-- Tab panes -->
@@ -18,6 +18,9 @@
         <!--2020-05-13 cat-->
         <div class="tab-pane " id="config">
             <ng-include src="'org/cboard/view/config/chart/options/common/color.html'"></ng-include>
+        </div>
+        <div class="tab-pane " id="trend">
+            <ng-include src="'org/cboard/view/config/chart/options/common/trend.html'"></ng-include>
         </div>
     </div>
 </div>

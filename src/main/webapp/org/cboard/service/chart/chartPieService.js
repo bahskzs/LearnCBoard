@@ -52,9 +52,7 @@ cBoard.service('chartPieService', function ($state, $window) {
                         shadowColor: 'rgba(0, 0, 0, 0.5)'
                     },
                     labelLine: {
-
                             show: false
-
                     }
                 },
                 labelLine: {
@@ -63,9 +61,12 @@ cBoard.service('chartPieService', function ($state, $window) {
                 //color : ['#1a85F9', '#00FEFE', '#E1B600', '#FFC702', '#1a85F9', '#3bFE72', '#3bFE72', '#3bFE72', '#3bFE72']
 
             };
+            //coxcomb 玫瑰图
             if (realType == 'coxcomb') {
-                s.roseType = 'angle';
+
+                s.roseType = 'area';
             }
+            //控制饼图底部的标题
             titles.push({
                 textAlign: 'center', textStyle: {
                     fontSize: 12,
@@ -88,6 +89,11 @@ cBoard.service('chartPieService', function ($state, $window) {
                 data: string_keys
             },
             tooltip: {
+                //2020-05-19 cat
+                //折线（区域）图、柱状（条形）图、K线图 : a（系列名称），b（类目值），c（数值）, d（无）
+                //散点图（气泡）图 : a（系列名称），b（数据名称），c（数值数组）, d（无）
+                //地图 : a（系列名称），b（区域名称），c（合并数值）, d（无）
+                //饼图、雷达图、仪表盘、漏斗图: a（系列名称），b（数据项名称），c（数值）, d（饼图：百分比 | 雷达图：指标名称）
                 trigger: 'item',
                 formatter: "{a} <br/>{b} : {c} ({d}%)"
             },

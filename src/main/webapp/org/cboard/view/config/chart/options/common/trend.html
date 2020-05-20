@@ -1,0 +1,35 @@
+<form class="form-horizontal">
+    <div class="row">
+        <div class="form-group col-md-6">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" ng-model="curWidget.config.option.trendShow"
+                           ng-init="curWidget.config.option.trendShow ? null : curWidget.config.option.trendShow=true"> Show Trend
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-4">
+            <label class="col-md-4 control-label">isShown</label>
+            <div class="col-md-8">
+                <select class="form-control" ng-model="curWidget.config.option.trendMode" ng-disabled="!curWidget.config.option.trendShow">
+                    <!--2020-05-13 catty-->
+                    <option value=true>true</option>
+                    <option value=false>false</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group col-md-4">
+            <label class="col-md-4 control-label">type</label>
+            <div class="col-md-8">
+                <select class="form-control" ng-model="curWidget.config.option.trendPosition" ng-disabled="curWidget.config.option.trendMode!='true'" >
+                    <!--2020-05-19 cat-->
+                    <option value="outside">外侧</option>
+                    <option value="inside">内部</option>
+                    <option value="center">中心</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</form>

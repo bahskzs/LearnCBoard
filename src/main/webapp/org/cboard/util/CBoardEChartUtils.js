@@ -19,7 +19,6 @@ var updateEchartOptions = function(tuningOpt, rawOpt) {
         } else {
             rawOpt.legend === undefined ? rawOpt.legend = angular.copy(echartsBasicOption.legend) : null;
             //2020-05-13 catty null->empty
-            debugger;
             tuningOpt.legendX ? rawOpt.legend.x = tuningOpt.legendX : null;
             tuningOpt.legendY ? rawOpt.legend.y = tuningOpt.legendY : null;
             tuningOpt.legendOrient ? rawOpt.legend.orient = tuningOpt.legendOrient : null;
@@ -34,22 +33,30 @@ var updateEchartOptions = function(tuningOpt, rawOpt) {
         }
 
         // color 2020-05-15 cat init
-        rawOpt.color === undefined ? rawOpt.color = angular.copy(echartsBasicOption.color) : null;
-        if (tuningOpt.colorShow == false) {
-            color = [];
-        }else{
+        if (tuningOpt.colorShow == true){
             debugger;
-
             if(tuningOpt.colorTheme == "theme1"){
-                rawOpt.color = ['#1a85f9', '#00fefe', '#E1B600', '#ffc702', '#1a85F9', '#3bFE72','#69A2F1','#EFD66E','#D57580','#86C6C8'];
+                //#24a7ff,#5bbfe9,#63d7a3,#fec86b,#ff94dd,#96e5ff,#95edd5,#f88f87
+                rawOpt.color = ['#24a7ff','#5bbfe9','#63d7a3','#fec86b','#ff94dd','#96e5ff','#95edd5','#f88f87'];
             }else if(tuningOpt.colorTheme == "theme2"){
                 rawOpt.color = ['#c23531','#2f4554', '#61a0a8', '#d48265', '#91c7ae','#749f83',  '#ca8622', '#bda29a','#6e7074', '#546570', '#c4ccd3'];
             }else if (tuningOpt.colorTheme == "orange"){
-                rawOpt.color = ['#FFFAF0', '#FDF5E6', '#F5DEB3', '#FFE4B5', '#FFA500', '#FFEFD5', '#FF8C00', '#FFE4C4', '#FF8C00', '#FAF0E6', '#FFDAB9'];
+                rawOpt.color = ['#FFFAF0','#FDF5E6','#FFEFD5','#FAF0E6','#FFE4C4','#F5DEB3','#FFE4B5','#FFDAB9','#FFA500'];
+            }else if(tuningOpt.colorTheme == "dark"){
+                rawOpt.color = ['#0d9afa','#0a72a9','#19c0c1','#f24652','#fead2b','#6759f9','#c43ef9','#16defc'];
             } else{
                 rawOpt.color = angular.copy(echartsBasicOption.color);
             }
 
+        }
+
+        // trend 2020-05-18 cat init
+        if(tuningOpt.trendShow == true){
+            if(tuningOpt.trendMode == "true"){
+                debugger;
+                rawOpt.series[0].itemStyle.normal.label.show = true;
+                tuningOpt.trendPosition ? rawOpt.series[0].itemStyle.normal.label.position = tuningOpt.trendPosition : null;
+            }
         }
     }
 };

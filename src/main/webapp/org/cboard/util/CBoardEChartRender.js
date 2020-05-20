@@ -107,10 +107,13 @@ CBoardEChartRender.prototype.changeSize = function (instance) {
         var b = instance.getWidth() / (l + 1 + l * 8)
         for (var i = 0; i < l; i++) {
             var seriesType = o.series[i] ? o.series[i].realType : null;
+            //2020-05-19 cat roseType
+            var roseType = o.series[i] ? o.series[i].roseType : null;
             if ((b * 8) < (instance.getHeight() * 0.75)) {
                 if (seriesType == 'doughnut') {
                     o.series[i].radius = [b * 3, b * 4];
                 } else if (seriesType == 'coxcomb') {
+                    //此处控制玫瑰图的半径，类似圆环图
                     o.series[i].radius = [b * 0.8, b * 4];
                 } else {
                     o.series[i].radius = [0, b * 4];
@@ -119,7 +122,7 @@ CBoardEChartRender.prototype.changeSize = function (instance) {
             } else {
                 if (seriesType == 'doughnut') {
                     o.series[i].radius = ['50%', '75%'];
-                } else if (seriesType == 'coxcomb') {
+                } else if (seriesType == 'coxcomb' && roseType == 'radius') {
                     o.series[i].radius = ['15%', '75%']
                 } else {
                     o.series[i].radius = ['0', '75%'];
