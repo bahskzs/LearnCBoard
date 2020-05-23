@@ -4,14 +4,14 @@
             <div class="checkbox">
                 <label>
                     <input type="checkbox" ng-model="curWidget.config.option.trendShow"
-                           ng-init="curWidget.config.option.trendShow ? null : curWidget.config.option.trendShow=true"> Show Trend
+                           ng-init="curWidget.config.option.trendShow ? null : curWidget.config.option.trendShow=true">{{'WIDGET_OPTION.SHOW_TREND'|translate}}
                 </label>
             </div>
         </div>
     </div>
     <div class="row">
         <div class="form-group col-md-4">
-            <label class="col-md-4 control-label">isShown</label>
+            <label class="col-md-4 control-label">{{'WIDGET_OPTION.INIT_TREND'|translate}}</label>
             <div class="col-md-8">
                 <select class="form-control" ng-model="curWidget.config.option.trendMode" ng-disabled="!curWidget.config.option.trendShow">
                     <!--2020-05-13 catty-->
@@ -21,13 +21,13 @@
             </div>
         </div>
         <div class="form-group col-md-4">
-            <label class="col-md-4 control-label">type</label>
+            <label class="col-md-4 control-label">{{'WIDGET_OPTION.TREND_TYPE'|translate}}</label>
             <div class="col-md-8">
                 <select class="form-control" ng-model="curWidget.config.option.trendPosition" ng-disabled="curWidget.config.option.trendMode!='true'" >
                     <!--2020-05-19 cat-->
-                    <option value="outside">外侧</option>
-                    <option value="inside">内部</option>
-                    <option value="center">中心</option>
+                    <option value="outside">{{'WIDGET_OPTION.LEGEND_TYPE.OUTSIDE'|translate}}</option>
+                    <option value="inside">{{'WIDGET_OPTION.LEGEND_TYPE.INSIDE'|translate}}</option>
+                    <option value="center">{{'WIDGET_OPTION.LEGEND_TYPE.CENTER'|translate}}</option>
                 </select>
             </div>
         </div>

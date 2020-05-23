@@ -1,11 +1,13 @@
 <div class="col-xs-3 col-md-2">
     <!-- Nav tabs -->
     <ul class="nav nav-tabs tabs-left"><!-- 'tabs-right' for right tabs -->
-        <li class="active"><a href="#legend" data-toggle="tab">Legend</a></li>
+        <li class="active"><a href="#legend" data-toggle="tab">{{'WIDGET_OPTION.LEGEND'|translate}}</a></li>
         <!--2020-05-13 cat-->
-        <li><a href="#config" data-toggle="tab">Config</a></li>
+        <li><a href="#config" data-toggle="tab">{{'WIDGET_OPTION.COLOR_CONFIG'|translate}}</a></li>
         <!--2020-05-18 cat-->
-        <li><a href="#trend" data-toggle="tab">Trend</a></li>
+        <li><a href="#trend" data-toggle="tab">{{'WIDGET_OPTION.TREND'|translate}}</a></li>
+        <!--2020-05-22 cat-->
+        <li><a href="#emphasis" data-toggle="tab">{{'WIDGET_OPTION.SHOW_EMPHASIS'|translate}}</a></li>
     </ul>
 
 </div>
@@ -21,6 +23,9 @@
         </div>
         <div class="tab-pane " id="trend">
             <ng-include src="'org/cboard/view/config/chart/options/common/trend.html'"></ng-include>
+        </div>
+        <div class="tab-pane " id="emphasis">
+            <ng-include src="'org/cboard/view/config/chart/options/common/emphasis.html'"></ng-include>
         </div>
     </div>
 </div>

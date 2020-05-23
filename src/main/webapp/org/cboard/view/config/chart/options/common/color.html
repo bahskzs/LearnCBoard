@@ -4,14 +4,14 @@
             <div class="checkbox">
                 <label>
                     <input type="checkbox" ng-model="curWidget.config.option.colorShow"
-                           ng-init="curWidget.config.option.colorShow ? null : curWidget.config.option.colorShow=true"> init Color
+                           ng-init="curWidget.config.option.colorShow ? null : curWidget.config.option.colorShow=true"> {{'WIDGET_OPTION.INIT_COLOR'|translate}}
                 </label>
             </div>
         </div>
     </div>
     <div class="row">
         <div class="form-group col-md-4">
-            <label class="col-md-4 control-label">theme</label>
+            <label class="col-md-4 control-label">{{'WIDGET_OPTION.THEME'|translate}}</label>
             <div class="col-md-8">
                 <select class="form-control" ng-model="curWidget.config.option.colorTheme" ng-disabled="!curWidget.config.option.colorShow">
                     <!--2020-05-13 catty-->

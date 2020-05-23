@@ -54,7 +54,11 @@
     "UNFOLD_TREE": "Unflod all nodes",
     "MUST_SELECT_ONE_BOARD": "Please choose one board first",
     "SKIP_TO": "Skip to",
-    "SKIP": "Skip"
+    "SKIP": "Skip",
+    "LEGEND": "Legend",
+    "COLOR_CONFIG": "Color Config",
+    "TRUE": "True",
+    "FALSE": "False"
   },
   "HOMEPAGE": {
     "TITLE": "HOMEPAGE",
@@ -458,6 +462,35 @@
     "CHINAMAPBMAP": {
       "COLUMN":"For the [Mark Line Map], indicating the source of the reticle, Needs 2 or 3 values, 2 values are: 'longitude, latitude', 'geographical name'; 3 values are: 'longitude', 'latitude', 'geographical name'.",
       "ROW":"Needs 2 or 3 values, 2 values are: 'longitude, latitude', 'geographical name', 3 values are: 'longitude', 'latitude', 'geographical name', map is the [Mark Line Map] indicates the end of the mark."
+    }
+  },
+  "WIDGET_OPTION": {
+    "SHOW_LEGEND": "Show Legend",
+    "INIT_LEGEND": "Init Legend",
+    "INIT_COLOR": "init Color",
+    "SHOW_TREND": "Show Trend",
+    "EMPHASIS": "Emphasis",
+    "ORIENT": "Orient",
+    "THEME": "theme",
+    "INIT_TREND": "isShown",
+    "TREND_TYPE": "type",
+    "LEGEND": "legend",
+    "COLOR_CONFIG": "Color Config",
+    "TREND": "trend",
+    "LEGEND_TYPE": {
+      "LEFT":"left",
+      "RIGHT": "right",
+      "CENTER": "center",
+      "TOP": "top",
+      "BOTTOM": "bottom",
+      "CENTER": "center",
+      "OUTSIDE": "outside",
+      "INSIDE": "inside",
+      "ONLY_FIRST": "Only show first dim"
+    },
+    "ORIENT_TYPE": {
+      "HORIZONTAL": "horizontal",
+      "VERTICAL": "vertical"
     }
   }
 }

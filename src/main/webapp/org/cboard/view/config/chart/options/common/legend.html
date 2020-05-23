@@ -4,7 +4,7 @@
             <div class="checkbox">
                 <label>
                     <input type="checkbox" ng-model="curWidget.config.option.legendShow"
-                           ng-init="curWidget.config.option.legendShow ? null : curWidget.config.option.legendShow=true"> Show Legend
+                           ng-init="curWidget.config.option.legendShow ? null : curWidget.config.option.legendShow=true">{{'WIDGET_OPTION.SHOW_LEGEND'|translate}}
                 </label>
             </div>
         </div>
@@ -15,10 +15,9 @@
             <div class="col-md-8">
                 <select class="form-control" ng-model="curWidget.config.option.legendX" ng-disabled="!curWidget.config.option.legendShow">
                     <!--2020-05-13 catty-->
-                    <option value="empty"></option>
-                    <option value="left">left</option>
-                    <option value="right">right</option>
-                    <option value="center">center</option>
+                    <option value="left">{{'WIDGET_OPTION.LEGEND_TYPE.LEFT'|translate}}</option>
+                    <option value="right">{{'WIDGET_OPTION.LEGEND_TYPE.RIGHT'|translate}}</option>
+                    <option value="center">{{'WIDGET_OPTION.LEGEND_TYPE.CENTER'|translate}}</option>
                 </select>
             </div>
         </div>
@@ -27,23 +26,58 @@
             <div class="col-md-8">
                 <select class="form-control" ng-model="curWidget.config.option.legendY" ng-disabled="!curWidget.config.option.legendShow">
                     <!--2020-05-13 catty-->
-                    <option value="empty"></option>
-                    <option value="top">top</option>
-                    <option value="bottom">bottom</option>
-                    <option value="center">center</option>
+                    <option value="top">{{'WIDGET_OPTION.LEGEND_TYPE.TOP'|translate}}</option>
+                    <option value="bottom">{{'WIDGET_OPTION.LEGEND_TYPE.BOTTOM'|translate}}</option>
+                    <option value="center">{{'WIDGET_OPTION.LEGEND_TYPE.CENTER'|translate}}</option>
                 </select>
             </div>
         </div>
         <div class="form-group col-md-4">
-            <label class="col-md-4 control-label">Orient</label>
+            <label class="col-md-4 control-label">{{'WIDGET_OPTION.ORIENT'|translate}}</label>
             <div class="col-md-8">
                 <select class="form-control" ng-model="curWidget.config.option.legendOrient" ng-disabled="!curWidget.config.option.legendShow">
                     <!--2020-05-13 catty-->
                     <option value="empty"></option>
-                    <option value="horizontal">horizontal</option>
-                    <option value="vertical">vertical</option>
+                    <option value="horizontal">{{'WIDGET_OPTION.ORIENT_TYPE.HORIZONTAL'|translate}}</option>
+                    <option value="vertical">{{'WIDGET_OPTION.ORIENT_TYPE.VERTICAL'|translate}}</option>
                 </select>
             </div>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="form-group col-md-4">
+            <label class="col-md-4 control-label">{{'WIDGET_OPTION.LEGEND_TYPE.SELECTED'|translate}}</label>
+            <div class="col-md-8">
+                <select class="form-control" ng-model="curWidget.config.option.legendSec" ng-disabled="!curWidget.config.option.legendShow">
+                    <!--2020-05-13 catty-->
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="default" selected>default</option>
+                </select>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="form-group col-md-6">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" ng-model="curWidget.config.option.legendInit"
+                           ng-init="curWidget.config.option.legendInit ? null : curWidget.config.option.Init=true">{{'WIDGET_OPTION.INIT_LEGEND'|translate}}
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-4">
+            <label class="col-md-4 control-label">{{'WIDGET_OPTION.INIT_LEGEND'|translate}}</label>
+            <div class="col-md-8">
+                <input class="form-control" ng-model="curWidget.config.option.legendExpression" ng-disabled="!curWidget.config.option.legendInit"/>
+            </div>
+
         </div>
     </div>
 </form>

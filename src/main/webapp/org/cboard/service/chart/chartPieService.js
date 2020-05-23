@@ -31,13 +31,36 @@ cBoard.service('chartPieService', function ($state, $window) {
         for (var i = 0; i < aggregate_data.length; i++) {
             var joined_values = casted_values[i].join('-');
             var realType = angular.copy(newValuesConfig[joined_values]).type;
+            debugger;
             var s = {
+
                 name: string_value[i],
                 type: 'pie',
                 realType: realType,
                 center: [5 * b + i * 9 * b + '%', '50%'],
                 data: [],
                 //roseType: 'area',
+                emphasis: {
+                    /* 2020-05-22
+                    series-pie.emphasis.label. formatter
+                    * {a}：系列名。
+                    * {b}：数据名。
+                    * {c}：数据值。
+                    * {d}：百分比。
+                    * {@xxx}：数据中名为'xxx'的维度的值，如{@product}表示名为'product'` 的维度的值。
+                    * {@[n]}：数据中维度n的值，如{@[3]}` 表示维度 3 的值，从 0 开始计数。
+                    * */
+                    label: {
+                        normal: {
+                            show: true,
+                            position: 'center',
+                            fontSize: 22,
+                            fontWeight: 'bold',
+                            formatter: '{d}%\n{b}' // {b}:数据名； {c}：数据值； {d}：百分比，可以自定义显示内容
+                        }
+
+                    }
+                },
                 itemStyle: {
                     normal: {
                         label: {
@@ -80,6 +103,7 @@ cBoard.service('chartPieService', function ($state, $window) {
                 });
             }
             series.push(s);
+
         }
         var echartOption = {
             title: titles,

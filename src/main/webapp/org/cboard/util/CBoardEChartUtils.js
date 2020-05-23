@@ -22,6 +22,49 @@ var updateEchartOptions = function(tuningOpt, rawOpt) {
             tuningOpt.legendX ? rawOpt.legend.x = tuningOpt.legendX : null;
             tuningOpt.legendY ? rawOpt.legend.y = tuningOpt.legendY : null;
             tuningOpt.legendOrient ? rawOpt.legend.orient = tuningOpt.legendOrient : null;
+            debugger;
+            var seriesNameArr = rawOpt.series[0].data;
+            //确认是否是true
+            if(tuningOpt.legendSec == "default") {
+                rawOpt.legend.formatter = function (name) {
+                    return name;
+                };
+            }else{
+                rawOpt.legend.formatter=function (name) {
+                    var arr = new Array();
+                    arr = name.split("-");
+                    return arr[parseInt(tuningOpt.legendSec)-1];
+                };
+            }
+            var expression = '';
+            tuningOpt.legendExpression ? expression = tuningOpt.legendExpression : null;
+            //图例自定义功能
+            if(expression != undefined && expression != null && tuningOpt.legendInit == true){
+                var arr = new Array();
+                arr = tuningOpt.legendExpression.split(",");
+                var serIndex = 0;
+                serIndex = arr.length;
+                debugger;
+                arr = expression.split(",");
+                rawOpt.legend.formatter = function (name) {
+                    var seArr = new Array();
+                    seArr = name.split("-");
+                    var serName = '';
+                    for(var i = 0; i<serIndex; i++){
+                        var content = arr[i];
+                        var pre = '';
+                        var reg = /^[0-9]+.?[0-9]*$/;
+                        if(reg.test(content) && parseInt(arr[i])<seArr.length){
+                            pre = seArr[parseInt(arr[i])];
+                        }else{
+                            pre = arr[i];
+                        }
+
+                        serName = serName + pre;
+                    }
+                    return serName;
+                };
+            }
         }
 
         // grid
@@ -34,7 +77,6 @@ var updateEchartOptions = function(tuningOpt, rawOpt) {
 
         // color 2020-05-15 cat init
         if (tuningOpt.colorShow == true){
-            debugger;
             if(tuningOpt.colorTheme == "theme1"){
                 //#24a7ff,#5bbfe9,#63d7a3,#fec86b,#ff94dd,#96e5ff,#95edd5,#f88f87
                 rawOpt.color = ['#24a7ff','#5bbfe9','#63d7a3','#fec86b','#ff94dd','#96e5ff','#95edd5','#f88f87'];
@@ -58,5 +100,20 @@ var updateEchartOptions = function(tuningOpt, rawOpt) {
                 tuningOpt.trendPosition ? rawOpt.series[0].itemStyle.normal.label.position = tuningOpt.trendPosition : null;
             }
         }
+
+        //emphasis
+
+        if(tuningOpt.emphasisShow == true){
+            if(rawOpt.series[0].type == 'pie'){
+            rawOpt.series[0].emphasis.label.show = true;
+            }
+        }else{
+
+            if(rawOpt.series[0].type == 'pie'){
+                rawOpt.series[0].emphasis.label.show = false;
+            }
+        }
+
+
     }
 };
