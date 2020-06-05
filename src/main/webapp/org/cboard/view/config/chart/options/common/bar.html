@@ -1,0 +1,32 @@
+<form class="form-horizontal">
+    <div class="row">
+        <div class="form-group col-md-6">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" ng-model="curWidget.config.option.barStyle"
+                           ng-init="curWidget.config.option.barStyle ? null : curWidget.config.option.barStyle=false">{{'WIDGET_OPTION.BAR_CONFIG.STYLE'|translate}}
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-4">
+            <label class="col-md-4 control-label">{{'WIDGET_OPTION.BAR_CONFIG.WIDTH'|translate}}</label>
+            <div class="col-md-8">
+                <input class="form-control" ng-model="curWidget.config.option.barWidth" ng-disabled="!curWidget.config.option.barStyle"/>
+            </div>
+        </div>
+        <div class="form-group col-md-4">
+            <label class="col-md-4 control-label">{{'WIDGET_OPTION.BAR_CONFIG.MIN_HEIGHT'|translate}}</label>
+            <div class="col-md-8">
+                <input class="form-control" ng-model="curWidget.config.option.barMinHeight" ng-disabled="!curWidget.config.option.barStyle"/>
+            </div>
+        </div>
+        <div class="form-group col-md-4">
+            <label class="col-md-4 control-label">{{'WIDGET_OPTION.BAR_CONFIG.GAP'|translate}}</label>
+            <div class="col-md-8">
+                <input class="form-control" ng-model="curWidget.config.option.barGap" ng-disabled="!curWidget.config.option.barStyle"/>
+            </div>
+        </div>
+    </div>
+</form>

@@ -466,18 +466,9 @@
   },
   "WIDGET_OPTION": {
     "LEGEND": "图例",
-    "COLOR_CONFIG": "颜色配置",
     "INIT_LEGEND": "自定义图例",
-    "TREND": "牵引线",
-    "EMPHASIS": "标签",
     "SHOW_LEGEND": "是否显示图例",
-    "INIT_COLOR": "自定义配色",
-    "SHOW_TREND": "是否配置牵引线",
     "ORIENT": "方向",
-    "THEME": "色系方案",
-    "INIT_TREND": "显示牵引线",
-    "TREND_TYPE": "牵引线类型",
-    "SHOW_EMPHASIS": "显示标签",
     "LEGEND_TYPE": {
       "LEFT":"靠左",
       "RIGHT": "靠右",
@@ -487,15 +478,63 @@
       "CENTER": "居中",
       "OUTSIDE": "外侧",
       "INSIDE": "内侧",
-      "ONLY_FIRST": "仅显示首个系列",
       "SELECTED": "展示维度"
     },
     "ORIENT_TYPE": {
       "HORIZONTAL": "水平",
       "VERTICAL": "垂直"
     },
+
+    "COLOR_CONFIG": "配色",
+    "INIT_COLOR": "自定义配色",
+    "THEME": "色系方案",
+
+    "TREND": "牵引线",
+    "SHOW_TREND": "显示牵引线",
+    "TREND_TYPE": "牵引线位置",
+
+    "EMPHASIS": "标签",
+    "SHOW_EMPHASIS": "显示标签",
     "EMPHASIS_TYPE": {
 
+    },
+
+    "LINE_CONFIG": "线型",
+    "INIT_LINE_TYPE": "配置线型",
+    "LINE_TYPE": {
+      "LINE_CHART":"折线",
+      "SMOOTH_CHART": "曲线"
+    },
+
+    "VALUE_AXIS": "y轴",
+
+    "CATEGORY_AXIS": "x轴",
+    "CATEGORY_AXIS_CONFIG": {
+      "INTERVAL":"间隔",
+      "ROTATE": "旋转"
+    },
+    "GRID": "布局",
+    "GRID_CONFIG" : {
+      "CUSTOMIZE":"定制"
+    },
+
+    "ZOOM": "缩放",
+    "ZOOM_CONFIG": {
+      "SHOW_DATAZOOM": "显示数据缩放",
+      "VALUE_ORIENT": "缩放方向",
+      "COORDINATE_SYSTEM": "坐标系",
+      "COORDINATE_SYSTEM_TYPE": {
+        "CARTESIAN2D": "直角坐标系",
+        "POLAR": "极坐标系"
+      }
+    },
+
+    "BAR_CONFIG": {
+      "STYLE": "柱形样式",
+      "WIDTH": "柱宽",
+      "MIN_HEIGHT": "最小高度",
+      "GAP": "柱间距"
     }
+
   }
 }

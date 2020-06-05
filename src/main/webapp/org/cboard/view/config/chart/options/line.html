@@ -1,13 +1,16 @@
 <div class="col-xs-3 col-md-2">
     <!-- Nav tabs -->
     <ul class="nav nav-tabs tabs-left"><!-- 'tabs-right' for right tabs -->
-        <li class="active"><a href="#grid" data-toggle="tab">Grid</a></li>
-        <li><a href="#legend" data-toggle="tab">Legend</a></li>
-        <li><a href="#ctgAxis" data-toggle="tab">Category Axis</a></li>
-        <li><a href="#valAxis" data-toggle="tab">Value Axis</a></li>
-        <li><a href="#ext" data-toggle="tab">Ext</a></li>
+        <li class="active"><a href="#grid" data-toggle="tab">{{'WIDGET_OPTION.GRID'|translate}}</a></li>
+        <li><a href="#legend" data-toggle="tab">{{'WIDGET_OPTION.LEGEND'|translate}}</a></li>
+        <li><a href="#ctgAxis" data-toggle="tab">{{'WIDGET_OPTION.CATEGORY_AXIS'|translate}}</a></li>
+        <li><a href="#valAxis" data-toggle="tab">{{'WIDGET_OPTION.VALUE_AXIS'|translate}}</a></li>
+        <li><a href="#ext" data-toggle="tab">{{'WIDGET_OPTION.ZOOM'|translate}}</a></li>
         <!--2020-05-15 cat-->
-        <li><a href="#config" data-toggle="tab">Config</a></li>
+        <li><a href="#config" data-toggle="tab">{{'WIDGET_OPTION.COLOR_CONFIG'|translate}}</a></li>
+        <!--2020-05-25 cat-->
+        <li><a href="#lineType" data-toggle="tab">{{'WIDGET_OPTION.LINE_CONFIG'|translate}}</a></li>
+        <li><a href="#barType" data-toggle="tab">{{'WIDGET_OPTION.BAR_CONFIG.STYLE'|translate}}</a></li>
     </ul>
 </div>
 <div class="col-xs-9 col-md-10">
@@ -84,6 +87,12 @@
         </div>
         <div class="tab-pane " id="config">
             <ng-include src="'org/cboard/view/config/chart/options/common/color.html'"></ng-include>
+        </div>
+        <div class="tab-pane " id="lineType">
+            <ng-include src="'org/cboard/view/config/chart/options/common/line.html'"></ng-include>
+        </div>
+        <div class="tab-pane " id="barType">
+            <ng-include src="'org/cboard/view/config/chart/options/common/bar.html'"></ng-include>
         </div>
     </div>
 </div>

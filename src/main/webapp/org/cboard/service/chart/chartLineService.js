@@ -11,7 +11,7 @@ cBoard.service('chartLineService', function ($state, $window) {
     };
 
     this.parseOption = function (data) {
-
+        debugger;
         var chartConfig = data.chartConfig;
         var casted_keys = data.keys;
         var casted_values = data.series;
@@ -72,7 +72,7 @@ cBoard.service('chartLineService', function ($state, $window) {
                 }
             }
             s.coordinateSystem = chartConfig.coordinateSystem;
-
+            s.smooth = false;
             if (s.type == 'stackbar') {
                 s.type = 'bar';
                 s.stack = s.valueAxisIndex.toString();
@@ -132,7 +132,9 @@ cBoard.service('chartLineService', function ($state, $window) {
                 interval: labelInterval,
                 rotate: labelRotate
             },
-            boundaryGap: false
+            boundaryGap: false,
+            // barMaxWidth: 40,
+
         };
 
         _.each(valueAxis, function (axis) {

@@ -1,0 +1,15 @@
+<form class="form-horizontal">
+    <div class="row">
+        <div class="form-group col-md-4">
+            <label class="col-md-4 control-label">{{'WIDGET_OPTION.LINE_CONFIG'|translate}}</label>
+            <div class="col-md-8">
+                <select class="form-control" ng-model="curWidget.config.option.lineType" >
+                    <!--2020-05-13 catty-->
+                    <option value="line" selected>{{'WIDGET_OPTION.LINE_TYPE.LINE_CHART'|translate}}</option>
+                    <option value="smooth">{{'WIDGET_OPTION.LINE_TYPE.SMOOTH_CHART'|translate}}</option>
+                </select>
+            </div>
+        </div>
+
+    </div>
+</form>

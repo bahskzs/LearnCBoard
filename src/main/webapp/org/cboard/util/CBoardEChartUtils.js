@@ -25,7 +25,7 @@ var updateEchartOptions = function(tuningOpt, rawOpt) {
             debugger;
             var seriesNameArr = rawOpt.series[0].data;
             //确认是否是true
-            if(tuningOpt.legendSec == "default") {
+            if(tuningOpt.legendSec == "default" || (tuningOpt.legendSec==null || tuningOpt.legendSec=="" || tuningOpt.legendSec=='undefined')) {
                 rawOpt.legend.formatter = function (name) {
                     return name;
                 };
@@ -38,13 +38,12 @@ var updateEchartOptions = function(tuningOpt, rawOpt) {
             }
             var expression = '';
             tuningOpt.legendExpression ? expression = tuningOpt.legendExpression : null;
-            //图例自定义功能
+            //图例自定义功能 2020-05-20
             if(expression != undefined && expression != null && tuningOpt.legendInit == true){
                 var arr = new Array();
                 arr = tuningOpt.legendExpression.split(",");
                 var serIndex = 0;
                 serIndex = arr.length;
-                debugger;
                 arr = expression.split(",");
                 rawOpt.legend.formatter = function (name) {
                     var seArr = new Array();
@@ -94,23 +93,45 @@ var updateEchartOptions = function(tuningOpt, rawOpt) {
 
         // trend 2020-05-18 cat init
         if(tuningOpt.trendShow == true){
-            if(tuningOpt.trendMode == "true"){
-                debugger;
                 rawOpt.series[0].itemStyle.normal.label.show = true;
                 tuningOpt.trendPosition ? rawOpt.series[0].itemStyle.normal.label.position = tuningOpt.trendPosition : null;
-            }
         }
 
         //emphasis
-
         if(tuningOpt.emphasisShow == true){
             if(rawOpt.series[0].type == 'pie'){
             rawOpt.series[0].emphasis.label.show = true;
             }
         }else{
-
             if(rawOpt.series[0].type == 'pie'){
                 rawOpt.series[0].emphasis.label.show = false;
+            }
+        }
+
+        //line 2020-05-25 cat
+        if(rawOpt.series[0].type == 'line'){
+            debugger;
+            tuningOpt.lineType == "line" ? rawOpt.series[0].smooth = false : rawOpt.series[0].smooth = true;
+
+
+        }
+
+        //bar 2020-06-05 cat
+        if(tuningOpt.barStyle == true){
+            //to-do 校验 barWidth barMinHeight barGap 是否纯数字
+            //rawOpt.barMaxWidth = tuningOpt.barWidth ? tuningOpt.barWidth : 'auto';
+            //rawOpt.barMinHeight = tuningOpt.barMinHeight ? tuningOpt.barMinHeight : 'auto';
+            //rawOpt.barGap = tuningOpt.barGap ? tuningOpt.barGap : 'auto';
+
+            var arr = new Array();
+            arr = rawOpt.series;
+            for(var i = 0;i<arr.length;i++){
+                var type = arr[i].type;
+                if(type == "bar"){
+                    rawOpt.series[i].barMaxWidth = tuningOpt.barWidth ? tuningOpt.barWidth : null;
+                    rawOpt.series[i].barMinHeight = tuningOpt.barMinHeight ? tuningOpt.barMinHeight : null;
+                    rawOpt.series[i].barGap = tuningOpt.barGap ? tuningOpt.barGap : null;
+                }
             }
         }
 

@@ -465,6 +465,7 @@
     }
   },
   "WIDGET_OPTION": {
+    "LEGEND": "legend",
     "SHOW_LEGEND": "Show Legend",
     "INIT_LEGEND": "Init Legend",
     "INIT_COLOR": "init Color",
@@ -474,7 +475,7 @@
     "THEME": "theme",
     "INIT_TREND": "isShown",
     "TREND_TYPE": "type",
-    "LEGEND": "legend",
+
     "COLOR_CONFIG": "Color Config",
     "TREND": "trend",
     "LEGEND_TYPE": {

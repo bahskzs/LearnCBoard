@@ -7,6 +7,7 @@
     http://www.springframework.org/schema/security/spring-security-4.1.xsd">
 
     <security:http auto-config="true">
+
         <security:intercept-url pattern="/lib/**" access="permitAll"/>
         <security:intercept-url pattern="/dist/**" access="permitAll"/>
         <security:intercept-url pattern="/bootstrap/**" access="permitAll"/>
@@ -26,7 +27,7 @@
         <security:headers>
             <security:frame-options disabled="true"/>
         </security:headers>
-
+       <!-- <security:custom-filter before="FILTER_SECURITY_INTERCEPTOR" ref="securityInterceptor"/>-->
     </security:http>
 
     <security:authentication-manager alias="authenticationManager">
@@ -73,5 +74,11 @@
 
     <bean id="dbAuthenticationService"
           class="org.cboard.security.service.DefaultAuthenticationService"/>
+
+
+
+    <!--     自定义拦截器 -->
+    <bean id="securityInterceptor" class="org.cboard.security.service.AutoFilter">
+    </bean>
 
 </beans>

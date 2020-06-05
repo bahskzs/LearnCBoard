@@ -1,5 +1,9 @@
 package org.cboard.security.service;
 
+import com.alibaba.fastjson.JSONObject;
+
+import com.apexinfo.finereport.AESBaseUtil;
+import com.apexinfo.finereport.ApexUtil;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
@@ -8,13 +12,20 @@ import org.cboard.dto.User;
 import org.cboard.security.ShareAuthenticationToken;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.context.SecurityContextImpl;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.AbstractList;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -52,7 +63,11 @@ public class LocalSecurityFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest hsr = (HttpServletRequest) servletRequest;
-        if (StringUtils.isBlank(context) || StringUtils.isBlank(schema)) {
+        HttpServletResponse response = (HttpServletResponse) servletResponse;
+        String token = hsr.getParameter("APEXTOKEN");
+        boolean success = false;
+
+        if (StringUtils.isBlank(context) || StringUtils.isBlank(schema) ) {
             context = hsr.getLocalPort() + hsr.getContextPath();
             schema = hsr.getScheme();
         }
@@ -60,7 +75,7 @@ public class LocalSecurityFilter implements Filter {
             String sid = hsr.getParameter("sid");
             try {
                 String uid = sidCache.get(sid);
-                if (StringUtils.isNotEmpty(uid)) {
+                if (StringUtils.isBlank(String.valueOf(sidCache))) {
                     User user = new User("shareUser", "", new ArrayList<>());
                     user.setUserId(sidCache.get(sid));
                     SecurityContext context = SecurityContextHolder.getContext();
@@ -71,6 +86,56 @@ public class LocalSecurityFilter implements Filter {
                 LOG.error("", e);
             }
         }
+        //2020-05-25 cat
+        if(StringUtils.isNotEmpty(token)) {
+
+            //也可以通过session获得SecurityContext对象
+            SecurityContext context_session = (SecurityContext)
+                    hsr.getSession().getAttribute("SPRING_SECURITY_CONTEXT");
+
+            //通过SecurityContextHolder获得当前线程上绑定的SecurityContext对象
+            SecurityContext context = SecurityContextHolder.getContext();
+
+            String info = ApexUtil.decode(token);
+
+            if (StringUtils.isNotEmpty(info)) {
+                String serivcePath = "/cboard";
+                JSONObject json = JSONObject.parseObject(info);
+                String url = json.getString("r");
+                String userID = json.getString("u");
+                String userName = json.getString("userName");
+
+                //证明两个context一致
+                if (context_session != null) {
+                    Authentication authentication = context_session.getAuthentication();
+                    User user = (User) authentication.getPrincipal();
+
+                    if (userID.equals(user.getUserId()) == false) {
+                        user = new User(userName, " ", new ArrayList<>());
+                        user.setUserId(userID);
+                        context.setAuthentication(new ShareAuthenticationToken(user));
+                        hsr.getSession().setAttribute("SPRING_SECURITY_CONTEXT", context);
+                        success = true;
+                    }else{
+                        success = true;
+                    }
+                } else {
+                    //user = new User("user", " ", new ArrayList<>());
+                    User user = new User(userName, " ", new ArrayList<>());
+                    user.setUserId(userID);
+                    context.setAuthentication(new ShareAuthenticationToken(user));
+                    hsr.getSession().setAttribute("SPRING_SECURITY_CONTEXT", context);
+                    success = true;
+                }
+
+                if (success) {
+                    //hsr.getRequestDispatcher("/starter.html").forward(servletRequest, servletResponse);
+                    response.sendRedirect(serivcePath + url);
+                    return;
+                }
+            }
+        }
+
         filterChain.doFilter(servletRequest, servletResponse);
     }
 
