@@ -22,7 +22,7 @@ var updateEchartOptions = function(tuningOpt, rawOpt) {
             tuningOpt.legendX ? rawOpt.legend.x = tuningOpt.legendX : null;
             tuningOpt.legendY ? rawOpt.legend.y = tuningOpt.legendY : null;
             tuningOpt.legendOrient ? rawOpt.legend.orient = tuningOpt.legendOrient : null;
-            debugger;
+
             var seriesNameArr = rawOpt.series[0].data;
             //确认是否是true
             if(tuningOpt.legendSec == "default" || (tuningOpt.legendSec==null || tuningOpt.legendSec=="" || tuningOpt.legendSec=='undefined')) {
@@ -100,13 +100,41 @@ var updateEchartOptions = function(tuningOpt, rawOpt) {
         //emphasis
         if(tuningOpt.emphasisShow == true){
             if(rawOpt.series[0].type == 'pie'){
-            rawOpt.series[0].emphasis.label.show = true;
-            }
-        }else{
-            if(rawOpt.series[0].type == 'pie'){
-                rawOpt.series[0].emphasis.label.show = false;
+                rawOpt.series[0].avoidLabelOverlap = false;
+                //rawOpt.series[0].center = ['50%', '50%'];
+                // rawOpt.series[0].label.emphasis= {
+                //     label:{
+                //         show: true,
+                //         formatter: '{b}\n{d}%',
+                //         textStyle: {
+                //             fontSize: '30',
+                //             fontWeight: 'bold',
+                //         },
+                //         align: 'center',
+                //         verticalAlign: 'middle'
+                //
+                //     }
+                // }
+                rawOpt.series[0].label.emphasis = {
+                    show:true,
+                    textStyle:{
+                        fontSize: '30',
+                        fontWeight: 'bold'
+                    },
+                    // rich:{
+                    //     b:{
+                    //         position:'center'
+                    //     }
+                    // }
+
+                 };
+                //rawOpt.series[0].label.position = "center";
+                rawOpt.series[0].labelLine.show = false;
+                rawOpt.series[0].itemStyle.normal.label.position = null;
+
             }
         }
+
 
         //line 2020-05-25 cat
         if(rawOpt.series[0].type == 'line'){

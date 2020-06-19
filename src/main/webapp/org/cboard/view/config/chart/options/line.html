@@ -5,7 +5,7 @@
         <li><a href="#legend" data-toggle="tab">{{'WIDGET_OPTION.LEGEND'|translate}}</a></li>
         <li><a href="#ctgAxis" data-toggle="tab">{{'WIDGET_OPTION.CATEGORY_AXIS'|translate}}</a></li>
         <li><a href="#valAxis" data-toggle="tab">{{'WIDGET_OPTION.VALUE_AXIS'|translate}}</a></li>
-        <li><a href="#ext" data-toggle="tab">{{'WIDGET_OPTION.ZOOM'|translate}}</a></li>
+        <li><a href="#ext" data-toggle="tab">{{'WIDGET_OPTION.EXT'|translate}}</a></li>
         <!--2020-05-15 cat-->
         <li><a href="#config" data-toggle="tab">{{'WIDGET_OPTION.COLOR_CONFIG'|translate}}</a></li>
         <!--2020-05-25 cat-->
@@ -55,30 +55,30 @@
                     <div class="form-group col-md-4">
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" ng-model="curWidget.config.option.dataZoom" ng-init="curWidget.config.option.dataZoom=false"> Show DataZoom
+                                <input type="checkbox" ng-model="curWidget.config.option.dataZoom" ng-init="curWidget.config.option.dataZoom=false">{{'WIDGET_OPTION.ZOOM_CONFIG.SHOW_DATAZOOM'|translate}}
                             </label>
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group col-md-6">
-                        <label class="col-md-4 control-label">Value Orient</label>
+                        <label class="col-md-4 control-label">{{'WIDGET_OPTION.ORIENT'|translate}}</label>
                         <div class="col-md-8">
                             <select class="form-control" ng-model="curWidget.config.valueAxis"
                                     ng-init="curWidget.config.valueAxis ? null : curWidget.config.valueAxis='vertical'">
-                                <option value="horizontal">horizontal</option>
-                                <option value="vertical">vertical</option>
+                                <option value="horizontal">{{'WIDGET_OPTION.ORIENT_TYPE.HORIZONTAL'|translate}}</option>
+                                <option value="vertical">{{'WIDGET_OPTION.LEGEND_TYPE.CENTER'|translate}}</option>
                             </select>
                         </div>
                     </div>
                     <div class="form-group col-md-6">
-                        <label class="col-md-4 control-label">Coordinate System</label>
+                        <label class="col-md-4 control-label">{{'WIDGET_OPTION.ZOOM_CONFIG.COORDINATE_SYSTEM'|translate}}</label>
                         <div class="col-md-8">
                             <select class="form-control" ng-model="curWidget.config.coordinateSystem"
                                     ng-init="curWidget.config.coordinateSystem ? null : curWidget.config.coordinateSystem='cartesian2d'"
                                     ng-change="curWidget.config.coordinateSystem == 'polar' ? curWidget.config.values = curWidget.config.values.slice(0, 1) : null">
-                                <option value="cartesian2d">Cartesian2d</option>
-                                <option value="polar">Polar</option>
+                                <option value="cartesian2d">{{'WIDGET_OPTION.ZOOM_CONFIG.COORDINATE_SYSTEM_TYPE.CARTESIAN2D'|translate}}</option>
+                                <option value="polar">{{'WIDGET_OPTION.ZOOM_CONFIG.COORDINATE_SYSTEM_TYPE.POLAR'|translate}}</option>
                             </select>
                         </div>
                     </div>

@@ -1,7 +1,7 @@
 <div class="col-xs-3 col-md-2">
     <!-- Nav tabs -->
     <ul class="nav nav-tabs tabs-left"><!-- 'tabs-right' for right tabs -->
-        <li class="active"><a href="#ext" data-toggle="tab">Ext</a></li>
+        <li class="active"><a href="#ext" data-toggle="tab">{{'WIDGET_OPTION.EXT'|translate}}</a></li>
     </ul>
 </div>
 <div class="col-xs-9 col-md-10">
@@ -10,8 +10,8 @@
         <div class="tab-pane active" id="ext">
             <form>
                 <div class="row">
-                    <div class="form-group">
-                        <label class="col-md-4 control-label">Language</label>
+                    <div class="form-group col-md-4">
+                        <label class="col-md-4 control-label">{{'WIDGET_OPTION.LANGUAGE'|translate}}</label>
                         <div class="col-md-8">
                             <select class="form-control" ng-model="curWidget.config.option.lang">
                                 <option value="cn">中文</option>

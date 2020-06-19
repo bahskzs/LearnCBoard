@@ -135,6 +135,8 @@
       "CANCEL": "取消",
       "SAVE": "保存",
       "PREVIEW": "预览",
+      "QUERY": "查询",
+      "OPTION": "条件",
       "EXIST_QUERY": "已有查询",
       "NEW_QUERY": "新建查询",
       "SWITCH": "切换",
@@ -534,7 +536,16 @@
       "WIDTH": "柱宽",
       "MIN_HEIGHT": "最小高度",
       "GAP": "柱间距"
-    }
+    },
+    "EXT": "特效",
+    "POSITION_INFO": "输入'n%'或整数作为像素",
+    "RADAR_CONFIG": {
+      "DRAW_BY": "绘制依据",
+      "COLUMN": "列",
+      "ROW": "行"
+    },
+    "NOT_SUPPORTED": "暂不支持配置",
+    "LANGUAGE": "语言"
 
   }
 }

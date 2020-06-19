@@ -2,6 +2,9 @@
   "COMMON": {
     "OK": "OK",
     "LOAD": "Load",
+    "PREVIEW": "Preview",
+    "QUERY": "Query",
+    "OPTION": "Option",
     "CANCEL": "Cancel",
     "SAVE": "Save",
     "LOADING": "Loading...",
