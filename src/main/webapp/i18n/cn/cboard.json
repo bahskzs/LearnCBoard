@@ -498,6 +498,15 @@
     "EMPHASIS": "标签",
     "SHOW_EMPHASIS": "显示标签",
     "EMPHASIS_TYPE": {
+      "SERIES_NAME": "系列名",
+      "SERIES_NAME_CUSTOM": "表达式",
+      "FONT_SIZE": "字号",
+      "FONT_STYLE": "字体",
+      "SERIES_VALUE": "系列值",
+      "VALUE_TYPE": "类型",
+      "DECIMAL_TYPE": {
+        "DECIMAL": "小数位数"
+      }
 
     },
 

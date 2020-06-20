@@ -9,4 +9,43 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="form-group col-md-4">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" ng-model="curWidget.config.option.seriesNameShow"
+                           ng-init="curWidget.config.option.seriesNameShow ? null : curWidget.config.option.emphasisShow"
+                           ng-disabled="!curWidget.config.option.emphasisShow"> {{'WIDGET_OPTION.EMPHASIS_TYPE.SERIES_NAME'|translate}}
+                </label>
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="form-group col-md-4">
+            <label class="col-md-4 control-label">{{'WIDGET_OPTION.EMPHASIS_TYPE.SERIES_NAME_CUSTOM'|translate}}</label>
+            <div class="col-md-8">
+                <input class="form-control" ng-model="curWidget.config.option.seriesNameExp" ng-disabled="!curWidget.config.option.seriesNameShow||!curWidget.config.option.emphasisShow"/>
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="form-group col-md-4">
+            <label class="col-md-4 control-label">{{'WIDGET_OPTION.EMPHASIS_TYPE.FONT_SIZE'|translate}}</label>
+            <div class="col-md-8">
+                <input class="form-control" ng-model="curWidget.config.option.seriesFontSize" ng-disabled="!curWidget.config.option.seriesNameShow||!curWidget.config.option.emphasisShow"/>
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="form-group col-md-4">
+            <label class="col-md-4 control-label">{{'WIDGET_OPTION.EMPHASIS_TYPE.FONT_STYLE'|translate}}</label>
+            <div class="col-md-8">
+                <input class="form-control" ng-model="curWidget.config.option.fontStyle" ng-disabled="!curWidget.config.option.seriesNameShow||!curWidget.config.option.emphasisShow"/>
+            </div>
+        </div>
+
+    </div>
 </form>

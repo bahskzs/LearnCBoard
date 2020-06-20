@@ -99,36 +99,18 @@ var updateEchartOptions = function(tuningOpt, rawOpt) {
 
         //emphasis
         if(tuningOpt.emphasisShow == true){
+            debugger;
             if(rawOpt.series[0].type == 'pie'){
                 rawOpt.series[0].avoidLabelOverlap = false;
-                //rawOpt.series[0].center = ['50%', '50%'];
-                // rawOpt.series[0].label.emphasis= {
-                //     label:{
-                //         show: true,
-                //         formatter: '{b}\n{d}%',
-                //         textStyle: {
-                //             fontSize: '30',
-                //             fontWeight: 'bold',
-                //         },
-                //         align: 'center',
-                //         verticalAlign: 'middle'
-                //
-                //     }
-                // }
                 rawOpt.series[0].label.emphasis = {
                     show:true,
                     textStyle:{
-                        fontSize: '30',
-                        fontWeight: 'bold'
+                        fontSize: tuningOpt.seriesFontSize&&tuningOpt.seriesNameShow?tuningOpt.seriesFontSize:'30',
+                        fontWeight: 'bold',
+                        fontFamily: tuningOpt.fontStyle&&tuningOpt.seriesNameShow?tuningOpt.fontStyle:'Microsoft YaHei'
                     },
-                    // rich:{
-                    //     b:{
-                    //         position:'center'
-                    //     }
-                    // }
 
                  };
-                //rawOpt.series[0].label.position = "center";
                 rawOpt.series[0].labelLine.show = false;
                 rawOpt.series[0].itemStyle.normal.label.position = null;
 
