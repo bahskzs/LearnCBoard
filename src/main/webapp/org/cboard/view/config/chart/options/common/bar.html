@@ -29,4 +29,27 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="form-group col-md-6">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" ng-model="curWidget.config.option.splitArea"
+                           ng-init="curWidget.config.option.splitArea ? null : curWidget.config.option.splitArea=false">{{'WIDGET_OPTION.BAR_CONFIG.SPLIT_AREA'|translate}}
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-4">
+            <label class="col-md-4 control-label">{{'WIDGET_OPTION.ORIENT'|translate}}</label>
+            <div class="col-md-8">
+                <select class="form-control" ng-model="curWidget.config.option.splitAreaOrient" ng-disabled="!curWidget.config.option.splitArea">
+                    <!--2020-05-13 catty-->
+                    <option value="empty"></option>
+                    <option value="horizontal">{{'WIDGET_OPTION.ORIENT_TYPE.HORIZONTAL'|translate}}</option>
+                    <option value="vertical">{{'WIDGET_OPTION.ORIENT_TYPE.VERTICAL'|translate}}</option>
+                </select>
+            </div>
+        </div>
+    </div>
 </form>

@@ -504,9 +504,12 @@
       "FONT_STYLE": "字体",
       "SERIES_VALUE": "系列值",
       "VALUE_TYPE": "类型",
-      "DECIMAL_TYPE": {
-        "DECIMAL": "小数位数"
-      }
+      "VALUES_TYPE": {
+        "VALUE_NUMBER" : "数值",
+        "VALUE_PERCENT" : "百分数"
+      },
+      "DECIMAL_TYPE": "小数位数"
+
 
     },
 
@@ -544,9 +547,10 @@
       "STYLE": "柱形样式",
       "WIDTH": "柱宽",
       "MIN_HEIGHT": "最小高度",
-      "GAP": "柱间距"
+      "GAP": "柱间距",
+      "SPLIT_AREA": "分割区域"
     },
-    "EXT": "特效",
+    "EXT": "其它",
     "POSITION_INFO": "输入'n%'或整数作为像素",
     "RADAR_CONFIG": {
       "DRAW_BY": "绘制依据",

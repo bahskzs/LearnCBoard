@@ -52,7 +52,7 @@ cBoard.service('chartPieService', function ($state, $window) {
                     normal:{
                         show: false,
                         position: 'center',
-                        formatter: '{b} \n{d}%'
+                        formatter: '{b} \n{d}'
                     },
                 },
 

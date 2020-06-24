@@ -19,7 +19,6 @@
                 </label>
             </div>
         </div>
-
     </div>
     <div class="row">
         <div class="form-group col-md-4">
@@ -28,13 +27,13 @@
                 <input class="form-control" ng-model="curWidget.config.option.seriesNameExp" ng-disabled="!curWidget.config.option.seriesNameShow||!curWidget.config.option.emphasisShow"/>
             </div>
         </div>
-
     </div>
     <div class="row">
         <div class="form-group col-md-4">
             <label class="col-md-4 control-label">{{'WIDGET_OPTION.EMPHASIS_TYPE.FONT_SIZE'|translate}}</label>
             <div class="col-md-8">
-                <input class="form-control" ng-model="curWidget.config.option.seriesFontSize" ng-disabled="!curWidget.config.option.seriesNameShow||!curWidget.config.option.emphasisShow"/>
+                <input class="form-control" ng-model="curWidget.config.option.seriesFontSize"
+                       ng-disabled="!curWidget.config.option.seriesNameShow||!curWidget.config.option.emphasisShow"/>
             </div>
         </div>
 
@@ -43,9 +42,62 @@
         <div class="form-group col-md-4">
             <label class="col-md-4 control-label">{{'WIDGET_OPTION.EMPHASIS_TYPE.FONT_STYLE'|translate}}</label>
             <div class="col-md-8">
-                <input class="form-control" ng-model="curWidget.config.option.fontStyle" ng-disabled="!curWidget.config.option.seriesNameShow||!curWidget.config.option.emphasisShow"/>
+                <select class="form-control" ng-model="curWidget.config.option.fontStyle"
+                       ng-disabled="!curWidget.config.option.seriesNameShow||!curWidget.config.option.emphasisShow" >
+                    <option value="Microsoft YaHei">Microsoft YaHei</option>
+                    <option value="Microsoft YaHei Light">Microsoft YaHei Light</option>
+                    <option value="Microsoft YaHei Bold">Microsoft YaHei Bold</option>
+                    <option value="仿宋">仿宋</option>
+                    <option value="仿宋_GB2312">仿宋_GB2312</option>
+                    <option value="黑体">黑体</option>
+                    <option value="幼圆">幼圆</option>
+                    <option value="宋体">宋体</option>
+                    <option value="楷体">楷体</option>
+                    <option value="隶书">隶书</option>
+                    <option value="Segoe UI">Segoe UI</option>
+                    <option value="Arial" >Arial</option>
+                </select>
             </div>
         </div>
-
+    </div>
+    <div class="row">
+        <div class="form-group col-md-4">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" ng-model="curWidget.config.option.seriesValueShow"
+                           ng-init="curWidget.config.option.seriesValueShow ? null : curWidget.config.option.emphasisShow"
+                           ng-disabled="!curWidget.config.option.emphasisShow"> {{'WIDGET_OPTION.EMPHASIS_TYPE.SERIES_VALUE'|translate}}
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-4">
+            <label class="col-md-4 control-label">{{'WIDGET_OPTION.EMPHASIS_TYPE.VALUE_TYPE'|translate}}</label>
+            <div class="col-md-8">
+                <select class="form-control" ng-model="curWidget.config.option.valueTypes"
+                        ng-disabled="!curWidget.config.option.seriesValueShow||!curWidget.config.option.emphasisShow" >
+                    <!--2020-05-19 cat-->
+                    <option value="number">{{'WIDGET_OPTION.EMPHASIS_TYPE.VALUES_TYPE.VALUE_NUMBER'|translate}}</option>
+                    <option value="percent">{{'WIDGET_OPTION.EMPHASIS_TYPE.VALUES_TYPE.VALUE_PERCENT'|translate}}</option>
+                    <option value="default">无</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-4">
+            <label class="col-md-4 control-label">{{'WIDGET_OPTION.EMPHASIS_TYPE.DECIMAL_TYPE'|translate}}</label>
+            <div class="col-md-8">
+                <select class="form-control" ng-model="curWidget.config.option.decimalType"
+                        ng-disabled="!curWidget.config.option.seriesValueShow||!curWidget.config.option.emphasisShow" >
+                    <!--2020-05-19 cat-->
+                    <option value=1>1</option>
+                    <option value=2>2</option>
+                    <option value=3>3</option>
+                    <option value=4>4</option>
+                </select>
+            </div>
+        </div>
     </div>
 </form>
