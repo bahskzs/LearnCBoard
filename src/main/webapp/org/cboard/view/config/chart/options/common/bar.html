@@ -1,3 +1,4 @@
+<!--bar style cat 2020-06-05-->
 <form class="form-horizontal">
     <div class="row">
         <div class="form-group col-md-6">
@@ -49,6 +50,14 @@
                     <option value="horizontal">{{'WIDGET_OPTION.ORIENT_TYPE.HORIZONTAL'|translate}}</option>
                     <option value="vertical">{{'WIDGET_OPTION.ORIENT_TYPE.VERTICAL'|translate}}</option>
                 </select>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-4">
+            <label class="col-md-4 control-label">{{'CONFIG.WIDGET.STYLE_COLOR'|translate}}</label>
+            <div class="col-md-8">
+                <input type="color" class="form-control" ng-model="curWidget.config.option.splitColor" ng-disabled="!curWidget.config.option.splitArea">
             </div>
         </div>
     </div>

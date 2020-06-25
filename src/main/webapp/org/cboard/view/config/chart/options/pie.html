@@ -8,6 +8,8 @@
         <li><a href="#trend" data-toggle="tab">{{'WIDGET_OPTION.TREND'|translate}}</a></li>
         <!--2020-05-22 cat-->
         <li><a href="#emphasis" data-toggle="tab">{{'WIDGET_OPTION.SHOW_EMPHASIS'|translate}}</a></li>
+        <!--2020-06-24 cat-->
+        <li><a href="#nested" data-toggle="tab">{{'WIDGET_OPTION.NESTED_PIE_CONFIG.NESTED_MODE'|translate}}</a></li>
     </ul>
 
 </div>
@@ -26,6 +28,9 @@
         </div>
         <div class="tab-pane " id="emphasis">
             <ng-include src="'org/cboard/view/config/chart/options/common/emphasis.html'"></ng-include>
+        </div>
+        <div class="tab-pane " id="nested">
+            <ng-include src="'org/cboard/view/config/chart/options/common/nestedPie.html'"></ng-include>
         </div>
     </div>
 </div>

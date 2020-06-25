@@ -55,6 +55,7 @@ CBoardEChartRender.prototype.chart = function (group, persist) {
     var self = this;
     var options = this.isDeppSpec == true ? self.options : $.extend(true, {}, self.basicOption, self.options);
     if (options.visualMap != undefined) {
+        debugger;
         $(this.container).css({
             height: 500 + "px",
             width: '100%'
@@ -101,6 +102,7 @@ CBoardEChartRender.prototype.chart = function (group, persist) {
 };
 
 CBoardEChartRender.prototype.changeSize = function (instance) {
+    debugger;
     var o = instance.getOption();
     if ((o.series[0] ? o.series[0].type : null) == 'pie') {
         var l = o.series.length;
@@ -111,21 +113,23 @@ CBoardEChartRender.prototype.changeSize = function (instance) {
             var roseType = o.series[i] ? o.series[i].roseType : null;
             if ((b * 8) < (instance.getHeight() * 0.75)) {
                 if (seriesType == 'doughnut') {
+                    debugger;
                     o.series[i].radius = [b * 3, b * 4];
                 } else if (seriesType == 'coxcomb') {
                     //此处控制玫瑰图的半径，类似圆环图
                     o.series[i].radius = [b * 0.8, b * 4];
                 } else {
-                    o.series[i].radius = [0, b * 4];
+                    /// o.series[i].radius = [0, b * 4]; 2020-06-25
+                    o.series[i].radius ? o.series[i].radius : o.series[i].radius = ['0', '15%'];
                 }
 
             } else {
                 if (seriesType == 'doughnut') {
-                    o.series[i].radius = ['50%', '75%'];
+                    o.series[i].radius= ['50%', '75%'];
                 } else if (seriesType == 'coxcomb' && roseType == 'radius') {
-                    o.series[i].radius = ['15%', '75%']
+                    o.series[i].radius = ['15%', '75%'];
                 } else {
-                    o.series[i].radius = ['0', '75%'];
+                    o.series[i].radius ? o.series[i].radius : o.series[i].radius = ['0', '15%'];
                 }
             }
         }

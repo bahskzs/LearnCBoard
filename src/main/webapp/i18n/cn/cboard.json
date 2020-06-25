@@ -493,7 +493,7 @@
 
     "TREND": "牵引线",
     "SHOW_TREND": "显示牵引线",
-    "TREND_TYPE": "牵引线位置",
+    "TREND_TYPE": "位置",
 
     "EMPHASIS": "标签",
     "SHOW_EMPHASIS": "显示标签",
@@ -558,7 +558,15 @@
       "ROW": "行"
     },
     "NOT_SUPPORTED": "暂不支持配置",
-    "LANGUAGE": "语言"
+    "LANGUAGE": "语言",
+    "NESTED_PIE_CONFIG": {
+      "NESTED_MODE": "嵌套模式",
+      "INNER_PIE": "内层",
+      "RADIUS": "半径",
+      "TOOLTIPS": "0~50%",
+      "SPLIT_MODE" : "数据拆分",
+      "SPLIT_ROW": "拆分行号"
+    }
 
   }
 }

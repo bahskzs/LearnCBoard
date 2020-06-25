@@ -1,0 +1,60 @@
+<!--nested mode cat 2020-06-24-->
+<form class="form-horizontal">
+    <div class="row">
+        <div class="form-group col-md-6">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" ng-model="curWidget.config.option.nestedMode"
+                           ng-init="curWidget.config.option.nestedMode ? null : curWidget.config.option.nestedMode=false">{{'WIDGET_OPTION.NESTED_PIE_CONFIG.NESTED_MODE'|translate}}
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-4">
+            <label class="col-md-4 control-label">{{'WIDGET_OPTION.NESTED_PIE_CONFIG.INNER_PIE'|translate}}</label>
+            <div class="col-md-8">
+                <select class="form-control" ng-model="curWidget.config.option.innerIndex" ng-disabled="!curWidget.config.option.nestedMode" >
+                    <!--2020-05-19 cat-->
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group col-md-4">
+            <label class="col-md-4 control-label">{{'WIDGET_OPTION.NESTED_PIE_CONFIG.RADIUS'|translate}}</label>
+            <div class="col-md-8">
+                <input class="form-control" ng-model="curWidget.config.option.innerRadiusFirst"
+                       ng-disabled="!curWidget.config.option.nestedMode"
+                       placeholder={{'WIDGET_OPTION.NESTED_PIE_CONFIG.TOOLTIPS'|translate}}/>
+            </div>
+        </div>
+        <div class="form-group col-md-4">
+            <div class="col-md-8">
+            <input class="form-control" ng-model="curWidget.config.option.innerRadiusSecond"
+                   ng-disabled="!curWidget.config.option.nestedMode"
+                   placeholder={{'WIDGET_OPTION.NESTED_PIE_CONFIG.TOOLTIPS'|translate}}/>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-6">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" ng-model="curWidget.config.option.splitMode"
+                           ng-init="curWidget.config.option.splitMode" ng-disabled="!curWidget.config.option.nestedMode">{{'WIDGET_OPTION.NESTED_PIE_CONFIG.SPLIT_MODE'|translate}}
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-4">
+        <label class="col-md-4 control-label">{{'WIDGET_OPTION.NESTED_PIE_CONFIG.SPLIT_ROW'|translate}}</label>
+        <div class="col-md-8">
+            <input type="number" class="form-control" ng-model="curWidget.config.option.splitRow"
+                   ng-disabled="!curWidget.config.option.nestedMode || !curWidget.config.option.splitMode"
+                   placeholder={{'WIDGET_OPTION.NESTED_PIE_CONFIG.SPLIT_ROW'|translate}}/>
+        </div>
+        </div>
+    </div>
+</form>

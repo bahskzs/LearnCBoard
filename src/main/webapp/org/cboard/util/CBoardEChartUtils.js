@@ -42,7 +42,6 @@ var updateEchartOptions = function(tuningOpt, rawOpt) {
             tuningOpt.legendExpression ? expression = tuningOpt.legendExpression : null;
             //图例自定义功能 2020-05-20
             if(expression != undefined && expression != null && tuningOpt.legendInit == true ){
-                debugger;
                 var arr = new Array();
                 arr = expression.split(",");
                 var serIndex = 0;
@@ -105,9 +104,8 @@ var updateEchartOptions = function(tuningOpt, rawOpt) {
             tuningOpt.trendPosition ? rawOpt.series[0].itemStyle.normal.label.position = tuningOpt.trendPosition : null;
         }
 
-        //emphasis
+        //center label
         if(tuningOpt.emphasisShow == true){
-            debugger;
             if(rawOpt.series[0].type == 'pie'){
                 rawOpt.series[0].avoidLabelOverlap = false;
                 rawOpt.series[0].label.emphasis = {
@@ -137,7 +135,6 @@ var updateEchartOptions = function(tuningOpt, rawOpt) {
                         var realName = '';
                         for(i = 0;i<serIndex; i++ ){
                             var content = arr[i];
-                            //if(reg.test(parseInt(content)) && parseInt(content) < name.split("-").length){
                             if(reg.test(parseInt(content)) && parseInt(content) < params.name.split("-").length){
                                 realName = realName + seArr[parseInt(content)];
                             }else{
@@ -145,7 +142,7 @@ var updateEchartOptions = function(tuningOpt, rawOpt) {
                             }
                         }
                         if(tuningOpt.valueTypes == "number"){
-                            return realName + "\n" + params.value.toFixed(tuningOpt.decimalType?tuningOpt.decimalType:2);
+                            return realName + "\n" + parseFloat(params.value).toFixed(tuningOpt.decimalType?tuningOpt.decimalType:2);
                         }else if(tuningOpt.valueTypes == "percent"){
                             return realName + "\n" + params.percent.toFixed(tuningOpt.decimalType?tuningOpt.decimalType:2) + "%";
                         }else{
@@ -167,7 +164,6 @@ var updateEchartOptions = function(tuningOpt, rawOpt) {
 
     //line 2020-05-25 cat
     if(rawOpt.series[0].type == 'line'){
-        debugger;
         tuningOpt.lineType == "line" ? rawOpt.series[0].smooth = false : rawOpt.series[0].smooth = true;
 
 
@@ -200,14 +196,14 @@ var updateEchartOptions = function(tuningOpt, rawOpt) {
             rawOpt.xAxis.splitArea={
                 show : true,
                 areaStyle:{
-                    color : ['rgba(250,250,250,0.3)','rgba(200,200,200,0.3)']
+                    color : ['rgba(250,250,250,0.3)',tuningOpt.splitColor?tuningOpt.splitColor:'rgba(200,200,200,0.3)']
                 }
             };
         }else if(tuningOpt.splitAreaOrient == "vertical"){
             rawOpt.yAxis.splitArea={
                 show : true,
                 areaStyle:{
-                    color : ['rgba(250,250,250,0.3)','rgba(200,200,200,0.3)']
+                    color : ['rgba(250,250,250,0.3)',tuningOpt.splitColor?tuningOpt.splitColor:'rgba(200,200,200,0.3)']
                 }
             };
         }else{
@@ -220,6 +216,23 @@ var updateEchartOptions = function(tuningOpt, rawOpt) {
         }
     }
 
+    if(tuningOpt.nestedMode == true){
+        debugger;
+        if(rawOpt.series[0].type == 'pie') {
+            tuningOpt.innerIndex ? rawOpt.series[0].radius = ['50%','70%'] : null;
+            //rawOpt.series[tuningOpt.innerIndex?(tuningOpt.innerIndex-1):0].radius = [tuningOpt.innerRadiusSecond];
+            rawOpt.series[0].center =['50%','50%'];
+            rawOpt.series[tuningOpt.innerIndex?(tuningOpt.innerIndex-1):0].center = rawOpt.series[0].center;
+            rawOpt.series[tuningOpt.innerIndex?(tuningOpt.innerIndex-1):0].realType = 'pie';
+            rawOpt.series[ 1].radius = [0,tuningOpt.innerRadiusSecond];
 
+            if(tuningOpt.splitMode){
+                var arr = new Array();
+                arr = rawOpt.series[tuningOpt.innerIndex?(tuningOpt.innerIndex-1):0].data.slice(tuningOpt.splitRow?tuningOpt.splitRow:0,rawOpt.series[tuningOpt.innerIndex?(tuningOpt.innerIndex-1):0].data.length);
+                rawOpt.series[tuningOpt.innerIndex?(tuningOpt.innerIndex-1):0].data = arr;
+            }
+
+        }
+    }
 
 };

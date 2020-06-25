@@ -150,7 +150,7 @@ cBoard.service('dataService', function ($http, $q, updateService) {
             });
         });
     };
-
+    debugger;
     this.getDataSeries = function (datasource, query, datasetId, chartConfig, callback, reload) {
         chartConfig = angular.copy(chartConfig);
         updateService.updateConfig(chartConfig);

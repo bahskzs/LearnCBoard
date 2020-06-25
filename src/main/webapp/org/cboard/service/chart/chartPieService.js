@@ -9,9 +9,7 @@ cBoard.service('chartPieService', function ($state, $window) {
         render.addClick(chartConfig, relations, $state, $window);
         return render.chart(null, persist);
     };
-    debugger;
     this.parseOption = function (data) {
-        debugger;
         var chartConfig = data.chartConfig;
         var casted_keys = data.keys;
         var casted_values = data.series;
@@ -129,7 +127,6 @@ cBoard.service('chartPieService', function ($state, $window) {
         };
 
         updateEchartOptions(chartConfig.option, echartOption);
-
         return echartOption;
     };
 });
