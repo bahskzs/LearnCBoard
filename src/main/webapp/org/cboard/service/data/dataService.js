@@ -10,6 +10,7 @@ cBoard.service('dataService', function ($http, $q, updateService) {
         if (datasetList) {
             deferred.resolve(angular.copy(datasetList));
         } else {
+            debugger;
             $http.get("dashboard/getDatasetList.do").success(function (data) {
                 deferred.resolve(data);
             });
@@ -27,7 +28,13 @@ cBoard.service('dataService', function ($http, $q, updateService) {
             deferred.resolve();
             return deferred.promise;
         } else {
+            //cat
+            debugger;
+            //
             return getDatasetList().then(function (dsList) {
+
+
+
                 var deferred = $q.defer();
 
                 var dataset = _.find(dsList, function (e) {
@@ -285,6 +292,7 @@ cBoard.service('dataService', function ($http, $q, updateService) {
     };
 
     this.viewQuery = function (params, callback) {
+        debugger;
         params.config = angular.copy(params.config);
         updateService.updateConfig(params.config);
         linkDataset(params.datasetId, params.config).then(function () {

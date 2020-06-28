@@ -242,6 +242,7 @@ cBoard.controller('dashboardViewCtrl', function ($timeout, $rootScope, $scope, $
     };
 
     var paramInitListener;
+    debugger;
     $scope.load = function (reload) {
         $scope.paramInit = 0;
         $scope.loading = true;
@@ -265,6 +266,7 @@ cBoard.controller('dashboardViewCtrl', function ($timeout, $rootScope, $scope, $
             _.each($scope.board.layout.rows, function (row) {
                 _.each(row.params, function (param) {
                     if (!param.paramType) {
+                        debugger;
                         param.paramType = 'selector';
                     }
                 });
@@ -327,10 +329,17 @@ cBoard.controller('dashboardViewCtrl', function ($timeout, $rootScope, $scope, $
         $scope.widgetFilters = [];
         $scope.datasetFilters = [];
         $scope.relationFilters = [];
-
+        // var url = window.location.search;
+        // var json = eval(url.split("?")[1]);
+        //
+        // //$scope.param.values = ['正式','试用'];
+        // $scope.param.values = json.name;
         //将点击的参数赋值到看板上的参数中
         //"{"targetId":3,"params":[{"targetField":"logo","value":"iphone"},{"targetField":"logo1","value":"上海市"}]}" targetField==param.name
+        debugger;
         if (location.href.split("?")[1]) {
+
+            console.log(location.href);
             var urlParam = JSON.parse(decodeURI(location.href.split("?")[1]));
             _.each($scope.board.layout.rows, function (row) {
                 _.each(row.params, function (param) {
@@ -342,7 +351,7 @@ cBoard.controller('dashboardViewCtrl', function ($timeout, $rootScope, $scope, $
                     }
                 });
             });
-            location.href = location.href.split("?")[0];
+            //location.href = location.href.split("?")[0];
         }
 
         //解析特别类型参数
@@ -426,6 +435,7 @@ cBoard.controller('dashboardViewCtrl', function ($timeout, $rootScope, $scope, $
 
     /* 筛选参数变化 图表刷新 */
     $scope.applyParamFilter = function (crow) {
+        debugger;
         paramToFilter();
         //实现单行刷新  在只有行参数改变的情况下
         var rows = crow ? [crow] : $scope.board.layout.rows;

@@ -3,7 +3,7 @@
  */
 'user strict';
 cBoard.controller('paramCtrl', function ($scope, $uibModal, $http) {
-
+    debugger;
     var evalValue = function (value) {
         if (isNaN(Number(value))) {
             var now = function (i, key) {
@@ -48,10 +48,18 @@ cBoard.controller('paramCtrl', function ($scope, $uibModal, $http) {
     };
 
     $scope.init = function (crow) {
+        debugger;
         $scope.param = $scope.$parent.param;
         $scope.param.selects = [];
+
         if(!$scope.param.type) $scope.param.type = '=';
         if(!$scope.param.values) $scope.param.values = [];
+        //根据浏览器参数初始化
+        var url = location.href;
+        var json = JSON.parse(decodeURI(location.href).split("?")[1]);
+
+        //$scope.param.values = ['正式','试用'];
+        $scope.param.values = json.params?json.params:[];
         if ($scope.param.paramType == 'slider') {
             var cfg = $scope.param.cfg;
             var _max = evalValue(_.result(cfg, 'max', null));
@@ -95,6 +103,7 @@ cBoard.controller('paramCtrl', function ($scope, $uibModal, $http) {
                     $scope.param.values = [formatter($scope.slider.minValue, cfg.value_fmt), formatter($scope.slider.maxValue, cfg.value_fmt)];
                 }
             }
+
         } else {
             _.each($scope.param.col, function (c) {
                 var p;
@@ -141,6 +150,7 @@ cBoard.controller('paramCtrl', function ($scope, $uibModal, $http) {
             resolve: {
                 param: function () {
                     if ($scope.param) {
+                        debugger;
                         return angular.copy($scope.param);
                     } else {
                         return {type: '='}
@@ -156,7 +166,13 @@ cBoard.controller('paramCtrl', function ($scope, $uibModal, $http) {
                 },
                 ok: function () {
                     return function (param) {
-                        $scope.param.values = param.values;
+                        debugger;
+                        //$scope.param.values = param.values;
+                        var url = location.href;
+                        var json = JSON.parse(decodeURI(location.href).split("?")[1]);
+
+                        //$scope.param.values = ['正式','试用'];
+                        $scope.param.values = json.params;
                         $scope.param.type = param.type;
                         $scope.applyParamFilter(crow);
                     }

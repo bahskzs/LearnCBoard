@@ -471,6 +471,7 @@
     "INIT_LEGEND": "自定义图例",
     "SHOW_LEGEND": "是否显示图例",
     "ORIENT": "方向",
+    "LEGEND_EXPRESSION": "表达式",
     "LEGEND_TYPE": {
       "LEFT":"靠左",
       "RIGHT": "靠右",
@@ -566,6 +567,9 @@
       "TOOLTIPS": "0~50%",
       "SPLIT_MODE" : "数据拆分",
       "SPLIT_ROW": "拆分行号"
+    },
+    "BOTTOM_TITLE": {
+      "SHOW": "底部标签"
     }
 
   }

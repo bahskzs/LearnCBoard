@@ -99,9 +99,27 @@ var updateEchartOptions = function(tuningOpt, rawOpt) {
         }
 
         // trend 2020-05-18 cat init
-        if(tuningOpt.trendShow == true){
-            rawOpt.series[0].itemStyle.normal.label.show = true;
-            tuningOpt.trendPosition ? rawOpt.series[0].itemStyle.normal.label.position = tuningOpt.trendPosition : null;
+        if(tuningOpt.trendShow == true && rawOpt.series[0].type == 'pie'){
+            debugger;
+            rawOpt.series[0].label= {
+                normal:{
+                    show: true,
+                    position: tuningOpt.trendPosition?tuningOpt.trendPosition:'center',
+                    formatter: '{b} \n{d}%'
+                },
+            };
+            var length = rawOpt.series.length;
+            if(length > 1 && tuningOpt.nestedMode == true){
+                rawOpt.series[1].label= {
+                    normal:{
+                        show: true,
+                        position: 'inner',
+                        formatter: '{b}'
+                    },
+                };
+            }
+            //rawOpt.series[0].labelLine.label.normal.show = true;
+            //tuningOpt.trendPosition ? rawOpt.series[0].label.position = tuningOpt.trendPosition : null;
         }
 
         //center label
@@ -170,7 +188,8 @@ var updateEchartOptions = function(tuningOpt, rawOpt) {
     }
 
     //bar 2020-06-05 cat
-    if(tuningOpt.barStyle == true){
+    if((rawOpt.series[0].type == 'line' || rawOpt.series[0].type == 'bar') && tuningOpt.barStyles == true){
+        debugger;
         //to-do 校验 barWidth barMinHeight barGap 是否纯数字
         //rawOpt.barMaxWidth = tuningOpt.barWidth ? tuningOpt.barWidth : 'auto';
         //rawOpt.barMinHeight = tuningOpt.barMinHeight ? tuningOpt.barMinHeight : 'auto';
@@ -178,7 +197,6 @@ var updateEchartOptions = function(tuningOpt, rawOpt) {
 
         var arr = new Array();
         arr = rawOpt.series;
-
 
         for(var i = 0;i<arr.length;i++){
             var type = arr[i].type;
@@ -191,7 +209,7 @@ var updateEchartOptions = function(tuningOpt, rawOpt) {
     }
 
     //bar splitArea 2020-06-23
-    if(tuningOpt.splitArea){
+     if((rawOpt.series[0].type == 'line' || rawOpt.series[0].type == 'bar') && tuningOpt.splitArea){
         if(tuningOpt.splitAreaOrient == "horizontal"){
             rawOpt.xAxis.splitArea={
                 show : true,
@@ -216,23 +234,53 @@ var updateEchartOptions = function(tuningOpt, rawOpt) {
         }
     }
 
-    if(tuningOpt.nestedMode == true){
+    if(rawOpt.series[0].type == 'pie' && tuningOpt.nestedMode === true){
         debugger;
-        if(rawOpt.series[0].type == 'pie') {
             tuningOpt.innerIndex ? rawOpt.series[0].radius = ['50%','70%'] : null;
             //rawOpt.series[tuningOpt.innerIndex?(tuningOpt.innerIndex-1):0].radius = [tuningOpt.innerRadiusSecond];
             rawOpt.series[0].center =['50%','50%'];
             rawOpt.series[tuningOpt.innerIndex?(tuningOpt.innerIndex-1):0].center = rawOpt.series[0].center;
-            rawOpt.series[tuningOpt.innerIndex?(tuningOpt.innerIndex-1):0].realType = 'pie';
-            rawOpt.series[ 1].radius = [0,tuningOpt.innerRadiusSecond];
 
+            if(tuningOpt.innerRadiusFirst == 0){
+                rawOpt.series[tuningOpt.innerIndex?(tuningOpt.innerIndex-1):0].realType = 'pie';
+                rawOpt.series[tuningOpt.innerIndex?(tuningOpt.innerIndex-1):0].radius = [0,tuningOpt.innerRadiusSecond];
+            }else{
+                rawOpt.series[tuningOpt.innerIndex?(tuningOpt.innerIndex-1):0].radius = [tuningOpt.innerRadiusFirst,tuningOpt.innerRadiusSecond];
+            }
+
+            //是否开启数据拆分模式 -- 仅限嵌套饼图
             if(tuningOpt.splitMode){
                 var arr = new Array();
                 arr = rawOpt.series[tuningOpt.innerIndex?(tuningOpt.innerIndex-1):0].data.slice(tuningOpt.splitRow?tuningOpt.splitRow:0,rawOpt.series[tuningOpt.innerIndex?(tuningOpt.innerIndex-1):0].data.length);
                 rawOpt.series[tuningOpt.innerIndex?(tuningOpt.innerIndex-1):0].data = arr;
-            }
+                var another = tuningOpt.innerIndex == rawOpt.series.length ? 0:1;
+                rawOpt.series[another].data = rawOpt.series[another].data.slice(0,tuningOpt.splitRow?tuningOpt.splitRow:0);
 
-        }
+            }
+            rawOpt.series[tuningOpt.innerIndex?(tuningOpt.innerIndex-1):0].label= {
+                normal:{
+                    show: true,
+                    position: 'inner',
+                    formatter: function(params){
+                        var arr = new Array();
+                        arr = params.name.split("-");
+                        return arr[parseInt(tuningOpt.legendSec)-1];
+                    }
+                },
+            };
+            rawOpt.series[another].label.normal.formatter=
+                function(params){
+                        var arr = new Array();
+                        arr = params.name.split("-");
+                        return arr[parseInt(tuningOpt.legendSec)-1] + params.percent+"%";
+                    }
+
+
     }
 
+    //2020-06-28 底部标签
+    if(rawOpt.series[0].type=="pie" && tuningOpt.bottomTitle != true ){
+        debugger;
+        rawOpt.title = '';
+    }
 };

@@ -3,7 +3,6 @@
  */
 
 cBoard.service('dashboardService', function ($http) {
-
     this.boardData;
 
     this.saveWidget = function (name, datasource, config) {
@@ -36,6 +35,7 @@ cBoard.service('dashboardService', function ($http) {
     };
 
     this.get = function (callback) {
+        debugger;
         var _this = this;
         $http.get("dashboard/getData.do").success(function (response) {
             if (!response) {

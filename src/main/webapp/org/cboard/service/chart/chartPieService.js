@@ -78,7 +78,6 @@ cBoard.service('chartPieService', function ($state, $window) {
             };
             //coxcomb 玫瑰图
             if (realType == 'coxcomb') {
-
                 s.roseType = 'area';
             }
             //控制饼图底部的标题

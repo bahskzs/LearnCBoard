@@ -10,6 +10,7 @@
         <li><a href="#emphasis" data-toggle="tab">{{'WIDGET_OPTION.SHOW_EMPHASIS'|translate}}</a></li>
         <!--2020-06-24 cat-->
         <li><a href="#nested" data-toggle="tab">{{'WIDGET_OPTION.NESTED_PIE_CONFIG.NESTED_MODE'|translate}}</a></li>
+        <li><a href="#bottomTitle" data-toggle="tab">{{'WIDGET_OPTION.BOTTOM_TITLE.SHOW'|translate}}</a></li>
     </ul>
 
 </div>
@@ -31,6 +32,9 @@
         </div>
         <div class="tab-pane " id="nested">
             <ng-include src="'org/cboard/view/config/chart/options/common/nestedPie.html'"></ng-include>
+        </div>
+        <div class="tab-pane " id="bottomTitle">
+            <ng-include src="'org/cboard/view/config/chart/options/common/bottomTitle.html'"></ng-include>
         </div>
     </div>
 </div>

@@ -22,9 +22,7 @@ import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.AbstractList;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
@@ -104,7 +102,10 @@ public class LocalSecurityFilter implements Filter {
                 String url = json.getString("r");
                 String userID = json.getString("u");
                 String userName = json.getString("userName");
-
+                //构造 "params:"{"name":"正式"}
+///                String params = json.getString("params");
+///                Map<String,String> map = new HashMap<String,String>();
+///                map.put("params",params);
                 //证明两个context一致
                 if (context_session != null) {
                     Authentication authentication = context_session.getAuthentication();

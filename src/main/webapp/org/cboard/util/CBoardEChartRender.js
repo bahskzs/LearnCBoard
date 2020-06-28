@@ -114,7 +114,8 @@ CBoardEChartRender.prototype.changeSize = function (instance) {
             if ((b * 8) < (instance.getHeight() * 0.75)) {
                 if (seriesType == 'doughnut') {
                     debugger;
-                    o.series[i].radius = [b * 3, b * 4];
+                    //o.series[i].radius = [b * 3, b * 4];
+                    o.series[i].radius ? o.series[i].radius : o.series[i].radius = [b * 3, b * 4];
                 } else if (seriesType == 'coxcomb') {
                     //此处控制玫瑰图的半径，类似圆环图
                     o.series[i].radius = [b * 0.8, b * 4];
@@ -125,7 +126,13 @@ CBoardEChartRender.prototype.changeSize = function (instance) {
 
             } else {
                 if (seriesType == 'doughnut') {
-                    o.series[i].radius= ['50%', '75%'];
+                    //o.series[i].radius= ['50%', '75%'];
+                    if(i == 0){
+                        o.series[i].radius = ['50%', '75%'];
+                    }else{
+                        o.series[i].radius ? o.series[i].radius : o.series[i].radius = ['50%', '75%'];
+                    }
+
                 } else if (seriesType == 'coxcomb' && roseType == 'radius') {
                     o.series[i].radius = ['15%', '75%'];
                 } else {
@@ -145,6 +152,7 @@ CBoardEChartRender.prototype.addClick = function (chartConfig, relations, $state
     }
     var self = this;
     self.ecc.on('click', function (param){
+        debugger;
         var sourceField = relations.sourceField;
         var links = relations.relations;
         //[{"targetId":relation.targetId, params:[{"targetField":targetField,"value":param.name},{}]}]
