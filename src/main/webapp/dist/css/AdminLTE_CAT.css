@@ -24,7 +24,8 @@ body {
     font-family: "Microsoft YaHei", 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-weight: 400;
     overflow-x: hidden;
-    overflow-y: auto;
+    overflow-y: hidden;
+
 }
 hr {
     margin-top: 0px;
@@ -109,7 +110,7 @@ hr {
 }
 .main-footer {
     background: #fff;
-    padding: 15px;
+    padding: 10px;
     color: #444;
     border-top: 1px solid #d2d6de;
 }
@@ -1105,7 +1106,7 @@ a:focus {
     display: block;
     white-space: nowrap;
     /* Prevent text from breaking */
-    border-bottom: 1px solid #f4f4f4;
+    /*border-bottom: 1px solid #f4f4f4;*/
 }
 .navbar-nav > .notifications-menu > .dropdown-menu > li .menu > li > a:hover,
 .navbar-nav > .messages-menu > .dropdown-menu > li .menu > li > a:hover,
@@ -1644,9 +1645,9 @@ a:focus {
     border-radius: 3px;
     background: #ffffff;
     border-top: 3px solid #d2d6de;
-    margin-bottom: 20px;
+    margin-bottom: 0px;
     width: 100%;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0px 0px rgba(0, 0, 0, 0.1);
     /*
     webkit-animation-duration: 1s;
     animation-duration: 1s;
@@ -1689,6 +1690,7 @@ a:focus {
 .box.height-control .box-body {
     max-height: 300px;
     overflow: auto;
+    overflow-y:hidden;;
 }
 .box .border-right {
     border-right: 1px solid #f4f4f4;
@@ -1842,7 +1844,7 @@ a:focus {
 .box-header {
     color: #444;
     display: block;
-    padding: 10px;
+    padding: 5px;
     position: relative;
 }
 .box-header.with-border {

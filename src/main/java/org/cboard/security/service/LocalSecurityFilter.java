@@ -22,6 +22,7 @@ import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.*;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
@@ -102,6 +103,30 @@ public class LocalSecurityFilter implements Filter {
                 String url = json.getString("r");
                 String userID = json.getString("u");
                 String userName = json.getString("userName");
+                String params = json.getString("params");
+                Set<String> keySet = new HashSet<String>();
+
+                if(StringUtils.isNotEmpty(params)){
+                    keySet = JSONObject.parseObject(params).keySet();
+                    StringBuffer str = new StringBuffer();
+
+                    Iterator<String> iterator = keySet.iterator();
+                    int count = 0;
+                    str.append("externalParam"+"=1&");
+                    while (iterator.hasNext()){
+
+                        String key = iterator.next();
+                        String value = JSONObject.parseObject(params).getString(key);
+                        str.append(key + "=" + value);
+                        count ++ ;
+                        if(count < keySet.size()){
+                            str.append("&");
+                        }
+                    }
+                    params = URLEncoder.encode(str.toString(),"utf-8");
+                }else{
+                    params = "";
+                }
                 //构造 "params:"{"name":"正式"}
 ///                String params = json.getString("params");
 ///                Map<String,String> map = new HashMap<String,String>();
@@ -131,7 +156,8 @@ public class LocalSecurityFilter implements Filter {
 
                 if (success) {
                     //hsr.getRequestDispatcher("/starter.html").forward(servletRequest, servletResponse);
-                    response.sendRedirect(serivcePath + url);
+                    String urls = serivcePath + url + "?" + params;
+                    response.sendRedirect(urls);
                     return;
                 }
             }

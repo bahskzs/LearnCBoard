@@ -128,9 +128,9 @@ CBoardEChartRender.prototype.changeSize = function (instance) {
                 if (seriesType == 'doughnut') {
                     //o.series[i].radius= ['50%', '75%'];
                     if(i == 0){
-                        o.series[i].radius = ['50%', '75%'];
+                        o.series[i].radius[0]!=0 ? o.series[i].radius :  o.series[i].radius = ['50%', '75%'];
                     }else{
-                        o.series[i].radius ? o.series[i].radius : o.series[i].radius = ['50%', '75%'];
+                        o.series[i].radius[0]!=0 ? o.series[i].radius : o.series[i].radius = ['50%', '75%'];
                     }
 
                 } else if (seriesType == 'coxcomb' && roseType == 'radius') {

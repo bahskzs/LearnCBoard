@@ -2,9 +2,9 @@
 <ng-include src="'org/cboard/view/dashboard/layout/header_catty.html'"></ng-include>
 <div id="inner-container" class="content">
     <input ng-model="relations" ng-hide="true" id="relations"/> <!--json [{},{}]-->
-    <div class="row" ng-repeat="row in board.layout.rows track by $index" ng-style="{height:row.height+'px'}">
+    <div class="row"  ng-repeat="row in board.layout.rows track by $index" ng-style="{height:row.height+'px'}" >
         <ng-switch on="row.type">
-            <div ng-switch-when="param">
+            <div ng-switch-when="param" style="display: none;">
                 <div class="col-sm-12">
                     <div class="box box-solid" style="border-left: 1px solid #d2d6de; border-right: 1px solid #d2d6de">
                         <div class="box-header">

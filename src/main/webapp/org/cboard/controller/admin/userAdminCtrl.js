@@ -16,6 +16,7 @@ cBoard.controller('userAdminCtrl', function ($scope, $http, ModalUtils, $filter)
     });
 
     var getUserList = function () {
+        debugger;
         $http.get("admin/getUserList.do").success(function (response) {
             $scope.userList = response;
         });
@@ -367,6 +368,7 @@ cBoard.controller('userAdminCtrl', function ($scope, $http, ModalUtils, $filter)
         //     return;
         // }
         if ($scope.optFlag == 'newUser') {
+            debugger;
             $http.post("admin/saveNewUser.do", {user: angular.toJson($scope.curUser)}).success(function (serviceStatus) {
                 if (serviceStatus == '1') {
                     $scope.optFlag = 'none';

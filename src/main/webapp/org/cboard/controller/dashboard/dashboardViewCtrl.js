@@ -242,7 +242,6 @@ cBoard.controller('dashboardViewCtrl', function ($timeout, $rootScope, $scope, $
     };
 
     var paramInitListener;
-    debugger;
     $scope.load = function (reload) {
         $scope.paramInit = 0;
         $scope.loading = true;
@@ -266,7 +265,6 @@ cBoard.controller('dashboardViewCtrl', function ($timeout, $rootScope, $scope, $
             _.each($scope.board.layout.rows, function (row) {
                 _.each(row.params, function (param) {
                     if (!param.paramType) {
-                        debugger;
                         param.paramType = 'selector';
                     }
                 });
@@ -288,7 +286,7 @@ cBoard.controller('dashboardViewCtrl', function ($timeout, $rootScope, $scope, $
             paramInitListener = $scope.$on('paramInitFinish', function (e, d) {
                 $scope.paramInit--;
                 if ($scope.paramInit == 0) {
-                    loadWidget(reload)
+                    loadWidget(reload);
                 }
             });
         });
@@ -329,17 +327,15 @@ cBoard.controller('dashboardViewCtrl', function ($timeout, $rootScope, $scope, $
         $scope.widgetFilters = [];
         $scope.datasetFilters = [];
         $scope.relationFilters = [];
-        // var url = window.location.search;
-        // var json = eval(url.split("?")[1]);
-        //
-        // //$scope.param.values = ['正式','试用'];
-        // $scope.param.values = json.name;
+        var str  = decodeURIComponent(location.href).split("?")[1];
+        var externalParam = 0
+        if(decodeURIComponent(location.href).split("?").length>1){
+        var arr = str.split("&");
+        var externalParam = arr.length>1 ? arr[0].split("=")[1] : 0;
+        }
         //将点击的参数赋值到看板上的参数中
         //"{"targetId":3,"params":[{"targetField":"logo","value":"iphone"},{"targetField":"logo1","value":"上海市"}]}" targetField==param.name
-        debugger;
-        if (location.href.split("?")[1]) {
-
-            console.log(location.href);
+        if (location.href.split("?")[1] && externalParam ==0) {
             var urlParam = JSON.parse(decodeURI(location.href.split("?")[1]));
             _.each($scope.board.layout.rows, function (row) {
                 _.each(row.params, function (param) {

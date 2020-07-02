@@ -101,11 +101,31 @@ var updateEchartOptions = function(tuningOpt, rawOpt) {
         // trend 2020-05-18 cat init
         if(tuningOpt.trendShow == true && rawOpt.series[0].type == 'pie'){
             debugger;
+            var length = rawOpt.series[0].data.length;
+            if(length>3 && (tuningOpt.nestedMode == false || tuningOpt.nestedMode == undefined)){
+                //var realRadius = new Array();
+                //realRadius = rawOpt.series[0].radius;
+                rawOpt.series[0].radius = ['35%','55%'];
+                rawOpt.series[0].labelLine = {
+                    normal:{
+                        show:true,
+                        length:5,
+                        length2:5,
+                        smooth:true
+                    }
+                };
+                // rawOpt.series[0].label.normal.alignTo='edge';
+                // rawOpt.series[0].label.normal.margin='25%';
+            }
             rawOpt.series[0].label= {
                 normal:{
                     show: true,
                     position: tuningOpt.trendPosition?tuningOpt.trendPosition:'center',
-                    formatter: '{b} \n{d}%'
+                    formatter: function (params) {
+                        var arr = params.name.split("-");
+                        var name = arr.length>1 ? arr[arr.length-1]:arr[0];
+                        return name +"\n"+ params.percent + "%";
+                    }
                 },
             };
             var length = rawOpt.series.length;
@@ -114,12 +134,24 @@ var updateEchartOptions = function(tuningOpt, rawOpt) {
                     normal:{
                         show: true,
                         position: 'inner',
-                        formatter: '{b}'
+                        formatter: function (params) {
+                            var arr = params.name.split("-");
+                            var name = arr.length>1 ? arr[arr.length-1]:arr[0];
+                            return name;
+                        }
                     },
                 };
             }
+
+            if(length>3 && (tuningOpt.nestedMode == false || tuningOpt.nestedMode == undefined)){
+                rawOpt.series[0].label.normal.alignTo='none';
+                //rawOpt.series[0].label.normal.margin=20;
+                rawOpt.series[0].label.normal.distanceToLabelLine = 15;
+            }
+
             //rawOpt.series[0].labelLine.label.normal.show = true;
             //tuningOpt.trendPosition ? rawOpt.series[0].label.position = tuningOpt.trendPosition : null;
+
         }
 
         //center label
@@ -256,7 +288,8 @@ var updateEchartOptions = function(tuningOpt, rawOpt) {
                 var another = tuningOpt.innerIndex == rawOpt.series.length ? 0:1;
                 rawOpt.series[another].data = rawOpt.series[another].data.slice(0,tuningOpt.splitRow?tuningOpt.splitRow:0);
 
-            }
+
+            debugger;
             rawOpt.series[tuningOpt.innerIndex?(tuningOpt.innerIndex-1):0].label= {
                 normal:{
                     show: true,
@@ -264,7 +297,7 @@ var updateEchartOptions = function(tuningOpt, rawOpt) {
                     formatter: function(params){
                         var arr = new Array();
                         arr = params.name.split("-");
-                        return arr[parseInt(tuningOpt.legendSec)-1];
+                        return params.name.split("-")[arr.length>1?1:0];
                     }
                 },
             };
@@ -272,9 +305,10 @@ var updateEchartOptions = function(tuningOpt, rawOpt) {
                 function(params){
                         var arr = new Array();
                         arr = params.name.split("-");
-                        return arr[parseInt(tuningOpt.legendSec)-1] + params.percent+"%";
+                        var name = arr.length>1 ? arr[1]:arr[0];
+                        return name + params.percent+"%";
                     }
-
+            }
 
     }
 
