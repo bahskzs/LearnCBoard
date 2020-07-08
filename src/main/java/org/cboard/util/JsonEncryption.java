@@ -6,7 +6,7 @@ import com.apexinfo.finereport.ApexUtil;
 
 import java.util.Map;
 
-public class JSONEncryption {
+public class JsonEncryption {
 
     public static final String KEY = "apexinfo*1234567";
     public static final String IVS = "apexinfoapexinfo";

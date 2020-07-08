@@ -158,7 +158,7 @@ public class AdminController extends BaseController {
     public boolean isConfig(@RequestParam(name = "type") String type) {
         if (tlUser.get().getUserId().equals(adminUserId)) {
             return true;
-        } else if (type.equals("widget")) {
+        } else if ("widget".equals(type)) {
             List<Long> menuIdList = menuDao.getMenuIdByUserRole(tlUser.get().getUserId());
             if (menuIdList.contains(1L) && menuIdList.contains(4L)) {
                 return true;

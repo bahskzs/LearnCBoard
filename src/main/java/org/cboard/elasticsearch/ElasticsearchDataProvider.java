@@ -362,8 +362,8 @@ public class ElasticsearchDataProvider extends DataProvider implements Aggregata
         String intervalStr = "10m";
         try {
             JSONObject response = post(getSearchUrl(request), request);
-            long maxTs = coalesce(response.getJSONObject("aggregations").getJSONObject(maxKey).getLong("value"), 0l);
-            long minTs = coalesce(response.getJSONObject("aggregations").getJSONObject(minKey).getLong("value"), 0l);
+            long maxTs = coalesce(response.getJSONObject("aggregations").getJSONObject(maxKey).getLong("value"), 0L);
+            long minTs = coalesce(response.getJSONObject("aggregations").getJSONObject(minKey).getLong("value"), 0L);
             intervalStr = dateInterval(minTs, maxTs);
         } catch (Exception e) {
             LOG.error("", e);

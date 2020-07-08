@@ -50,14 +50,16 @@ public class NaturalOrderComparator implements Comparator<Comparable> {
                     bias = -1;
                 }
             } else if (ca > cb) {
-                if (bias == 0)
+                if (bias == 0) {
                     bias = +1;
+                }
             } else if (ca == 0 && cb == 0) {
                 return bias;
             }
         }
     }
 
+    @Override
     public int compare(Comparable o1, Comparable o2) {
         String a = o1.toString();
         String b = o2.toString();

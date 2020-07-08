@@ -76,9 +76,9 @@ public class SaikuDataProvider extends DataProvider {
                 for (int j = 0; j < cols.size(); j++) {
                     String value = cols.getJSONObject(j).getString("value");
                     if (columnHeader[j] == null) {
-                        columnHeader[j] = value.equals("null") ? "" : value;
+                        columnHeader[j] = "null".equals(value) ? "" : value;
                     } else {
-                        columnHeader[j] += value.equals("null") ? "" : value;
+                        columnHeader[j] += "null".equals(value) ? "" : value;
                     }
                 }
             }

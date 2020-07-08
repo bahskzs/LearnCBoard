@@ -17,10 +17,9 @@ cBoard.service('chartService', function($q, dataService, chartPieService, chartL
       }
     var deferred = $q.defer();
     var chart = getChartServices(widget.config);
-    debugger;
     dataService.getDataSeries(widget.datasource, widget.query, widget.datasetId, widget.config, function(data) {
       try {
-        debugger;
+
         var option = chart.parseOption(data);
         if (optionFilter) {
           optionFilter(option);

@@ -53,7 +53,9 @@ public class UnicodeReader extends Reader {
      * Call init() or read() method to initialize it.
      */
     public String getEncoding() {
-        if (internalIn2 == null) return null;
+        if (internalIn2 == null) {
+            return null;
+        }
         return internalIn2.getEncoding();
     }
 
@@ -62,7 +64,9 @@ public class UnicodeReader extends Reader {
      * unread back to the stream, only BOM bytes are skipped.
      */
     protected void init() throws IOException {
-        if (internalIn2 != null) return;
+        if (internalIn2 != null) {
+            return;
+        }
 
         String encoding;
         byte bom[] = new byte[BOM_SIZE];
@@ -94,7 +98,9 @@ public class UnicodeReader extends Reader {
         }
         //System.out.println("read=" + n + ", unread=" + unread);
 
-        if (unread > 0) internalIn.unread(bom, (n - unread), unread);
+        if (unread > 0) {
+            internalIn.unread(bom, (n - unread), unread);
+        }
 
         // Use given encoding
         if (encoding == null) {
