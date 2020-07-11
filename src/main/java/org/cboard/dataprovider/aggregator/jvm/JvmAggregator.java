@@ -103,7 +103,9 @@ public class JvmAggregator extends InnerAggregator {
         int dimSize = dimensionList.size();
         for (String[] row : result) {
             IntStream.range(0, dimSize).forEach(d -> {
-                if (row[d] == null) row[d] = NULL_STRING;
+                if (row[d] == null) {
+                    row[d] = NULL_STRING;
+                }
             });
         }
         dimensionList.addAll(valuesList);
@@ -120,8 +122,12 @@ public class JvmAggregator extends InnerAggregator {
 
         @Override
         public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
+            if (this == o) {
+                return true;
+            }
+            if (o == null || getClass() != o.getClass()) {
+                return false;
+            }
 
             Dimensions that = (Dimensions) o;
 

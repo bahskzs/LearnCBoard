@@ -8,6 +8,17 @@ var chartDataProcess = function(chartConfig,casted_keys, casted_values, aggregat
         emptyList = [],
         keyLength = chartConfig.keys.length,
         rowHeaderLength = keysList[0] ? keysList[0].length : 0;
+    var rowRealLength = chartConfig.values[0].cols.length;
+    var singleIndexName = '';
+    if( rowRealLength == 1 && casted_values[0].length > rowRealLength){
+        singleIndexName = casted_values[0][chartConfig.groups.length];
+        for(var i = 0;i<casted_values.length; i++){
+            var arr = [];
+            arr = casted_values[i];
+            arr.pop();
+            casted_values[i] = arr;
+        }
+    }
     Array.matrix = function (numrows, numcols, initial) {
         var arr = [];
         for (var a = 0; a < numrows; ++a) {
@@ -30,6 +41,10 @@ var chartDataProcess = function(chartConfig,casted_keys, casted_values, aggregat
     }
     for (var i = 0; i < casted_values.length; i++) {
         var joined_values = casted_values[i].join('-');
+        if(rowRealLength == 1){
+            //只有一个指标的时候
+            joined_values = joined_values +'-'+ singleIndexName;
+        }
         var formatter = newValuesConfig[joined_values].formatter;
         for (var j = 0; j < casted_keys.length; j++) {
             if (!_.isUndefined(aggregate_data[i][j])) {
@@ -48,6 +63,9 @@ var chartDataProcess = function(chartConfig,casted_keys, casted_values, aggregat
         }
     }
     var column_header = Array.matrix(chartConfig.groups.length + 1, casted_values.length, 0);
+    if(rowRealLength == 1 && column_header.length > chartConfig.groups.length){
+        column_header.pop();
+    }
     for (var n = 0; n < casted_values.length; n++) {
         for (var m = 0; m < casted_values[n].length; m++) {
             column_header[m][n] = {
@@ -68,9 +86,13 @@ var chartDataProcess = function(chartConfig,casted_keys, casted_values, aggregat
         });
     }
     for (var j = 0; j < column_header.length; j++) {
-        j == column_header.length - 1 ?
-            column_header[j] = keyArr. concat(column_header[j]) :
-            column_header[j] = emptyList.concat(column_header[j]);
+        /// 原模式为交叉表格式
+        /// j == column_header.length - 1 ?
+        ///     column_header[j] = keyArr. concat(column_header[j]) :
+        ///     column_header[j] = emptyList.concat(column_header[j]);
+        if(j==0){
+            column_header[j] = keyArr. concat(column_header[j]);
+        }
     }
     var chartData = {
         chartConfig: chartConfig,

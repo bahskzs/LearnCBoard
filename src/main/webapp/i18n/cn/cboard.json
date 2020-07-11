@@ -570,6 +570,20 @@
     },
     "BOTTOM_TITLE": {
       "SHOW": "底部标签"
+    },
+    "TABLE_CONFIG": {
+      "BORDER": {
+        "STYLE": "边框样式(线型)",
+        "COLOR": "颜色",
+        "WIDTH": "边框宽度(尺寸)"
+      },
+      "TITLE": {
+        "NAME" : "标题名称",
+        "POSITION" : "位置",
+        "" : "字体",
+        "" : "字号",
+        "" : "颜色"
+      }
     }
 
   }

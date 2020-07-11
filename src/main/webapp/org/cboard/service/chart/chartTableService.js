@@ -16,6 +16,8 @@ cBoard.service('chartTableService', function () {
 
     this.parseOption = function (data) {
         var tableOption = chartDataProcess(data.chartConfig, data.keys, data.series, data.data, data.seriesConfig);
+        //to-do 修改前端传递的样式等内容
+        //updateEchartOptions(data.chartConfig, tableOption);
         return tableOption;
     };
 });

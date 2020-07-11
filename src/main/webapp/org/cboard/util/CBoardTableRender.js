@@ -27,12 +27,15 @@ CBoardTableRender.prototype.do = function (tall, persist) {
         _this.drill.config = drillConfig;
         _this.do(_this.tall);
     };
+    var initConfig = this.options.chartConfig.option;
     var args = {
         tall: divHeight,
         chartConfig: this.options.chartConfig,
         data: this.options.data,
         container: this.container,
         drill: this.drill,
+        title : '测试表',
+        initConfig : initConfig,
         render: render
     };
     crossTable.table(args);

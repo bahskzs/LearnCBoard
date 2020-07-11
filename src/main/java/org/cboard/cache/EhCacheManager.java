@@ -36,9 +36,9 @@ public class EhCacheManager<T> implements CacheManager<T>, InitializingBean, Dis
     @Override
     public T get(String key) {
         CacheObject o = cache.get(key);
-        if (o == null || new Date().getTime() >= o.getT1() + o.getExpire())
+        if (o == null || new Date().getTime() >= o.getT1() + o.getExpire()) {
             return null;
-        else {
+        } else {
             return (T) o.getD();
         }
     }

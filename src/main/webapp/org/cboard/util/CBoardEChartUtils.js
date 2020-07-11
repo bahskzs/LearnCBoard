@@ -11,6 +11,10 @@ var updateEchartOptions = function(tuningOpt, rawOpt) {
             };
         }
 
+        if(tuningOpt.chart_type == "table"){
+            return;
+        }
+
         // legend
         rawOpt.grid === undefined ? rawOpt.grid = angular.copy(echartsBasicOption.grid) : null;
         if (tuningOpt.legendShow == false) {
@@ -27,13 +31,11 @@ var updateEchartOptions = function(tuningOpt, rawOpt) {
             //确认是否是true
             if(tuningOpt.legendSec == "default" || (tuningOpt.legendSec==null || tuningOpt.legendSec=="" || tuningOpt.legendSec=='undefined')) {
                 rawOpt.legend.formatter = function (name) {
-                    console.log("name:"+name);
                     return name;
                 };
             }else{
                 rawOpt.legend.formatter=function (name) {
-                    console.log("name else"+name);
-                    var arr = new Array();
+                    var arr = [];
                     arr = name.split("-");
                     return arr[parseInt(tuningOpt.legendSec)-1];
                 };
@@ -42,7 +44,7 @@ var updateEchartOptions = function(tuningOpt, rawOpt) {
             tuningOpt.legendExpression ? expression = tuningOpt.legendExpression : null;
             //图例自定义功能 2020-05-20
             if(expression != undefined && expression != null && tuningOpt.legendInit == true ){
-                var arr = new Array();
+                var arr = [];
                 arr = expression.split(",");
                 var serIndex = 0;
                 serIndex = arr.length;
@@ -100,11 +102,8 @@ var updateEchartOptions = function(tuningOpt, rawOpt) {
 
         // trend 2020-05-18 cat init
         if(tuningOpt.trendShow == true && rawOpt.series[0].type == 'pie'){
-            debugger;
             var length = rawOpt.series[0].data.length;
             if(length>3 && (tuningOpt.nestedMode == false || tuningOpt.nestedMode == undefined)){
-                //var realRadius = new Array();
-                //realRadius = rawOpt.series[0].radius;
                 rawOpt.series[0].radius = ['35%','55%'];
                 rawOpt.series[0].labelLine = {
                     normal:{
@@ -170,7 +169,7 @@ var updateEchartOptions = function(tuningOpt, rawOpt) {
                 var serExpression = '';
                 tuningOpt.seriesNameExp ? serExpression = tuningOpt.seriesNameExp : null;
                 if(serExpression != '' && tuningOpt.seriesNameShow==true){
-                    var arr = new Array();
+                    var arr = [];
                     arr = serExpression.split(",");
                     var serIndex = 0;
                     serIndex = arr.length;
@@ -221,13 +220,12 @@ var updateEchartOptions = function(tuningOpt, rawOpt) {
 
     //bar 2020-06-05 cat
     if((rawOpt.series[0].type == 'line' || rawOpt.series[0].type == 'bar') && tuningOpt.barStyles == true){
-        debugger;
         //to-do 校验 barWidth barMinHeight barGap 是否纯数字
         //rawOpt.barMaxWidth = tuningOpt.barWidth ? tuningOpt.barWidth : 'auto';
         //rawOpt.barMinHeight = tuningOpt.barMinHeight ? tuningOpt.barMinHeight : 'auto';
         //rawOpt.barGap = tuningOpt.barGap ? tuningOpt.barGap : 'auto';
 
-        var arr = new Array();
+        var arr = [];
         arr = rawOpt.series;
 
         for(var i = 0;i<arr.length;i++){
@@ -267,7 +265,6 @@ var updateEchartOptions = function(tuningOpt, rawOpt) {
     }
 
     if(rawOpt.series[0].type == 'pie' && tuningOpt.nestedMode === true){
-        debugger;
             tuningOpt.innerIndex ? rawOpt.series[0].radius = ['50%','70%'] : null;
             //rawOpt.series[tuningOpt.innerIndex?(tuningOpt.innerIndex-1):0].radius = [tuningOpt.innerRadiusSecond];
             rawOpt.series[0].center =['50%','50%'];
@@ -282,20 +279,19 @@ var updateEchartOptions = function(tuningOpt, rawOpt) {
 
             //是否开启数据拆分模式 -- 仅限嵌套饼图
             if(tuningOpt.splitMode){
-                var arr = new Array();
+                var arr = [];
                 arr = rawOpt.series[tuningOpt.innerIndex?(tuningOpt.innerIndex-1):0].data.slice(tuningOpt.splitRow?tuningOpt.splitRow:0,rawOpt.series[tuningOpt.innerIndex?(tuningOpt.innerIndex-1):0].data.length);
                 rawOpt.series[tuningOpt.innerIndex?(tuningOpt.innerIndex-1):0].data = arr;
                 var another = tuningOpt.innerIndex == rawOpt.series.length ? 0:1;
                 rawOpt.series[another].data = rawOpt.series[another].data.slice(0,tuningOpt.splitRow?tuningOpt.splitRow:0);
 
 
-            debugger;
             rawOpt.series[tuningOpt.innerIndex?(tuningOpt.innerIndex-1):0].label= {
                 normal:{
                     show: true,
                     position: 'inner',
                     formatter: function(params){
-                        var arr = new Array();
+                        var arr = [];
                         arr = params.name.split("-");
                         return params.name.split("-")[arr.length>1?1:0];
                     }
@@ -303,7 +299,7 @@ var updateEchartOptions = function(tuningOpt, rawOpt) {
             };
             rawOpt.series[another].label.normal.formatter=
                 function(params){
-                        var arr = new Array();
+                        var arr = [];
                         arr = params.name.split("-");
                         var name = arr.length>1 ? arr[1]:arr[0];
                         return name + params.percent+"%";
@@ -314,7 +310,6 @@ var updateEchartOptions = function(tuningOpt, rawOpt) {
 
     //2020-06-28 底部标签
     if(rawOpt.series[0].type=="pie" && tuningOpt.bottomTitle != true ){
-        debugger;
         rawOpt.title = '';
     }
 };

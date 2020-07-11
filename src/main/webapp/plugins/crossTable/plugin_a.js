@@ -4,19 +4,15 @@
 
 var crossTable = {
     table: function (args) {
-        var oldConfig = args.initConfig;
         var data = args.data,
             chartConfig = args.chartConfig,
             tall = args.tall,
             pageDataNum = 20,
             drill = args.drill,
             random = Math.random().toString(36).substring(2),
-            container = args.container,
-            titles = args.title;
+            container = args.container;
         var html = "<table class = 'table_wrapper' id='tableWrapper" + random + "'><thead class='fixedHeader'>",
             colContent = "<tr>";
-        var rowRealLength = chartConfig.values[0].cols.length;
-
         for (var i = 0; i < chartConfig.groups.length; i++) {
             var groupId = chartConfig.groups[i].id;
             var rowHeaderSortg = true;
@@ -25,21 +21,11 @@ var crossTable = {
             _.each(chartConfig.groups, function(g, index) {
                 index <= i && g.sort === undefined ? rowHeaderSortg = false : null;
             });
-//             for (var t = 0; t < chartConfig.keys.length; t++) {
-//                 colContent += "<th class=" + data[i][t].property + "><div></div></th>";
-//             }
-            for (var y = 0; y < data[i].length; y++) {
-                if(y<chartConfig.keys.length){
-                    if(i == 0){
-                        colList.push({
-                            data: data[i][y].data,
-                            colSpan:0,
-                            rowSpan: rowRealLength == 1 ? chartConfig.groups.length:chartConfig.groups.length+1,
-                            property: data[i][y].property
-                        });
-                    }
-                }
-                if (data[i][y + 1] && (data[i][y].data == data[i][y + 1].data) && rowHeaderSortg && ((i==0 && y >= chartConfig.keys.length)||i>0) ) {
+            for (var t = 0; t < chartConfig.keys.length; t++) {
+                colContent += "<th class=" + data[i][t].property + "><div></div></th>";
+            }
+            for (var y = chartConfig.keys.length; y < data[i].length; y++) {
+                if (data[i][y + 1] && (data[i][y].data == data[i][y + 1].data) && rowHeaderSortg) {
                     if (i > 0) {
                         var noEqual = false;
                         for (var s = i - 1; s > -1; s--) {
@@ -52,7 +38,6 @@ var crossTable = {
                             colList.push({
                                 data: data[i][y].data,
                                 colSpan: colspan,
-                                rowSpan:1,
                                 property: data[i][y].property
                             });
                             colspan = 1;
@@ -66,14 +51,12 @@ var crossTable = {
                     }
                 }
                 else {
-                    if((i==0&& y >= chartConfig.keys.length)||i>0){
-                        data[i][y] != data[i][y - 1] ? colList.push({
-                            data: data[i][y].data,
-                            colSpan: colspan,
-                            rowSpan:1,
-                            property: data[i][y].property
-                        }) : null;
-                        colspan = 1;}
+                    data[i][y] != data[i][y - 1] ? colList.push({
+                        data: data[i][y].data,
+                        colSpan: colspan,
+                        property: data[i][y].property
+                    }) : null;
+                    colspan = 1;
                 }
             }
             for (var c = 0; c < colList.length; c++) {
@@ -87,30 +70,18 @@ var crossTable = {
                         d += " drill-up='" + groupId + "' ";
                     }
                 }
-                var value = (colList[c].rowSpan > 1 && rowRealLength>=1 || colList[c].colSpan==0) ? "<div>"+ colList[c].data + "</div>":"<div " + d + ">" + colList[c].data + "</div>";
-                if(colList[c].colSpan > 1 ){
-                    colContent = colContent + "<th colspan=" + colList[c].colSpan +
-                    " class=" + colList[c].property + ">" + value + "</th>";
-                }else if(colList[c].rowSpan > 1){
-                    colContent = colContent + "<th rowspan=" + colList[c].rowSpan + " class=" + colList[c].property + ">" + value + "</th>";
-                }else{
-                    colContent = colContent + "<th class=" + colList[c].property + ">" + value + "</th>";
-                }
-
-                // colContent += colList[c].colSpan > 1 ? "<th colspan=" + colList[c].colSpan +
-                //     " class=" + colList[c].property + ">" + value + "</th>" :colList[c].rowSpan>1 ?
-                //     "<th rowspan=" + colList[c].rowSpan + " class=" + colList[c].property + ">" + value + "</th>" :
-                //     "<th class=" + colList[c].property + ">" + value + "</th>";
+                var value = "<div " + d + ">" + colList[c].data + "</div>";
+                colContent += colList[c].colSpan > 1 ? "<th colspan=" + colList[c].colSpan +
+                    " class=" + colList[c].property + ">" + value + "</th>" :
+                    "<th class=" + colList[c].property + ">" + value + "</th>";
             }
             colContent += "</tr><tr>";
         }
-        if(rowRealLength != 1 ){
-            for (var k = 0; k < data[chartConfig.groups.length].length; k++) {
-                colContent += "<th class=" + data[chartConfig.groups.length][k].property + "><div>" + data[chartConfig.groups.length][k].data + "</div></th>";
-            }
+        for (var k = 0; k < data[chartConfig.groups.length].length; k++) {
+            colContent += "<th class=" + data[chartConfig.groups.length][k].property + "><div>" + data[chartConfig.groups.length][k].data + "</div></th>";
         }
         html += colContent + "</tr></thead><tbody class='scrollContent'>";
-        var headerLines = rowRealLength == 1 ? chartConfig.groups.length : chartConfig.groups.length + 1;
+        var headerLines = chartConfig.groups.length + 1;
         var dataPage = this.paginationProcessData(data, headerLines, pageDataNum);
         var colNum = data[0].length;
         var rowNum = colNum ? data.length - headerLines : 0;
@@ -119,7 +90,7 @@ var crossTable = {
         var optionDom = "<select><option value='20'>20</option><option value='50'>50</option><option value='100'>100</option><option value='150'>150</option></select>";
         var p_class = "p_" + random;
         var PaginationDom = "<div class='" + p_class + "'><div class='optionNum'><span>" + cboardTranslate("CROSS_TABLE.SHOW") + "</span>" + optionDom + "<span>" + cboardTranslate("CROSS_TABLE.ENTRIES") + "</span></div><div class='page'><ul></ul></div></div>";
-        var operate = "<div class='toolbar toolbar" + random + "'><span class='info'><b>" + titles +" </b>" + rowNum + " x " + colNum + "</span>" +
+        var operate = "<div class='toolbar toolbar" + random + "'><span class='info'><b>info: </b>" + rowNum + " x " + colNum + "</span>" +
             "<span class='exportBnt' title='" + cboardTranslate("CROSS_TABLE.EXPORT") + "'></span>" +
             "<span class='exportCsvBnt' title='" + cboardTranslate("CROSS_TABLE.EXPORT_CSV") + "'></span></div>";
         $(container).html(operate);
