@@ -34,7 +34,7 @@ CBoardTableRender.prototype.do = function (tall, persist) {
         data: this.options.data,
         container: this.container,
         drill: this.drill,
-        title : '测试表',
+        title : initConfig.tableTitle ? initConfig.tableTitle : '测试',
         initConfig : initConfig,
         render: render
     };

@@ -13,6 +13,7 @@ var crossTable = {
             random = Math.random().toString(36).substring(2),
             container = args.container,
             titles = args.title;
+        var recordSize = args.data.length;
         var html = "<table class = 'table_wrapper' id='tableWrapper" + random + "'><thead class='fixedHeader'>",
             colContent = "<tr>";
         var rowRealLength = chartConfig.values[0].cols.length;
@@ -77,7 +78,7 @@ var crossTable = {
                 }
             }
             for (var c = 0; c < colList.length; c++) {
-                var d = ""
+                var d = "";
                 if (drill && drill.config[groupId] && (drill.config[groupId].down || drill.config[groupId].up)) {
                     d += "class='table_drill_cell'";
                     if (drill.config[groupId].down) {
@@ -119,7 +120,14 @@ var crossTable = {
         var optionDom = "<select><option value='20'>20</option><option value='50'>50</option><option value='100'>100</option><option value='150'>150</option></select>";
         var p_class = "p_" + random;
         var PaginationDom = "<div class='" + p_class + "'><div class='optionNum'><span>" + cboardTranslate("CROSS_TABLE.SHOW") + "</span>" + optionDom + "<span>" + cboardTranslate("CROSS_TABLE.ENTRIES") + "</span></div><div class='page'><ul></ul></div></div>";
-        var operate = "<div class='toolbar toolbar" + random + "'><span class='info'><b>" + titles +" </b>" + rowNum + " x " + colNum + "</span>" +
+        var position = oldConfig.titleOrient ? oldConfig.titleOrient : "left";
+        var positionStyle;
+        if(position == "right"){
+            positionStyle = 'style="float:right;margin-right:10px"';
+        }else if(position == "center"){
+            positionStyle = 'style="margin-left:50%"';
+        }
+        var operate = "<div class='toolbar toolbar" + random + "'><span class='info' "+positionStyle+"><b>" + titles +" </b>" + rowNum + " x " + colNum + "</span>" +
             "<span class='exportBnt' title='" + cboardTranslate("CROSS_TABLE.EXPORT") + "'></span>" +
             "<span class='exportCsvBnt' title='" + cboardTranslate("CROSS_TABLE.EXPORT_CSV") + "'></span></div>";
         $(container).html(operate);
@@ -255,23 +263,51 @@ var crossTable = {
                     if (drill.config[keyId].up) {
                         d += " drill-up='" + keyId + "' ";
                     }
-                    cur_data = "<div class='table_drill_cell' " + d + ">" + cur_data + "</div>";
+
+                    if(chartConfig.option.initBottomSumRow && n == data.length-1&& chartConfig.keys.length>1 && cur_data=='合计'){
+                        if(m>0){
+                            cur_data = "";
+                        }else{
+                            cur_data = "<div>" + cur_data + "</div>";
+                        }
+
+                    }else{
+                        cur_data = "<div class='table_drill_cell' " + d + ">" + cur_data + "</div>";
+                    }
                 }
                 var sortg = true;
                 _.each(chartConfig.keys, function(key, index) {
                     index <= m && key.sort === undefined ? sortg = false : null;
+                    if(chartConfig.option.initBottomSumRow && n == data.length-1 && data[n][0].data=='合计' && m>0&&m<chartConfig.keys.length){
+                        sortg = false;
+                    }
                 });
                 if (m > 0 && sortg) {
+
                     if (currentCell.rowSpan == 'row_null' && rowParentCell.rowSpan == 'row_null' && !isFirstLine) {
-                        rowContent += "<th class=row_null><div></div></th>";
+                         rowContent += "<th class=row_null><div></div></th>";
                     } else {
-                        rowContent += "<th style='text-align:"+align+"' class=row><div>" + cur_data + "</div></th>";
+                         rowContent += "<th style='text-align:" + align + "' class=row><div>" + cur_data + "</div></th>";
                     }
+
                 } else {
                     if (currentCell.rowSpan == 'row_null' && !isFirstLine && sortg) {
                         rowContent += "<th class=row_null><div></div></th>";
                     } else {
-                        rowContent += "<th style='text-align:"+align+"' class=row><div>" + cur_data + "</div></th>";
+                        if(chartConfig.option.initBottomSumRow && n == data.length-1 && chartConfig.keys.length>1 && m == 0){
+                            rowContent += "<th style='text-align:" + align + "' class=row colspan='" + chartConfig.keys.length + "'><div>" + cur_data + "</div></th>";
+                        }
+                        // else if(chartConfig.option.initBottomSumRow && n == data.length-1 && !sortg && m<chartConfig.keys.length && m>0){
+                        //     rowContent +="";
+                        // }
+                        else{
+                            if(chartConfig.option.initBottomSumRow && n == data.length-1 && data[data.length-1][0].data=='合计' && m>0&&m<chartConfig.keys.length){
+                                rowContent += "<td style='text-align:" + align + "' class=data><div>" + cur_data + "</div></td>";
+                            }else{
+                                rowContent += "<th style='text-align:" + align + "' class=row><div>" + cur_data + "</div></th>";
+                            }
+
+                        }
                     }
                 }
             }

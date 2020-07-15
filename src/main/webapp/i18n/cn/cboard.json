@@ -96,7 +96,7 @@
     "CONFIRM_PASSWORD": "确认密码"
   },
   "FOOTER": {
-    "COPYRIGHT": "CBoard开源项目组",
+    "COPYRIGHT": "ApexBoard项目组",
     "VERSION": "版本"
   },
   "DASHBOARD": {
@@ -572,6 +572,8 @@
       "SHOW": "底部标签"
     },
     "TABLE_CONFIG": {
+      "INIT_TABLE_TITLE": "自定义边框",
+      "COMMON_STYLE": "基本样式",
       "BORDER": {
         "STYLE": "边框样式(线型)",
         "COLOR": "颜色",
@@ -579,11 +581,19 @@
       },
       "TITLE": {
         "NAME" : "标题名称",
-        "POSITION" : "位置",
-        "" : "字体",
-        "" : "字号",
-        "" : "颜色"
-      }
+        "POSITION" : {
+          "NAME": "位置",
+          "LEFT": "居左",
+          "RIGHT": "居右",
+          "CENTER": "居中"
+        },
+        "FONT" : "字体",
+        "SIZE" : "字号",
+        "COLOR" : "颜色"
+      },
+      "AUTO_WORD_WRAP": "自动换行",
+      "BUTTOM_SUM_ROW": "底部合计行",
+      "INIT_EXPRESSION": "自定义表达式"
     }
 
   }

@@ -8,7 +8,9 @@ var chartDataProcess = function(chartConfig,casted_keys, casted_values, aggregat
         emptyList = [],
         keyLength = chartConfig.keys.length,
         rowHeaderLength = keysList[0] ? keysList[0].length : 0;
-    var rowRealLength = chartConfig.values[0].cols.length;
+
+    var rowRealLength = chartConfig.values[0].cols.length && chartConfig.groups.length>0 ?chartConfig.values[0].cols.length:0;
+
     var singleIndexName = '';
     if( rowRealLength == 1 && casted_values[0].length > rowRealLength){
         singleIndexName = casted_values[0][chartConfig.groups.length];
@@ -41,7 +43,7 @@ var chartDataProcess = function(chartConfig,casted_keys, casted_values, aggregat
     }
     for (var i = 0; i < casted_values.length; i++) {
         var joined_values = casted_values[i].join('-');
-        if(rowRealLength == 1){
+        if(rowRealLength == 1 && casted_values[0].length > rowRealLength && chartConfig.groups.length >= 1){
             //只有一个指标的时候
             joined_values = joined_values +'-'+ singleIndexName;
         }
@@ -85,6 +87,7 @@ var chartDataProcess = function(chartConfig,casted_keys, casted_values, aggregat
             data: null
         });
     }
+    var sumRowArr = [];
     for (var j = 0; j < column_header.length; j++) {
         /// 原模式为交叉表格式
         /// j == column_header.length - 1 ?
@@ -94,10 +97,61 @@ var chartDataProcess = function(chartConfig,casted_keys, casted_values, aggregat
             column_header[j] = keyArr. concat(column_header[j]);
         }
     }
+    //判断是否需要增加底部合计行
+    var sumRowFlag = chartConfig.option.initBottomSumRow != "undefined" && chartConfig.option.initBottomSumRow ? 1 : 0;
+    if(sumRowFlag == 1){
+        for(var i = 0; i < table_data.length; i++){
+            for(var j = chartConfig.keys.length; j <  casted_values.length + chartConfig.keys.length; j++){
+                var realValue = table_data[i][j];
+                if(!sumRowArr[j-chartConfig.keys.length]){
+                    sumRowArr[j-chartConfig.keys.length]={
+                        property: 'data',
+                        data: 0
+                    };
+                }
+                 var oldValue = parseFloat(sumRowArr[j-chartConfig.keys.length].data);
+                 sumRowArr[j-chartConfig.keys.length]={
+                        property: 'data',
+                        data: realValue.data == ''? oldValue : parseFloat(realValue.data) + oldValue
+                  };
+
+
+            }
+        }
+    }
+    if(sumRowFlag == 1) {
+        sumRowArr.unshift({
+            property: 'sum_row',
+            data: '合计'
+        });
+        var exps = chartConfig.option.initCell && chartConfig.option.cellExpression ? chartConfig.option.cellExpression.split(",") : null; //exps表达式集合 C2=C3+C1,C3=C2-C1
+        if(chartConfig.option.initCell && exps.length){
+            for(var i = 0; i < exps.length; i++ ){
+                var exp = exps[i].split("=");
+                // 存在表达式才进行换算
+                if(exp.length>1){
+                    var resArr = exp[0].trim().split("C");
+                    //存在含C表达式才执行
+                    if(resArr.length>1){
+                        var res = exp[0].trim().split("C")[1];
+                        if(res<sumRowArr.length) {
+                        var result = exp[1].replace(/C/g,"sumRowArr[");
+                        var realRes = result.replace(/([a-z]+[\[][0-9]+)/g,"$1].data");
+                        sumRowArr[res].data = eval(realRes);
+                        }
+                    }
+
+                }
+            }
+
+        }
+        table_data.push(sumRowArr);
+    }
     var chartData = {
         chartConfig: chartConfig,
         data: column_header.concat(table_data)
     };
+
     table_data = null;
     column_header = null;
     return chartData;

@@ -1,0 +1,72 @@
+<form class="form-horizontal">
+    <div class="row">
+        <div class="form-group col-md-6">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" ng-model="curWidget.config.option.initTitle"
+                           ng-init="curWidget.config.option.initTitle ? null : curWidget.config.option.initTitle=true">{{'WIDGET_OPTION.TABLE_CONFIG.INIT_TABLE_TITLE'|translate}}
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-6">
+            <label class="col-md-3 control-label">{{'WIDGET_OPTION.TABLE_CONFIG.TITLE.NAME'|translate}}</label>
+            <div class="col-md-8">
+                 <input class="form-control" ng-model="curWidget.config.option.tableTitle" ng-disabled="!curWidget.config.option.initTitle"/>
+            </div>
+        </div>
+        <div class="form-group col-md-4">
+            <label class="col-md-4 control-label">{{'WIDGET_OPTION.TABLE_CONFIG.TITLE.POSITION.NAME'|translate}}</label>
+            <div class="col-md-8">
+                <select class="form-control" ng-model="curWidget.config.option.titleOrient" ng-disabled="!curWidget.config.option.initTitle">
+                    <!--2020-05-13 catty-->
+                    <option value="left">{{'WIDGET_OPTION.TABLE_CONFIG.TITLE.POSITION.LEFT'|translate}}</option>
+                    <option value="right">{{'WIDGET_OPTION.TABLE_CONFIG.TITLE.POSITION.RIGHT'|translate}}</option>
+                    <option value="center">{{'WIDGET_OPTION.TABLE_CONFIG.TITLE.POSITION.CENTER'|translate}}</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+<!--    <div class="row">-->
+<!--        <div class="form-group col-md-6">-->
+<!--            <div class="checkbox">-->
+<!--                <label>-->
+<!--                    <input type="checkbox" ng-model="curWidget.config.option.autoWordWrap"-->
+<!--                           ng-init="curWidget.config.option.autoWordWrap ? null : curWidget.config.option.autoWordWrap=true">{{'WIDGET_OPTION.TABLE_CONFIG.AUTO_WORD_WRAP'|translate}}-->
+<!--                </label>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+    <div class="row">
+        <div class="form-group col-md-6">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" ng-model="curWidget.config.option.initBottomSumRow"
+                           ng-init="curWidget.config.option.initBottomSumRow ? null : curWidget.config.option.initBottomSumRow=false">{{'WIDGET_OPTION.TABLE_CONFIG.BUTTOM_SUM_ROW'|translate}}
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-6">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" ng-model="curWidget.config.option.initCell"
+                           ng-init="curWidget.config.option.initCell ? null : false"
+                           ng-disabled="!curWidget.config.option.initBottomSumRow">{{'WIDGET_OPTION.TABLE_CONFIG.INIT_EXPRESSION'|translate}}
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-8">
+             <div class="col-md-8">
+                 <lable class="col-md-2 control-label"></lable>
+                  <input class="form-control" ng-model="curWidget.config.option.cellExpression"
+                           ng-disabled="!curWidget.config.option.initCell">
+             </div>
+        </div>
+    </div>
+</form>
