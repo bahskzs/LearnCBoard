@@ -15,7 +15,54 @@ CBoardTableRender.prototype.resize = function (container) {
     if (wrapper.width() < $(container).width()) {
         wrapper.css('width', '100%');
     }
+    this.changeStyle();
 };
+
+
+CBoardTableRender.prototype.changeStyle = function(){
+    var initConfig = this.options.chartConfig.option;
+    var initBorder = initConfig.initBorder;
+    var initFirstRow = initConfig.initFirstRow;
+
+    var borderWidth = initBorder && initConfig.borderWidth ? initConfig.borderWidth : 0;
+    var borderColor = initBorder && initConfig.borderColor ? initConfig.borderColor : 0;
+    var borderStyle = initBorder && initConfig.borderStyle ? initConfig.borderStyle : 0;
+
+    if(borderWidth != 0){
+        $("table.table_wrapper").css("border-width",borderWidth);
+        $("td.data, th.row, th.header_key").css({
+            "border-top-width": borderWidth,
+            "border-left-width": borderWidth
+        });
+        $("th.row_null").css({
+            "border-left-width": borderWidth
+        });
+
+    }
+    if(borderColor != 0){
+        $("table.table_wrapper").css("border-color",borderColor);
+        $("td.data, th.row, th.header_key").css({
+            "border-top-color": borderColor,
+            "border-left-color": borderColor
+        });
+        $("th.row_null").css({
+            "border-left-color": borderColor
+        });
+    }
+    if(borderStyle != 0){
+        $("table.table_wrapper").css("border-style",borderStyle);
+        $("td.data, th.row, th.header_key").css({
+            "border-top-style": borderStyle,
+            "border-left-style": borderStyle
+        });
+        $("th.row_null").css({
+            "border-left-style": borderStyle
+        });
+
+    }
+
+
+}
 
 CBoardTableRender.prototype.do = function (tall, persist) {
     this.tall = tall;
@@ -42,11 +89,16 @@ CBoardTableRender.prototype.do = function (tall, persist) {
     $(this.container).css({
         height: tall ? "100%" : tall + "px"
     });
+
+
     this.resize(this.container);
+
+    //根据样式修改
     if (persist) {
         persist.data = this.options.data;
         persist.type = "table"
     }
+    this.changeStyle();
     return render;
 };
 

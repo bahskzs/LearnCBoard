@@ -1,0 +1,100 @@
+<form class="form-horizontal">
+    <div class="row">
+        <div class="form-group col-md-6">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" ng-model="curWidget.config.option.initFirstRow"
+                           ng-init="curWidget.config.option.initFirstRow ? null : curWidget.config.option.initFirstRow=false">{{'WIDGET_OPTION.TABLE_CONFIG.TABLE_ROW.INIT_FIRST_LINE'|translate}}
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-6">
+            <label class="col-md-3 control-label">{{'WIDGET_OPTION.TABLE_CONFIG.TABLE_ROW.ROW_STYLE.HEIGHT'|translate}}</label>
+            <div class="col-md-8">
+                <input class="form-control" ng-model="curWidget.config.option.rowFirstHeight" ng-disabled="!curWidget.config.option.initFirstRow"/>
+            </div>
+        </div>
+        <div class="form-group col-md-4">
+            <label class="col-md-4 control-label">{{'WIDGET_OPTION.TABLE_CONFIG.TABLE_ROW.ROW_STYLE.BGCOLOR'|translate}}</label>
+            <div class="col-md-8">
+                <input type="color" class="form-control" ng-model="curWidget.config.option.rowColor" ng-disabled="!curWidget.config.option.initFirstRow">
+
+                </input>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-6">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" ng-model="curWidget.config.option.initFirstCell"
+                           ng-init="curWidget.config.option.initFirstRow ? null : curWidget.config.option.initFirstRow=false">{{'WIDGET_OPTION.TABLE_CONFIG.TABLE_ROW.INIT_FIRST_LINE'|translate}}
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-6">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" ng-model="curWidget.config.option.initPaging"
+                           ng-init="curWidget.config.option.initPaging ? null : curWidget.config.option.initPaging=false">{{'WIDGET_OPTION.TABLE_CONFIG.TABLE_ROW.INIT_AUTO_PAGING'|translate}}
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-6">
+            <label class="col-md-3 control-label">{{'WIDGET_OPTION.TABLE_CONFIG.TABLE_ROW.ROW_STYLE.PAGENO'|translate}}</label>
+            <div class="col-md-8">
+                <input class="form-control" ng-model="curWidget.config.option.pageNo" ng-disabled="!curWidget.config.option.initPaging"/>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-6">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" ng-model="curWidget.config.option.initZebra"
+                           ng-init="curWidget.config.option.initBorder ? null : curWidget.config.option.initBorder=false">{{'WIDGET_OPTION.TABLE_CONFIG.TABLE_ROW.INIT_ZEBRA_PATTERN'|translate}}
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-6">
+            <label class="col-md-3 control-label">{{'WIDGET_OPTION.TABLE_CONFIG.TABLE_ROW.ROW_STYLE.BGCOLOR'|translate}}</label>
+            <div class="col-md-8">
+                <input type="color" class="form-control" ng-model="curWidget.config.option.rowBgColor" ng-disabled="!curWidget.config.option.initZebra">
+
+                </input>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-6">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" ng-model="curWidget.config.option.initRowCell"
+                           ng-init="curWidget.config.option.initBorder ? null : curWidget.config.option.initBorder=false">{{'WIDGET_OPTION.TABLE_CONFIG.TABLE_ROW.ROW_CELL'|translate}}
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-6">
+            <label class="col-md-3 control-label">{{'WIDGET_OPTION.TABLE_CONFIG.TABLE_ROW.ROW_STYLE.HEIGHT'|translate}}</label>
+            <div class="col-md-8">
+                <input class="form-control" ng-model="curWidget.config.option.rowHeight" ng-disabled="!curWidget.config.option.initRowCell"/>
+            </div>
+        </div>
+        <div class="form-group col-md-4">
+            <label class="col-md-3 control-label">{{'WIDGET_OPTION.TABLE_CONFIG.TABLE_ROW.ROW_STYLE.WIDTH'|translate}}</label>
+            <div class="col-md-8">
+                <input class="form-control" ng-model="curWidget.config.option.cellWidth" ng-disabled="!curWidget.config.option.initRowCell"/>
+            </div>
+        </div>
+    </div>
+</form>

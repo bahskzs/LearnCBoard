@@ -2,6 +2,7 @@
     <!-- Nav tabs -->
     <ul class="nav nav-tabs tabs-left"><!-- 'tabs-right' for right tabs -->
         <li class="active"><a href="#tableStyle" data-toggle="tab">{{'WIDGET_OPTION.TABLE_CONFIG.COMMON_STYLE'|translate}}</a></li>
+        <li ><a href="#tableRow" data-toggle="tab">{{'WIDGET_OPTION.TABLE_CONFIG.TABLE_ROW.ROW'|translate}}</a></li>
         <!--2020-05-13 cat-->
     </ul>
 </div>
@@ -10,6 +11,9 @@
     <div class="tab-content">
         <div class="tab-pane active" id="tableStyle">
             <ng-include src="'org/cboard/view/config/chart/options/common/table.html'"></ng-include>
+        </div>
+        <div class="tab-pane " id="tableRow">
+            <ng-include src="'org/cboard/view/config/chart/options/common/tableRow.html'"></ng-include>
         </div>
     </div>
 </div>

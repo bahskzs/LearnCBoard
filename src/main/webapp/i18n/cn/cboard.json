@@ -572,29 +572,60 @@
       "SHOW": "底部标签"
     },
     "TABLE_CONFIG": {
-      "INIT_TABLE_TITLE": "自定义边框",
+      "INIT_TABLE_BORDER": "自定义边框",
+      "INIT_TABLE_TITLE": "自定义标题",
       "COMMON_STYLE": "基本样式",
       "BORDER": {
-        "STYLE": "边框样式(线型)",
+        "STYLE": "边框线型",
         "COLOR": "颜色",
-        "WIDTH": "边框宽度(尺寸)"
-      },
-      "TITLE": {
-        "NAME" : "标题名称",
-        "POSITION" : {
-          "NAME": "位置",
-          "LEFT": "居左",
-          "RIGHT": "居右",
-          "CENTER": "居中"
+        "WIDTH": "边框粗细",
+        "WIDTH_STYLE":{
+          "THICK": "粗",
+          "MEDIUM": "中等",
+          "THIN": "细"
         },
-        "FONT" : "字体",
-        "SIZE" : "字号",
-        "COLOR" : "颜色"
+        "LINE_STYLE": {
+          "DOTTED" : "点线",
+          "DASHED" : "虚线",
+          "SOLID": "实线",
+          "DOUBLE": "双线"
+        }
       },
-      "AUTO_WORD_WRAP": "自动换行",
-      "BUTTOM_SUM_ROW": "底部合计行",
-      "INIT_EXPRESSION": "自定义表达式"
-    }
+        "TITLE": {
+          "NAME" : "标题名称",
+          "POSITION" : {
+            "NAME": "位置",
+            "LEFT": "居左",
+            "RIGHT": "居右",
+            "CENTER": "居中"
+          },
+          "FONT" : "字体",
+          "SIZE" : "字号",
+          "COLOR" : "颜色"
+        },
+        "AUTO_WORD_WRAP": "自动换行",
+        "BUTTOM_SUM_ROW": "底部合计行",
+        "INIT_EXPRESSION": "自定义表达式",
+
+        "TABLE_ROW": {
+          "ROW": "行样式",
+          "INIT_FIRST_LINE": "自定义首行",
+          "INIT_AUTO_PAGING": "自定义分页",
+          "INIT_ZEBRA_PATTERN" : "自定义斑马纹",
+          "INIT_FIRST_CELL": "自定义首列",
+          "ROW_CELL": "行、列",
+          "ROW_STYLE": {
+            "HEIGHT" : "行高",
+            "PAGENO" : "页数",
+            "BGCOLOR" : "背景色",
+            "WIDTH": "列宽"
+          },
+          "CELL_STYLE": {
+            "WIDTH": "列宽",
+            "BGCOLOR" : "背景色"
+          }
+        }
+      }
 
   }
 }

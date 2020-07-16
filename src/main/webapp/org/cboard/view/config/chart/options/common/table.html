@@ -3,6 +3,46 @@
         <div class="form-group col-md-6">
             <div class="checkbox">
                 <label>
+                    <input type="checkbox" ng-model="curWidget.config.option.initBorder"
+                           ng-init="curWidget.config.option.initBorder ? null : curWidget.config.option.initBorder=false">{{'WIDGET_OPTION.TABLE_CONFIG.INIT_TABLE_BORDER'|translate}}
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-4">
+            <label class="col-md-4 control-label">{{'WIDGET_OPTION.TABLE_CONFIG.BORDER.STYLE'|translate}}</label>
+            <div class="col-md-8">
+                <select class="form-control" ng-model="curWidget.config.option.borderStyle" ng-disabled="!curWidget.config.option.initBorder">
+                    <option value="dotted">{{'WIDGET_OPTION.TABLE_CONFIG.BORDER.LINE_STYLE.DOTTED'|translate}}</option>
+                    <option value="dashed">{{'WIDGET_OPTION.TABLE_CONFIG.BORDER.LINE_STYLE.DASHED'|translate}}</option>
+                    <option value="solid">{{'WIDGET_OPTION.TABLE_CONFIG.BORDER.LINE_STYLE.SOLID'|translate}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group col-md-4">
+            <label class="col-md-4 control-label">{{'WIDGET_OPTION.TABLE_CONFIG.BORDER.COLOR'|translate}}</label>
+            <div class="col-md-8">
+                <input type="color" class="form-control" ng-model="curWidget.config.option.borderColor" ng-disabled="!curWidget.config.option.initBorder">
+
+                </input>
+            </div>
+        </div>
+        <div class="form-group col-md-4">
+            <label class="col-md-4 control-label">{{'WIDGET_OPTION.TABLE_CONFIG.BORDER.WIDTH'|translate}}</label>
+            <div class="col-md-8">
+                <select class="form-control" ng-model="curWidget.config.option.borderWidth" ng-disabled="!curWidget.config.option.initBorder">
+                    <option value="thick">{{'WIDGET_OPTION.TABLE_CONFIG.BORDER.WIDTH_STYLE.THICK'|translate}}</option>
+                    <option value="medium">{{'WIDGET_OPTION.TABLE_CONFIG.BORDER.WIDTH_STYLE.MEDIUM'|translate}}</option>
+                    <option value="thin">{{'WIDGET_OPTION.TABLE_CONFIG.BORDER.WIDTH_STYLE.THIN'|translate}}</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-6">
+            <div class="checkbox">
+                <label>
                     <input type="checkbox" ng-model="curWidget.config.option.initTitle"
                            ng-init="curWidget.config.option.initTitle ? null : curWidget.config.option.initTitle=true">{{'WIDGET_OPTION.TABLE_CONFIG.INIT_TABLE_TITLE'|translate}}
                 </label>

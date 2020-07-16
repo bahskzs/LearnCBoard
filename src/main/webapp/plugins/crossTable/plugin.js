@@ -264,13 +264,8 @@ var crossTable = {
                         d += " drill-up='" + keyId + "' ";
                     }
 
-                    if(chartConfig.option.initBottomSumRow && n == data.length-1&& chartConfig.keys.length>1 && cur_data=='合计'){
-                        if(m>0){
-                            cur_data = "";
-                        }else{
-                            cur_data = "<div>" + cur_data + "</div>";
-                        }
-
+                    if(chartConfig.option.initBottomSumRow && n == data.length-1&& data[n][0].data=='合计' && chartConfig.keys.length>1){
+                        cur_data = "<div>" + cur_data + "</div>";
                     }else{
                         cur_data = "<div class='table_drill_cell' " + d + ">" + cur_data + "</div>";
                     }
