@@ -23,10 +23,27 @@ CBoardTableRender.prototype.changeStyle = function(){
     var initConfig = this.options.chartConfig.option;
     var initBorder = initConfig.initBorder;
     var initFirstRow = initConfig.initFirstRow;
+    var initFirstCell = initConfig.initFirstCell;
+    var initPaging = initConfig.initFirstCell;
+    var initZebra = initConfig.initFirstCell;
+    var initRowCell = initConfig.initFirstCell;
 
     var borderWidth = initBorder && initConfig.borderWidth ? initConfig.borderWidth : 0;
     var borderColor = initBorder && initConfig.borderColor ? initConfig.borderColor : 0;
     var borderStyle = initBorder && initConfig.borderStyle ? initConfig.borderStyle : 0;
+
+    var rowFirstHeight = initFirstRow && initConfig.rowFirstHeight ? initConfig.rowFirstHeight : 0;
+    var rowColor = initFirstRow && initConfig.rowColor ? initConfig.rowColor : 0;
+
+    var cellFirstWidth = initFirstCell && initConfig.cellFirstWidth ? initConfig.cellFirstWidth : 0;
+    var cellColor = initFirstCell && initConfig.cellColor ? initConfig.cellColor : 0;
+
+    var pageNo = initPaging && initConfig.pageNo ? initConfig.pageNo : 0;
+
+    var rowBgColor = initZebra && initConfig.rowBgColor ? initConfig.rowBgColor : 0;
+
+    var rowHeight = initRowCell && initConfig.rowHeight ? initConfig.rowHeight : 0;
+    var cellWidth = initRowCell && initConfig.cellWidth ? initConfig.cellWidth : 0;
 
     if(borderWidth != 0){
         $("table.table_wrapper").css("border-width",borderWidth);
@@ -61,6 +78,34 @@ CBoardTableRender.prototype.changeStyle = function(){
 
     }
 
+    if(rowFirstHeight != 0){
+        $("thead").find("th").css("height",rowFirstHeight);
+    }
+    if(rowColor != 0){
+        $("thead").find("th").css("background-color",rowColor);
+    }
+    if(cellFirstWidth != 0){
+        $("tbody").find("th").css("width",cellFirstWidth);
+    }
+    if(cellColor != 0){
+        $("tbody").find("th").css("background-color",cellColor);
+    }
+
+    if(rowHeight != 0){
+        $("tbody").find("td").css("height",rowHeight);
+    }
+    if(cellWidth != 0){
+        $("tbody").find("td").css("width",cellWidth);
+    }
+    if(rowBgColor != 0){
+        for(var i = 0; i< $("tbody.scrollContent tr").length ; i++){
+            if(i % 2==0){
+                $("tbody.scrollContent tr:eq("+i+") td").css("background-color",rowBgColor);
+            }
+        }
+    }
+
+    // to-do 页内行内公式自定义
 
 }
 

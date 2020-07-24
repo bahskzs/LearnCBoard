@@ -98,7 +98,7 @@ var chartDataProcess = function(chartConfig,casted_keys, casted_values, aggregat
         }
     }
     //判断是否需要增加底部合计行
-    var sumRowFlag = chartConfig.option.initBottomSumRow != "undefined" && chartConfig.option.initBottomSumRow ? 1 : 0;
+    var sumRowFlag = chartConfig.chart_type =="table" && chartConfig.option.initBottomSumRow ? 1 : 0;
     if(sumRowFlag == 1){
         for(var i = 0; i < table_data.length; i++){
             for(var j = chartConfig.keys.length; j <  casted_values.length + chartConfig.keys.length; j++){

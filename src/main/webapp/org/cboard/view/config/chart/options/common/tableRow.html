@@ -30,7 +30,31 @@
             <div class="checkbox">
                 <label>
                     <input type="checkbox" ng-model="curWidget.config.option.initFirstCell"
-                           ng-init="curWidget.config.option.initFirstRow ? null : curWidget.config.option.initFirstRow=false">{{'WIDGET_OPTION.TABLE_CONFIG.TABLE_ROW.INIT_FIRST_LINE'|translate}}
+                           ng-init="curWidget.config.option.initFirstCell ? null : curWidget.config.option.initFirstCell=false">{{'WIDGET_OPTION.TABLE_CONFIG.TABLE_ROW.INIT_FIRST_CELL'|translate}}
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-6">
+            <label class="col-md-3 control-label">{{'WIDGET_OPTION.TABLE_CONFIG.TABLE_ROW.CELL_STYLE.WIDTH'|translate}}</label>
+            <div class="col-md-8">
+                <input class="form-control" ng-model="curWidget.config.option.cellFirstWidth" ng-disabled="!curWidget.config.option.initFirstCell"/>
+            </div>
+        </div>
+        <div class="form-group col-md-4">
+            <label class="col-md-4 control-label">{{'WIDGET_OPTION.TABLE_CONFIG.TABLE_ROW.CELL_STYLE.BGCOLOR'|translate}}</label>
+            <div class="col-md-8">
+                <input type="color" class="form-control" ng-model="curWidget.config.option.cellColor" ng-disabled="!curWidget.config.option.initFirstCell"/>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-6">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" ng-model="curWidget.config.option.showPaging"
+                           ng-init="curWidget.config.option.showPaging ? null : curWidget.config.option.showPaging=false">{{'WIDGET_OPTION.TABLE_CONFIG.TABLE_ROW.SHOW_PAGING'|translate}}
                 </label>
             </div>
         </div>
@@ -40,7 +64,8 @@
             <div class="checkbox">
                 <label>
                     <input type="checkbox" ng-model="curWidget.config.option.initPaging"
-                           ng-init="curWidget.config.option.initPaging ? null : curWidget.config.option.initPaging=false">{{'WIDGET_OPTION.TABLE_CONFIG.TABLE_ROW.INIT_AUTO_PAGING'|translate}}
+                           ng-init="curWidget.config.option.initPaging ? null : curWidget.config.option.initPaging=false"
+                           ng-disabled="!curWidget.config.option.showPaging">{{'WIDGET_OPTION.TABLE_CONFIG.TABLE_ROW.INIT_AUTO_PAGING'|translate}}
                 </label>
             </div>
         </div>
@@ -58,7 +83,7 @@
             <div class="checkbox">
                 <label>
                     <input type="checkbox" ng-model="curWidget.config.option.initZebra"
-                           ng-init="curWidget.config.option.initBorder ? null : curWidget.config.option.initBorder=false">{{'WIDGET_OPTION.TABLE_CONFIG.TABLE_ROW.INIT_ZEBRA_PATTERN'|translate}}
+                           ng-init="curWidget.config.option.initZebra ? null : curWidget.config.option.initZebra=false">{{'WIDGET_OPTION.TABLE_CONFIG.TABLE_ROW.INIT_ZEBRA_PATTERN'|translate}}
                 </label>
             </div>
         </div>
@@ -78,7 +103,7 @@
             <div class="checkbox">
                 <label>
                     <input type="checkbox" ng-model="curWidget.config.option.initRowCell"
-                           ng-init="curWidget.config.option.initBorder ? null : curWidget.config.option.initBorder=false">{{'WIDGET_OPTION.TABLE_CONFIG.TABLE_ROW.ROW_CELL'|translate}}
+                           ng-init="curWidget.config.option.initRowCell ? null : curWidget.config.option.initRowCell=false">{{'WIDGET_OPTION.TABLE_CONFIG.TABLE_ROW.ROW_CELL'|translate}}
                 </label>
             </div>
         </div>

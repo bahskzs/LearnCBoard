@@ -69,22 +69,13 @@
         </div>
     </div>
 
-<!--    <div class="row">-->
-<!--        <div class="form-group col-md-6">-->
-<!--            <div class="checkbox">-->
-<!--                <label>-->
-<!--                    <input type="checkbox" ng-model="curWidget.config.option.autoWordWrap"-->
-<!--                           ng-init="curWidget.config.option.autoWordWrap ? null : curWidget.config.option.autoWordWrap=true">{{'WIDGET_OPTION.TABLE_CONFIG.AUTO_WORD_WRAP'|translate}}-->
-<!--                </label>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
+
     <div class="row">
         <div class="form-group col-md-6">
             <div class="checkbox">
                 <label>
                     <input type="checkbox" ng-model="curWidget.config.option.initBottomSumRow"
-                           ng-init="curWidget.config.option.initBottomSumRow ? null : curWidget.config.option.initBottomSumRow=false">{{'WIDGET_OPTION.TABLE_CONFIG.BUTTOM_SUM_ROW'|translate}}
+                           ng-init="curWidget.config.option.initBottomSumRow ? curWidget.config.option.initBottomSumRow : curWidget.config.option.initBottomSumRow=false">{{'WIDGET_OPTION.TABLE_CONFIG.BUTTOM_SUM_ROW'|translate}}
                 </label>
             </div>
         </div>

@@ -14,6 +14,14 @@ var crossTable = {
             container = args.container,
             titles = args.title;
         var recordSize = args.data.length;
+        var showPaging = oldConfig.showPaging ? 1:0;
+        var pageNo = oldConfig.initPaging && oldConfig.pageNo ? oldConfig.pageNo : 0;
+        if(pageNo != 0){
+            pageDataNum = pageNo;
+        }
+        if(showPaging == 0){
+           pageDataNum = recordSize;
+         }
         var html = "<table class = 'table_wrapper' id='tableWrapper" + random + "'><thead class='fixedHeader'>",
             colContent = "<tr>";
         var rowRealLength = chartConfig.values[0].cols.length;
@@ -117,9 +125,17 @@ var crossTable = {
         var rowNum = colNum ? data.length - headerLines : 0;
         var trDom = this.render(dataPage[0], chartConfig, drill);
         html = html + trDom + "</tbody></table>";
-        var optionDom = "<select><option value='20'>20</option><option value='50'>50</option><option value='100'>100</option><option value='150'>150</option></select>";
+        var optionDom = "<select><option value='20'>20</option><option value='50'>50</option><option value='100'>100</option><option value='150'>150</option>";
+        if(pageNo != 0){
+            optionDom = optionDom + "<option value='+pageNo+' selected>"+pageNo+"</option>";
+        }
+        optionDom += "</select>";
+
         var p_class = "p_" + random;
         var PaginationDom = "<div class='" + p_class + "'><div class='optionNum'><span>" + cboardTranslate("CROSS_TABLE.SHOW") + "</span>" + optionDom + "<span>" + cboardTranslate("CROSS_TABLE.ENTRIES") + "</span></div><div class='page'><ul></ul></div></div>";
+        if(showPaging == 0){
+            PaginationDom = "";
+        }
         var position = oldConfig.titleOrient ? oldConfig.titleOrient : "left";
         var positionStyle;
         if(position == "right"){
@@ -138,7 +154,9 @@ var crossTable = {
             chartConfig: chartConfig,
             drill: drill
         };
-        data.length ? this.renderPagination(dataPage.length, 1, pageObj, $('.' + p_class + ' .page>ul')[0]) : null;
+        if(showPaging != 0){
+            data.length ? this.renderPagination(dataPage.length, 1, pageObj, $('.' + p_class + ' .page>ul')[0]) : null;
+        }
         this.clickPageNum(dataPage, chartConfig, drill, p_class);
         this.clickNextPrev(dataPage.length, pageObj, p_class);
         this.selectDataNum(data, chartConfig.groups.length + 1, chartConfig, drill, p_class, "table_" + random, args.render);
