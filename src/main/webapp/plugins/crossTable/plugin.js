@@ -313,8 +313,10 @@ var crossTable = {
                         // else if(chartConfig.option.initBottomSumRow && n == data.length-1 && !sortg && m<chartConfig.keys.length && m>0){
                         //     rowContent +="";
                         // }
+
                         else{
                             if(chartConfig.option.initBottomSumRow && n == data.length-1 && data[data.length-1][0].data=='合计' && m>0&&m<chartConfig.keys.length){
+                                cur_data = (cur_data == "" ? 0 : cur_data);
                                 rowContent += "<td style='text-align:" + align + "' class=data><div>" + cur_data + "</div></td>";
                             }else{
                                 rowContent += "<th style='text-align:" + align + "' class=row><div>" + cur_data + "</div></th>";

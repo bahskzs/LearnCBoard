@@ -57,7 +57,7 @@ public class JsonEncryptionTest {
         }
         System.out.println(str.toString());
         String info = JsonEncryption.encode(json);
-        System.out.println(JsonEncryption.decode(info));
+        System.out.println(JsonEncryption.decode("http://120.40.72.157:8098/webroot/decision/login?APEXTOKEN=UzkzY1pZRkRGWlo0VWJxczdQd2JiS2ZReEdCQjRTVlRSQzd0YW1CNjYzcnlsenh5V0NNWm90T3NkVFhYV3IvTkMxeGN6cVN1OC9UVgpUWWU5T1M2cytYd3lNWEhlUDdCcmprZ0Nnc0hHSW1mNGgrc3ZldGFqMlZad0IzenNSdHlm"));
 //        String info1 = "MkppeEQwTzJ3dnQxOXptb0EvWHRlY0YxSzZ6SlljK3Z3WFdBY2NqL011TVBkQ3NVWnMzdEFlRkR6bGNUc3VtK3ZmMk1td1hPbStXcQ0KNzVFRHAyRG9YQk8vd0NJaGdoU2NtMU9iV3UramlXT2tzcHBJVFFybTBHOGthTWFDZFU2blN0d3JuTkxuZEdTYnpaZFFzdVZaRFE9PQ.." ;
 //        System.out.println(JSONEncryption.decode(info1));
     }

@@ -143,7 +143,9 @@ public class JdbcDataProvider extends DataProvider implements Aggregatable, Init
                 }
             }
             executor.shutdown();
-            while (!executor.awaitTermination(10, TimeUnit.SECONDS));
+            while (!executor.awaitTermination(10, TimeUnit.SECONDS)) {
+                ;
+            }
             final String[][] batchData = list.toArray(new String[][]{});
             getInnerAggregator().loadBatch(header, batchData);
         } catch (Exception e) {

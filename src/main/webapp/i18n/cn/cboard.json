@@ -611,7 +611,6 @@
           "ROW": "行样式",
           "INIT_FIRST_LINE": "自定义首行",
           "INIT_AUTO_PAGING": "自定义分页",
-          "SHOW_PAGING": "分页",
           "INIT_ZEBRA_PATTERN" : "自定义斑马纹",
           "INIT_FIRST_CELL": "自定义首列",
           "ROW_CELL": "行、列",
