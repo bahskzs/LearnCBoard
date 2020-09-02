@@ -103,7 +103,7 @@
             <div class="checkbox">
                 <label>
                     <input type="checkbox" ng-model="curWidget.config.option.initRowCell"
-                           ng-init="curWidget.config.option.initRowCell ? null : curWidget.config.option.initRowCell=false">{{'WIDGET_OPTION.TABLE_CONFIG.TABLE_ROW.ROW_CELL'|translate}}
+                           ng-init="curWidget.config.option.initRowCell ? true : curWidget.config.option.initRowCell=false">{{'WIDGET_OPTION.TABLE_CONFIG.TABLE_ROW.ROW_CELL'|translate}}
                 </label>
             </div>
         </div>
@@ -112,14 +112,30 @@
         <div class="form-group col-md-6">
             <label class="col-md-3 control-label">{{'WIDGET_OPTION.TABLE_CONFIG.TABLE_ROW.ROW_STYLE.HEIGHT'|translate}}</label>
             <div class="col-md-8">
-                <input class="form-control" ng-model="curWidget.config.option.rowHeight" ng-disabled="!curWidget.config.option.initRowCell"/>
+                <input class="form-control" type="number" ng-model="curWidget.config.option.rowHeight" ng-disabled="!curWidget.config.option.initRowCell"/>
             </div>
         </div>
-        <div class="form-group col-md-4">
+        <div class="form-group col-md-6">
             <label class="col-md-3 control-label">{{'WIDGET_OPTION.TABLE_CONFIG.TABLE_ROW.ROW_STYLE.WIDTH'|translate}}</label>
             <div class="col-md-8">
-                <input class="form-control" ng-model="curWidget.config.option.cellWidth" ng-disabled="!curWidget.config.option.initRowCell"/>
+                <input class="form-control" type="number" ng-model="curWidget.config.option.cellWidth" ng-disabled="!curWidget.config.option.initRowCell" />
             </div>
         </div>
+
+    </div>
+    <div class="row">
+        <div class="form-group col-md-6">
+            <label class="col-md-3 control-label">{{'WIDGET_OPTION.TABLE_CONFIG.TABLE_ROW.ROW_HIDDEN'|translate}}</label>
+            <div class="col-md-8">
+                <input class="form-control" ng-model="curWidget.config.option.rowHidden" ng-disabled="!curWidget.config.option.initRowCell" placeholder="请输入想要隐藏的行，行从1开始计数"/>
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            <label class="col-md-3 control-label">{{'WIDGET_OPTION.TABLE_CONFIG.TABLE_ROW.COL_HIDDEN'|translate}}</label>
+            <div class="col-md-8">
+                <input class="form-control" ng-model="curWidget.config.option.colHidden" ng-disabled="!curWidget.config.option.initRowCell" placeholder="请输入想要隐藏的列，列号从1开始计数"/>
+            </div>
+        </div>
+
     </div>
 </form>

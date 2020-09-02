@@ -26,7 +26,7 @@ CBoardTableRender.prototype.changeStyle = function(){
     var initFirstCell = initConfig.initFirstCell;
     var initPaging = initConfig.initFirstCell;
     var initZebra = initConfig.initFirstCell;
-    var initRowCell = initConfig.initFirstCell;
+    var initRowCell = initConfig.initRowCell;
 
     var borderWidth = initBorder && initConfig.borderWidth ? initConfig.borderWidth : 0;
     var borderColor = initBorder && initConfig.borderColor ? initConfig.borderColor : 0;
@@ -45,6 +45,35 @@ CBoardTableRender.prototype.changeStyle = function(){
     var rowHeight = initRowCell && initConfig.rowHeight ? initConfig.rowHeight : 0;
     var cellWidth = initRowCell && initConfig.cellWidth ? initConfig.cellWidth : 0;
 
+    var rowHidden =  initRowCell ? initConfig.rowHidden : null;
+    var colHidden =  initRowCell ? initConfig.colHidden : null;
+
+    var header_keys = this.options.chartConfig.groups.length;
+    var columns_keys = this.options.chartConfig.keys.length;
+
+    //当前表格的行列
+    var rowNumber = $(".fixedHeader tr:has(th)").size();
+    var colNumber = $(".scrollContent tr:eq(0) th.row").size();
+
+    if(rowHidden != null && header_keys == rowNumber){
+        $(".fixedHeader").find("tr:eq("+parseInt(rowHidden-1)+")").remove();
+    }
+    if(colHidden != null && colHidden>=1 && colNumber == columns_keys){
+        $(".fixedHeader tr:eq(0)").each(function(){
+            $(this).children("th:eq("+parseInt(colHidden-1)+")").remove();
+
+        });
+        $(".scrollContent tr:not(:last-child)").each(function(){
+            $(this).children("th:eq("+parseInt(colHidden-1)+")").remove();
+        });
+
+        if(initConfig.initBottomSumRow){
+            var colspan = $(".scrollContent tr:last th").attr("colspan");
+            $(".scrollContent tr:last th").attr("colspan", parseInt(colspan-1));
+        }else{
+            $(".scrollContent tr:last th:eq("+parseInt(colHidden-1)+")").remove();
+        }
+    }
     if(borderWidth != 0){
         $("table.table_wrapper").css("border-width",borderWidth);
         $("td.data, th.row, th.header_key").css({

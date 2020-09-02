@@ -613,7 +613,10 @@
           "INIT_AUTO_PAGING": "自定义分页",
           "INIT_ZEBRA_PATTERN" : "自定义斑马纹",
           "INIT_FIRST_CELL": "自定义首列",
+          "SHOW_PAGING": "显示分页",
           "ROW_CELL": "行、列",
+          "ROW_HIDDEN": "隐藏第n行",
+          "COL_HIDDEN": "隐藏第n列",
           "ROW_STYLE": {
             "HEIGHT" : "行高",
             "PAGENO" : "页数",
