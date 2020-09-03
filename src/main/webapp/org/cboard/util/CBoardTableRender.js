@@ -56,7 +56,15 @@ CBoardTableRender.prototype.changeStyle = function(){
     var colNumber = $(".scrollContent tr:eq(0) th.row").size();
 
     if(rowHidden != null && header_keys == rowNumber){
-        $(".fixedHeader").find("tr:eq("+parseInt(rowHidden-1)+")").remove();
+        if(parseInt(rowHidden-1) <= header_keys){
+            $(".fixedHeader").find("tr:eq("+parseInt(rowHidden-1)+") th").each(function(i){
+                if(i>(columns_keys-1)){
+                    $(this).remove();
+                }
+            });
+        }else{
+            $(".fixedHeader").find("tr:eq("+parseInt(rowHidden-1)+")").remove();
+        }
     }
     if(colHidden != null && colHidden>=1 && colNumber == columns_keys){
         $(".fixedHeader tr:eq(0)").each(function(){
