@@ -770,7 +770,10 @@ treecontrol.tree-dark {
 .date-opt .btn {
     color: #3c8dbc;
 }
-
+input:invalid
+{
+    border:2px solid red;
+}
 .date-opt-select {
     background-color: #3c8dbc;
     color: black !important;

@@ -27,6 +27,7 @@ CBoardTableRender.prototype.changeStyle = function(){
     var initPaging = initConfig.initFirstCell;
     var initZebra = initConfig.initFirstCell;
     var initRowCell = initConfig.initRowCell;
+    var initMultipleRowCell = initConfig.initMultipleRowCell;
 
     var borderWidth = initBorder && initConfig.borderWidth ? initConfig.borderWidth : 0;
     var borderColor = initBorder && initConfig.borderColor ? initConfig.borderColor : 0;
@@ -48,6 +49,9 @@ CBoardTableRender.prototype.changeStyle = function(){
     var rowHidden =  initRowCell ? initConfig.rowHidden : null;
     var colHidden =  initRowCell ? initConfig.colHidden : null;
 
+    var rowMultipleHidden =  initMultipleRowCell ? initConfig.rowMultipleHidden : null;
+    var colMultipleHidden =  initMultipleRowCell ? initConfig.colMultipleHidden : null;
+
     var header_keys = this.options.chartConfig.groups.length;
     var columns_keys = this.options.chartConfig.keys.length;
 
@@ -55,18 +59,30 @@ CBoardTableRender.prototype.changeStyle = function(){
     var rowNumber = $(".fixedHeader tr:has(th)").size();
     var colNumber = $(".scrollContent tr:eq(0) th.row").size();
 
-    if(rowHidden != null && header_keys == rowNumber){
-        if(parseInt(rowHidden-1) <= header_keys){
-            $(".fixedHeader").find("tr:eq("+parseInt(rowHidden-1)+") th").each(function(i){
-                if(i>(columns_keys-1)){
-                    $(this).remove();
-                }
-            });
+    //隐藏行
+    if(rowHidden != null && rowHidden >=1 && header_keys == rowNumber && !initMultipleRowCell){
+
+        if(rowHidden == 1){
+            $(".fixedHeader").find("tr:first th:gt("+(columns_keys-1)+")").remove();
         }else{
             $(".fixedHeader").find("tr:eq("+parseInt(rowHidden-1)+")").remove();
         }
     }
-    if(colHidden != null && colHidden>=1 && colNumber == columns_keys){
+    //隐藏多行
+    if(rowMultipleHidden != null && rowMultipleHidden !="" && header_keys == rowNumber){
+        var array = rowMultipleHidden.split(",");
+        for(var j = 0; j< array.length ; j++){
+            if(parseInt(array[j]) == 1){
+                $(".fixedHeader").find("tr:eq(0) th:gt("+(columns_keys-1)+")").attr("del","1");
+            }else{
+                $(".fixedHeader").find("tr:eq("+parseInt(parseInt(array[j])-1)+")").attr("del","1");
+            }
+        }
+         $("tr[del=1]").remove();
+         $("th[del=1]").remove();
+    }
+    //隐藏列
+    if(colHidden != null && colHidden>=1 && colNumber == columns_keys && !initMultipleRowCell){
         $(".fixedHeader tr:eq(0)").each(function(){
             $(this).children("th:eq("+parseInt(colHidden-1)+")").remove();
 
@@ -82,6 +98,41 @@ CBoardTableRender.prototype.changeStyle = function(){
             $(".scrollContent tr:last th:eq("+parseInt(colHidden-1)+")").remove();
         }
     }
+    //隐藏多列
+    if(colMultipleHidden != null && colMultipleHidden !="" && colNumber == columns_keys){
+
+        var array = colMultipleHidden.split(",");
+        for(var j = 0; j< array.length ; j++) {
+            if(array[j] <= columns_keys){
+            $(".fixedHeader tr:eq(0)").each(function () {
+                $(this).children("th:eq(" + parseInt(parseInt(array[j]) - 1) + ")").attr("del", "1");
+
+            });
+            $(".scrollContent tr:not(:last-child)").each(function () {
+                $(this).children("th:eq(" + parseInt(parseInt(array[j]) - 1) + ")").attr("del", "1");
+            });
+
+            if (!initConfig.initBottomSumRow) {
+                $(".scrollContent tr:last th:eq(" + parseInt(parseInt(array[j]) - 1) + ")").attr("del", "1");
+            }
+            }
+        }
+
+        if (initConfig.initBottomSumRow) {
+            var colspan = $(".scrollContent tr:last th").attr("colspan");
+            var colNum = 0;
+            for(var i = 0 ;i < array.length;i++){
+                if(array[i]<=columns_keys){
+                    colNum ++;
+                }
+            }
+            $(".scrollContent tr:last th").attr("colspan", colspan-colNum);
+        }
+        $("tr[del=1]").remove();
+        $("th[del=1]").remove();
+    }
+
+
     if(borderWidth != 0){
         $("table.table_wrapper").css("border-width",borderWidth);
         $("td.data, th.row, th.header_key").css({

@@ -615,8 +615,11 @@
           "INIT_FIRST_CELL": "自定义首列",
           "SHOW_PAGING": "显示分页",
           "ROW_CELL": "行、列",
+          "ROWS_CELL": "多行、列",
           "ROW_HIDDEN": "隐藏第n行",
           "COL_HIDDEN": "隐藏第n列",
+          "ROWS_HIDDEN": "隐藏多行",
+          "COLS_HIDDEN": "隐藏多列",
           "ROW_STYLE": {
             "HEIGHT" : "行高",
             "PAGENO" : "页数",

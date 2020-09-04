@@ -2,6 +2,9 @@ package org.cboard.dataprovider.util;
 
 import org.apache.commons.lang.StringUtils;
 import org.cboard.dataprovider.config.*;
+import org.cboard.jdbc.JdbcDataProvider;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.StringJoiner;
 import java.util.function.Function;
@@ -21,6 +24,7 @@ public class SqlHelper {
     private String tableName;
     private boolean isSubquery;
     private SqlSyntaxHelper sqlSyntaxHelper = new SqlSyntaxHelper();
+    private static final Logger LOG = LoggerFactory.getLogger(SqlHelper.class);
 
     public SqlHelper() {}
 
@@ -57,7 +61,9 @@ public class SqlHelper {
 
         String whereStr = filterSql(filters, "WHERE");
         String groupByStr = StringUtils.isBlank(dimColsStr) ? "" : "GROUP BY " + dimColsStr;
-
+        //String groupByStr = "";
+        String orderByStr = StringUtils.isBlank(dimColsStr) ? "" : "ORDER BY " + dimColsStr;
+        LOG.info(orderByStr);
         StringJoiner selectColsStr = new StringJoiner(",");
         if (!StringUtils.isBlank(dimColsStr)) {
             selectColsStr.add(dimColsStr);
@@ -67,11 +73,12 @@ public class SqlHelper {
         }
         String fsql = null;
         if (isSubquery) {
-            fsql = "\nSELECT %s \n FROM (\n%s\n) cb_view \n %s \n %s";
+            fsql = "\nSELECT %s \n FROM (\n%s\n) cb_view \n %s \n %s \n %s";
         } else {
-            fsql = "\nSELECT %s \n FROM %s \n %s \n %s";
+            fsql = "\nSELECT %s \n FROM %s \n %s \n %s \n%s";
         }
-        String exec = String.format(fsql, selectColsStr, tableName, whereStr, groupByStr);
+        String exec = String.format(fsql, selectColsStr, tableName, whereStr, groupByStr, orderByStr);
+        LOG.info(exec);
         return exec;
     }
 
