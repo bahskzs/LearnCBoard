@@ -28,6 +28,7 @@ CBoardTableRender.prototype.changeStyle = function(){
     var initZebra = initConfig.initFirstCell;
     var initRowCell = initConfig.initRowCell;
     var initMultipleRowCell = initConfig.initMultipleRowCell;
+    var initCellSeries = initConfig.initCellSeries;
 
     var borderWidth = initBorder && initConfig.borderWidth ? initConfig.borderWidth : 0;
     var borderColor = initBorder && initConfig.borderColor ? initConfig.borderColor : 0;
@@ -55,9 +56,15 @@ CBoardTableRender.prototype.changeStyle = function(){
     var header_keys = this.options.chartConfig.groups.length;
     var columns_keys = this.options.chartConfig.keys.length;
 
+    //自定义列维度(列维对应值名别名)
+    var cellExp = initCellSeries ? initConfig.cellExp : 0;
+
+
     //当前表格的行列
     var rowNumber = $(".fixedHeader tr:has(th)").size();
     var colNumber = $(".scrollContent tr:eq(0) th.row").size();
+
+
 
     //隐藏行
     if(rowHidden != null && rowHidden >=1 && header_keys == rowNumber && !initMultipleRowCell){
@@ -195,6 +202,24 @@ CBoardTableRender.prototype.changeStyle = function(){
 
     // to-do 页内行内公式自定义
 
+    //列维重命名
+    if(cellExp != 0 && cellExp.length >= 6){
+        var expArr = cellExp.split(";");
+        for(var i = 0 ; i < expArr.length ; i++){
+            if(expArr[i].length>=6){
+                var arr = expArr[i].split("|");
+                var value = arr.length == 2 ? arr[1] : null;
+                var rowContent = arr.length == 2 ? arr[0] : null;
+                if(value != null && rowContent.indexOf("R") == 0 && rowContent.indexOf("C") >= 2){
+                    var rowNum = rowContent.substr(1,rowContent.indexOf("C")-1)-1;
+                    var cellNum = parseInt(rowContent.substr(parseInt(rowContent .indexOf("C"))+1,rowContent.length));
+                    cellNum = (rowNum == 0 ? parseInt(columns_keys) : 0) + cellNum-1;
+                        $("thead.fixedHeader > tr:eq(" + parseInt(rowNum) + ") > th.header_key:eq(" + parseInt(cellNum) + ") div").text(value);
+                }
+
+            }
+        }
+    }
 }
 
 CBoardTableRender.prototype.do = function (tall, persist) {

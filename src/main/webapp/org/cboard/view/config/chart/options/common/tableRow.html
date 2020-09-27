@@ -48,6 +48,25 @@
                 <input type="color" class="form-control" ng-model="curWidget.config.option.cellColor" ng-disabled="!curWidget.config.option.initFirstCell"/>
             </div>
         </div>
+
+    </div>
+    <div class="row">
+        <div class="form-group col-md-6">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" ng-model="curWidget.config.option.initCellSeries"
+                           ng-init="curWidget.config.option.initCellSeries ? null : curWidget.config.option.initCellSeries=false">{{'WIDGET_OPTION.TABLE_CONFIG.TABLE_ROW.INIT_CELL_SERIES'|translate}}
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-12">
+            <label class="col-md-2 control-label">{{'WIDGET_OPTION.TABLE_CONFIG.TABLE_ROW.CELL_STYLE.CELL_EXP'|translate}}</label>
+            <div class="col-md-8">
+                <input type="text" class="form-control" ng-model="curWidget.config.option.cellExp" ng-disabled="!curWidget.config.option.initCellSeries" placeholder="R1C1|第一季度;R1C2|第二季度..."/>
+            </div>
+        </div>
     </div>
     <div class="row">
         <div class="form-group col-md-6">
@@ -129,12 +148,7 @@
                 <input class="form-control" ng-model="curWidget.config.option.rowHidden" ng-pattern="/^[0-9]+$/" ng-disabled="!curWidget.config.option.initRowCell || curWidget.config.option.initMultipleRowCell == true" placeholder="请输入想要隐藏的行，行从1开始计数"/>
             </div>
         </div>
-        <div class="form-group col-md-6">
-            <label class="col-md-3 control-label">{{'WIDGET_OPTION.TABLE_CONFIG.TABLE_ROW.COL_HIDDEN'|translate}}</label>
-            <div class="col-md-8">
-                <input class="form-control" ng-model="curWidget.config.option.colHidden" ng-pattern="/^[0-9]+$/" ng-disabled="!curWidget.config.option.initRowCell || curWidget.config.option.initMultipleRowCell == true" placeholder="请输入想要隐藏的列，列号从1开始计数"/>
-            </div>
-        </div>
+
     </div>
     <div class="row">
         <div class="form-group col-md-6">
@@ -150,14 +164,15 @@
         <div class="form-group col-md-6">
             <label class="col-md-3 control-label">{{'WIDGET_OPTION.TABLE_CONFIG.TABLE_ROW.ROWS_HIDDEN'|translate}}</label>
             <div class="col-md-8">
-                <input class="form-control" type="text" ng-pattern="/^[0-9][0-9,]+$/" ng-model="curWidget.config.option.rowMultipleHidden" ng-disabled="!curWidget.config.option.initMultipleRowCell" placeholder="多行用,分割 e.g. 1,2" />
+                <input class="form-control" type="text" ng-pattern="/^[0-9]|[0-9,]+$/" ng-model="curWidget.config.option.rowMultipleHidden" ng-disabled="!curWidget.config.option.initMultipleRowCell" placeholder="多行用,分割 e.g. 1,2" />
             </div>
         </div>
         <div class="form-group col-md-6">
             <label class="col-md-3 control-label">{{'WIDGET_OPTION.TABLE_CONFIG.TABLE_ROW.COLS_HIDDEN'|translate}}</label>
             <div class="col-md-8">
-                <input class="form-control" type="text" ng-pattern="/^[0-9][0-9,]+$/" ng-model="curWidget.config.option.colMultipleHidden" ng-disabled="!curWidget.config.option.initMultipleRowCell" placeholder="多列,用分割 e.g. 1,2"/>
+                <input class="form-control" type="text" ng-pattern="/^[0-9]|[0-9,]+$/" ng-model="curWidget.config.option.colMultipleHidden" ng-disabled="!curWidget.config.option.initMultipleRowCell" placeholder="多列,用分割 e.g. 1,2"/>
             </div>
         </div>
     </div>
+
 </form>

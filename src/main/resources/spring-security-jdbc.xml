@@ -25,7 +25,7 @@
         <security:csrf disabled="true"/>
         <!--2020-04-29 cat-->
         <security:headers>
-            <security:frame-options disabled="true"/>
+            <security:frame-options disabled="true" />
         </security:headers>
        <!-- <security:custom-filter before="FILTER_SECURITY_INTERCEPTOR" ref="securityInterceptor"/>-->
     </security:http>
@@ -78,7 +78,7 @@
 
 
     <!--     自定义拦截器 -->
-    <bean id="securityInterceptor" class="org.cboard.security.service.AutoFilter">
+    <bean id="securityInterceptor" class="org.cboard.security.service.OuterUserLoginFilter">
     </bean>
 
 </beans>

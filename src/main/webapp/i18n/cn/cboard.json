@@ -613,6 +613,7 @@
           "INIT_AUTO_PAGING": "自定义分页",
           "INIT_ZEBRA_PATTERN" : "自定义斑马纹",
           "INIT_FIRST_CELL": "自定义首列",
+          "INIT_CELL_SERIES": "自定义列维",
           "SHOW_PAGING": "显示分页",
           "ROW_CELL": "行、列",
           "ROWS_CELL": "多行、列",
@@ -628,7 +629,8 @@
           },
           "CELL_STYLE": {
             "WIDTH": "列宽",
-            "BGCOLOR" : "背景色"
+            "BGCOLOR" : "背景色",
+            "CELL_EXP" : "列维表达式"
           }
         }
       }
