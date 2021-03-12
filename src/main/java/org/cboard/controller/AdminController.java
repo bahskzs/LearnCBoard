@@ -213,8 +213,15 @@ public class AdminController extends BaseController {
         return datasourceService.getViewDatasourceList(() -> datasourceDao.getDatasourceListAdmin(tlUser.get().getUserId()));
     }
 
+    /**
+     * 获取菜单权限
+     * @return
+     */
     @RequestMapping(value = "/getMenuList")
     public List<DashboardMenu> getMenuList() {
+        /**
+         * 如果是管理员登录则获取所有的菜单
+         */
         if (adminUserId.equals(tlUser.get().getUserId())) {
             return menuService.getMenuList();
         } else {

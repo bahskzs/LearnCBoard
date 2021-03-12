@@ -81,7 +81,7 @@ public interface WidgetDao {
      * @param category  分类名称
      * @return  报表id
      */
-    String  (String widgetName,String category);
+    String getWidgetId(String widgetName,String category);
 
     /**
      *
