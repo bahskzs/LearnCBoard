@@ -43,7 +43,7 @@ var chartDataProcess = function(chartConfig,casted_keys, casted_values, aggregat
     }
     for (var i = 0; i < casted_values.length; i++) {
         var joined_values = casted_values[i].join('-');
-        if(rowRealLength == 1 && casted_values[0].length > rowRealLength && chartConfig.groups.length >= 1){
+        if(rowRealLength == 1 && casted_values[0].length >= rowRealLength && chartConfig.groups.length >= 1){
             //只有一个指标的时候
             joined_values = joined_values +'-'+ singleIndexName;
         }

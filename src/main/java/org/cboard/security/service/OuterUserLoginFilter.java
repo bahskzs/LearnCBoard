@@ -46,6 +46,7 @@ public class OuterUserLoginFilter implements Filter {
         String token = hsr.getParameter("APEXTOKEN");
         boolean success = false;
 
+//        response.setHeader("Set-Cookie", "locale=de; HttpOnly; SameSite=unsafe-url");
         //2020-07-06 cat
         if(StringUtils.isNotEmpty(token)) {
 
