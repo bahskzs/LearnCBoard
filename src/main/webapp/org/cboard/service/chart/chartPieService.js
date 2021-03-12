@@ -3,7 +3,6 @@
  */
 'use strict';
 cBoard.service('chartPieService', function ($state, $window) {
-    debugger;
     this.render = function (containerDom, option, scope, persist, drill, relations, chartConfig) {
         var render = new CBoardEChartRender(containerDom, option);
         render.addClick(chartConfig, relations, $state, $window);

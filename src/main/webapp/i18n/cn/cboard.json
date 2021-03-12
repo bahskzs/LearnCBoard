@@ -243,6 +243,7 @@
       "WORLD_MAP": "世界地图"
     },
     "DASHBOARD": {
+      "UPDATEDATASET": "变更数据集",
       "DASHBOARD": "看板",
       "MY_DASHBOARD": "我的看板",
       "CATEGORY": "分类",

@@ -1,4 +1,5 @@
 <div class="tree tree-bg-dragout " style="overflow:auto; overflow-x: auto; border:none; min-height: 70vh; max-height: 79vh; margin-bottom: 0px;">
+    <!-- 维度列 -->
     <ul style="padding-left: 5px" ng-if="schema.dimension">
         <li class="parent_li">
             <span><img src="imgs/schema/dimension.gif"><b>{{'CONFIG.DATASET.DIMENSION'|translate}}</b></span>
@@ -23,6 +24,8 @@
             </ul>
         </li>
     </ul>
+
+    <!-- 指标列 -->
     <ul style="padding-left: 5px" ng-if="schema.measure">
         <li class="parent_li">
             <span><img src="imgs/schema/measure.gif"><b>{{'CONFIG.DATASET.MEASURE'|translate}}</b></span>
@@ -36,6 +39,8 @@
             </ul>
         </li>
     </ul>
+
+    <!-- 未分类指标列 -->
     <ul style="padding-left: 5px" ng-if="schema.selects">
         <li class="parent_li">
             <span><b>{{'CONFIG.DATASET.UNCLASSIFY'|translate}}</b></span>
@@ -49,6 +54,7 @@
             </ul>
         </li>
     </ul>
+    <!-- 可选表达式 -->
     <ul style="padding-left: 5px">
         <li class="parent_li">
             <span><img src="imgs/schema/measure.gif"/><b>{{'CONFIG.COMMON.CUSTOM_EXPRESSION'|translate}}</b></span>
@@ -67,6 +73,7 @@
             </ul>
         </li>
 
+        <!-- 过滤器 -->
         <li class="parent_li">
             <span><img src="imgs/schema/filter.png"/><b>{{'CONFIG.DATASET.FILTER'|translate}}</b></span>
             <i class="glyphicon glyphicon-plus" ng-click="editFilterGroup()"></i>

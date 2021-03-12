@@ -189,8 +189,6 @@ cBoard.controller('widgetCtrl', function ($scope, $state, $stateParams, $http, $
             $scope.provinces = data.provinces;
         });
 
-
-
         $scope.treemap_styles = [
             {name: translate('CONFIG.WIDGET.RANDOM'), value: 'random'},
             {name: translate('CONFIG.WIDGET.MULTI'), value: 'multi'},
@@ -539,7 +537,7 @@ cBoard.controller('widgetCtrl', function ($scope, $state, $stateParams, $http, $
 
         var addValidateWatch = function () {
             $scope.$watch('widgetName', clearAlert, true);
-            $scope.$watch('curWidget.datasetId', clearAlert, true);
+            $scope.$watch('curWidget.Id', clearAlert, true);
         };
         var clearAlert = function () {
             $scope.alerts = [];
@@ -1177,6 +1175,31 @@ cBoard.controller('widgetCtrl', function ($scope, $state, $stateParams, $http, $
             return !result;
         };
 
+        /**
+         * 更新数据集设置
+         */
+        $scope.updateSchema = function () {
+            $uibModal.open({
+                templateUrl:'org/cboard/view/config/dataset/edit.html',
+                windowTemplateUrl:'org/cboard/view/util/modal/window.html',
+                backdrop:false,
+                scope:$scope,
+                size:6,
+                controller:function ($scope,$uibModalInstance) {
+                    $scope.close = function () {
+                        $uibModalInstance.close();
+                    };
+                    $scope.ok = function () {
+                        $uibModalInstance.close();
+                        $scope.loadData();
+                    };
+                }
+            });
+        };
+
+        /**
+         * 刷新数据集
+         */
         $scope.refreshSchema = function () {
             loadDataset(function () {
                 $scope.curWidget.expressions = [];
@@ -1187,6 +1210,9 @@ cBoard.controller('widgetCtrl', function ($scope, $state, $stateParams, $http, $
             });
         }
 
+        /**
+         * 构建数据集数据
+         */
         var buildSchema = function () {
             var loadFromDataset = false;
             if (!$scope.customDs) {

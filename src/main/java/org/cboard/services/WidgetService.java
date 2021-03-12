@@ -79,8 +79,8 @@ public class WidgetService {
         }
     }
 
-    public ServiceStatus delete(String userId, Long id) {
-        widgetDao.delete(id, userId);
+    public ServiceStatus delete(Long id) {
+        widgetDao.delete(id);
         return new ServiceStatus(ServiceStatus.Status.Success, "success");
     }
 
@@ -106,5 +106,10 @@ public class WidgetService {
                 return new ServiceStatus(ServiceStatus.Status.Fail, datasourceDao.getDatasource(datasourceId).getName());
             }
         }
+    }
+
+    public String getDatasetId(String widgetName,String category){
+        String widgetId = widgetDao.getWidgetId(widgetName,category);
+        return  widgetId;
     }
 }

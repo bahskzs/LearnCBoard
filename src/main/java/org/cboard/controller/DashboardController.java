@@ -175,13 +175,24 @@ public class DashboardController extends BaseController {
 
     @RequestMapping(value = "/deleteWidget")
     public ServiceStatus deleteWidget(@RequestParam(name = "id") Long id) {
-        return widgetService.delete(tlUser.get().getUserId(), id);
+        return widgetService.delete(id);
     }
 
     @RequestMapping(value = "/getBoardList")
     public List<ViewDashboardBoard> getBoardList() {
         List<DashboardBoard> list = boardService.getBoardList(tlUser.get().getUserId());
         return Lists.transform(list, ViewDashboardBoard.TO);
+    }
+
+    @RequestMapping(value = "/getWidgetId")
+    public ServiceStatus getWidgetId(@RequestParam(name = "widgetName") String widgetName,
+                            @RequestParam(name= "category") String category){
+        String widgetId = widgetService.getDatasetId(widgetName,category);
+        //为空则不存在符合条件的报表
+        if (null == widgetId){
+            return new ServiceStatus(ServiceStatus.Status.Fail,"no widget that meets the criteria");
+        }
+        return new ServiceStatus(ServiceStatus.Status.Success,widgetId);
     }
 
     @RequestMapping(value = "/saveNewBoard")
