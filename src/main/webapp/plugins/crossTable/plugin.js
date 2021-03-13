@@ -38,7 +38,12 @@ var crossTable = {
 //                 colContent += "<th class=" + data[i][t].property + "><div></div></th>";
 //             }
             for (var y = 0; y < data[i].length; y++) {
+                var formmer = 0;
+                var latter = 0;
+
+                //当y小于行维个数时
                 if(y<chartConfig.keys.length){
+                    //判断是否是第一行，由于第一行的特殊性 ： 第一行的列是由行维的个数+列维的值构成的，所以合并需要从行维的个数之后开始统计
                     if(i == 0){
                         colList.push({
                             data: data[i][y].data,
@@ -48,11 +53,22 @@ var crossTable = {
                         });
                     }
                 }
-                if (data[i][y + 1] && (data[i][y].data == data[i][y + 1].data) && rowHeaderSortg && ((i==0 && y >= chartConfig.keys.length)||i>0) ) {
+                //判断是否存在下一个 且下一个是否和当前的这个相等
+                if (data[i][y + 1] && (data[i][y].data == data[i][y + 1].data)
+                    && rowHeaderSortg && ((i==0 && y >= chartConfig.keys.length)||i>0) ) {
                     if (i > 0) {
+                        formmer = data[i][y].data;
+                        latter = data[i][y + 1].data;
                         var noEqual = false;
                         for (var s = i - 1; s > -1; s--) {
-                            if (data[s][y].data != data[s][y + 1].data) {
+                            //比较当前单元格的上一行父母是否相同 ，经校准，原逻辑有误区，因为开始计算的是从行维所在数量开始计算的，所以会漏算
+                            //需要把第一行和中间行的比较拆开来看
+                            if( s==0 && y >= chartConfig.keys.length &&
+                                data[s][y].data != data[s][y + 1].data){
+                                noEqual = true;
+                                break;
+                            }
+                            else if (s > 0 && data[s][y].data != data[s][y + 1].data) {
                                 noEqual = true;
                                 break;
                             }
@@ -82,7 +98,8 @@ var crossTable = {
                             rowSpan:1,
                             property: data[i][y].property
                         }) : null;
-                        colspan = 1;}
+                        colspan = 1;
+                    }
                 }
             }
             for (var c = 0; c < colList.length; c++) {
