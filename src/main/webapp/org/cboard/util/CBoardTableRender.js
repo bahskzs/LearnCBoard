@@ -202,19 +202,30 @@ CBoardTableRender.prototype.changeStyle = function(){
 
     // to-do 页内行内公式自定义
 
-    //列维重命名
-    if(cellExp != 0 && cellExp.length >= 6){
+    //列维重命名 要考虑是否有隐藏列的情况
+    if(cellExp != 0 && cellExp.length >= 6 && colMultipleHidden != null){
         var expArr = cellExp.split(";");
         for(var i = 0 ; i < expArr.length ; i++){
             if(expArr[i].length>=6){
                 var arr = expArr[i].split("|");
                 var value = arr.length == 2 ? arr[1] : null;
                 var rowContent = arr.length == 2 ? arr[0] : null;
+
+                // 值非空且格式是RXCX的才进入判断
                 if(value != null && rowContent.indexOf("R") == 0 && rowContent.indexOf("C") >= 2){
+
+                    // 需要重命名的行和列号
                     var rowNum = rowContent.substr(1,rowContent.indexOf("C")-1)-1;
                     var cellNum = parseInt(rowContent.substr(parseInt(rowContent .indexOf("C"))+1,rowContent.length));
                     cellNum = (rowNum == 0 ? parseInt(columns_keys) : 0) + cellNum-1;
-                        $("thead.fixedHeader > tr:eq(" + parseInt(rowNum) + ") > th.header_key:eq(" + parseInt(cellNum) + ") div").text(value);
+
+                    // 需要判断行维是否有被隐藏，有的话则要扣除
+                    if(colMultipleHidden != null && colMultipleHidden !="" && colNumber == columns_keys && rowNum == 0){
+                        var array = colMultipleHidden.split(",");
+                        cellNum = cellNum - array.length;
+                    }
+
+                    $("thead.fixedHeader > tr:eq(" + parseInt(rowNum) + ") > th.header_key:eq(" + parseInt(cellNum) + ") div").text(value);
                 }
 
             }
