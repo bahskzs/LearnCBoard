@@ -74,10 +74,10 @@ public class OuterUserLoginFilter implements Filter {
 
                     Iterator<String> iterator = keySet.iterator();
                     int count = 0;
-//                    str.append("externalParam");
-//                    str.append("=");
-//                    str.append("1");
-//                    str.append("&");
+                    str.append("externalParam");
+                    str.append("=");
+                    str.append("1");
+                    str.append("&");
                     while (iterator.hasNext()){
 
                         String key = iterator.next();
@@ -88,8 +88,7 @@ public class OuterUserLoginFilter implements Filter {
                             str.append("&");
                         }
                     }
-//                    params = URLEncoder.encode(str.toString(),"utf-8");
-                    params = str.toString() ;
+                    params = URLEncoder.encode(str.toString(),"utf-8");
                 }else{
                     params = "";
                 }
